@@ -1,0 +1,7 @@
+This sample shows the basic features related to the UltraTree nodes, like editing labels, TreeNode editors, load and save layouts, etc.
+
+The frmMain class has an UltraTree control on the left, this control is populated with some nodes, and it is used to show all the features in the UltraTree. The list on the top right of the form is to select a set of properties to be modified. Once an item is selected in that list, the “Launch Control Panel” should be clicked. That opens the frmControlPanel form, which has all the required controls to modify the UltraTree properties.
+
+The code that shows how to modify those properties is written in the events of each control.
+
+ABL examples derived from Infragistics sources, copyright ©1992-2008 Infragistics, Inc., Windsor Corporate Park, 50 Millstone Road, Building 200 - Suite 150, East Windsor, NJ 08520. All rights reserved.

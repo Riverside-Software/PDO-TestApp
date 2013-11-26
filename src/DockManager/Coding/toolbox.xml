@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ToolBoxConfig>
+  <Category Text="OpenEdge" Remove="False">
+    <ControlGroup Text="Common Controls">
+      <Control Text="UltraButton" Type="Infragistics.Win.Misc.UltraButton" Assembly="Infragistics2.Win.Misc.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraCalendarCombo" Type="Infragistics.Win.UltraWinSchedule.UltraCalendarCombo" Assembly="Infragistics2.Win.UltraWinSchedule.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraCheckEditor" Type="Infragistics.Win.UltraWinEditors.UltraCheckEditor" Assembly="Infragistics2.Win.UltraWinEditors.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraCombo" Type="Infragistics.Win.UltraWinGrid.UltraCombo" Assembly="Infragistics2.Win.UltraWinGrid.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraComboEditor" Type="Infragistics.Win.UltraWinEditors.UltraComboEditor" Assembly="Infragistics2.Win.UltraWinEditors.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraCurrencyEditor" Type="Infragistics.Win.UltraWinEditors.UltraCurrencyEditor" Assembly="Infragistics2.Win.UltraWinEditors.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraDateTimeEditor" Type="Infragistics.Win.UltraWinEditors.UltraDateTimeEditor" Assembly="Infragistics2.Win.UltraWinEditors.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraDropDown" Type="Infragistics.Win.UltraWinGrid.UltraDropDown" Assembly="Infragistics2.Win.UltraWinGrid.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraExplorerBar" Type="Infragistics.Win.UltraWinExplorerBar.UltraExplorerBar" Assembly="Infragistics2.Win.UltraWinExplorerBar.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraLabel" Type="Infragistics.Win.Misc.UltraLabel" Assembly="Infragistics2.Win.Misc.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraListBar" Type="Infragistics.Win.UltraWinListBar.UltraListBar" Assembly="Infragistics2.Win.UltraWinListBar.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraListView" Type="Infragistics.Win.UltraWinListView.UltraListView" Assembly="Infragistics2.Win.UltraWinListView.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraMaskedEdit" Type="Infragistics.Win.UltraWinMaskedEdit.UltraMaskedEdit" Assembly="Infragistics2.Win.UltraWinMaskedEdit.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraNumericEditor" Type="Infragistics.Win.UltraWinEditors.UltraNumericEditor" Assembly="Infragistics2.Win.UltraWinEditors.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraOptionSet" Type="Infragistics.Win.UltraWinEditors.UltraOptionSet" Assembly="Infragistics2.Win.UltraWinEditors.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraPictureBox" Type="Infragistics.Win.UltraWinEditors.UltraPictureBox" Assembly="Infragistics2.Win.UltraWinEditors.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraPrintPreviewThumbnail" Type="Infragistics.Win.Printing.UltraPrintPreviewThumbnail" Assembly="Infragistics2.Win.Misc.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraProgressBar" Type="Infragistics.Win.UltraWinProgressBar.UltraProgressBar" Assembly="Infragistics2.Win.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraStatusBar" Type="Infragistics.Win.UltraWinStatusBar.UltraStatusBar" Assembly="Infragistics2.Win.UltraWinStatusBar.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraScrollBar" Type="Infragistics.Win.UltraWinScrollBar.UltraScrollBar" Assembly="Infragistics2.Win.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraTextEditor" Type="Infragistics.Win.UltraWinEditors.UltraTextEditor" Assembly="Infragistics2.Win.UltraWinEditors.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraTree" Type="Infragistics.Win.UltraWinTree.UltraTree" Assembly="Infragistics2.Win.UltraWinTree.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraPrintPreviewControl" Type="Infragistics.Win.Printing.UltraPrintPreviewControl" Assembly="Infragistics2.Win.Misc.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraDropDownButton" Type="Infragistics.Win.Misc.UltraDropDownButton" Assembly="Infragistics2.Win.Misc.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="C:\WINDOWS\assembly\GAC_MSIL\Infragistics2.Win.Misc.v8.1\8.1.20081.1000__7dd5c3163f2cd0cb\Infragistics2.Win.Misc.v8.1.dll" />
+      <Control Text="UltraGridBagLayoutManager" Type="Infragistics.Win.Misc.UltraGridBagLayoutManager" Assembly="Infragistics2.Win.Misc.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="C:\WINDOWS\assembly\GAC_MSIL\Infragistics2.Win.Misc.v8.1\8.1.20081.1000__7dd5c3163f2cd0cb\Infragistics2.Win.Misc.v8.1.dll" />
+    </ControlGroup>
+    <ControlGroup Text="Common Dialogs">
+      <Control Text="UltraPrintPreviewDialog" Type="Infragistics.Win.Printing.UltraPrintPreviewDialog" Assembly="Infragistics2.Win.UltraWinPrintPreviewDialog.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+    </ControlGroup>
+    <ControlGroup Text="Components">
+      <Control Text="UltraCalendarInfo" Type="Infragistics.Win.UltraWinSchedule.UltraCalendarInfo" Assembly="Infragistics2.Win.UltraWinSchedule.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraCalendarLook" Type="Infragistics.Win.UltraWinSchedule.UltraCalendarLook" Assembly="Infragistics2.Win.UltraWinSchedule.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraDockManager" Type="Infragistics.Win.UltraWinDock.UltraDockManager" Assembly="Infragistics2.Win.UltraWinDock.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraPrintDocument" Type="Infragistics.Win.Printing.UltraPrintDocument" Assembly="Infragistics2.Win.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraTabbedMdiManager" Type="Infragistics.Win.UltraWinTabbedMdi.UltraTabbedMdiManager" Assembly="Infragistics2.Win.UltraWinTabbedMdi.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraToolTipManager" Type="Infragistics.Win.UltraWinToolTip.UltraToolTipManager" Assembly="Infragistics2.Win.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+    </ControlGroup>
+    <ControlGroup Text="Containers">
+      <Control Text="UltraGroupBox" Type="Infragistics.Win.Misc.UltraGroupBox" Assembly="Infragistics2.Win.Misc.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraTabControl" Type="Infragistics.Win.UltraWinTabControl.UltraTabControl" Assembly="Infragistics2.Win.UltraWinTabControl.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+    </ControlGroup>
+    <ControlGroup Text="Data">
+      <Control Text="ProBindingSource" Type="Progress.Data.BindingSource" Assembly="" Path="C:\Progress102a\bin\Progress.NetUI.dll" />
+      <Control Text="UltraGrid" Type="Infragistics.Win.UltraWinGrid.UltraGrid" Assembly="Infragistics2.Win.UltraWinGrid.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraGridColumnChooser" Type="Infragistics.Win.UltraWinGrid.UltraGridColumnChooser" Assembly="Infragistics2.Win.UltraWinGrid.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+    </ControlGroup>
+    <ControlGroup Text="Menus and Toolbars">
+      <Control Text="UltraToolbarsManager" Type="Infragistics.Win.UltraWinToolbars.UltraToolbarsManager" Assembly="Infragistics2.Win.UltraWinToolbars.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+    </ControlGroup>
+  </Category>
+  <Category Text="Microsoft" Remove="False">
+    <ControlGroup Text="Common Controls">
+      <Control Text="Button" Type="System.Windows.Forms.Button" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="CheckBox" Type="System.Windows.Forms.CheckBox" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="CheckedListBox" Type="System.Windows.Forms.CheckedListBox" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="ComboBox" Type="System.Windows.Forms.ComboBox" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="DateTimePicker" Type="System.Windows.Forms.DateTimePicker" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="Label" Type="System.Windows.Forms.Label" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="LinkLabel" Type="System.Windows.Forms.LinkLabel" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="ListBox" Type="System.Windows.Forms.ListBox" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="ListView" Type="System.Windows.Forms.ListView" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="MaskedTextBox" Type="System.Windows.Forms.MaskedTextBox" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="MonthCalendar" Type="System.Windows.Forms.MonthCalendar" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="NotifyIcon" Type="System.Windows.Forms.NotifyIcon" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="NumericUpDown" Type="System.Windows.Forms.NumericUpDown" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="PictureBox" Type="System.Windows.Forms.PictureBox" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="ProgressBar" Type="System.Windows.Forms.ProgressBar" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="RadioButton" Type="System.Windows.Forms.RadioButton" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="RichTextBox" Type="System.Windows.Forms.RichTextBox" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="TextBox" Type="System.Windows.Forms.TextBox" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="ToolTip" Type="System.Windows.Forms.ToolTip" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="TreeView" Type="System.Windows.Forms.TreeView" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="WebBrowser" Type="System.Windows.Forms.WebBrowser" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+    </ControlGroup>
+    <ControlGroup Text="Containers">
+      <Control Text="FlowLayoutPanel" Type="System.Windows.Forms.FlowLayoutPanel" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="GroupBox" Type="System.Windows.Forms.GroupBox" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="Panel" Type="System.Windows.Forms.Panel" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="SplitContainer" Type="System.Windows.Forms.SplitContainer" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="TabControl" Type="System.Windows.Forms.TabControl" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="TableLayoutPanel" Type="System.Windows.Forms.TableLayoutPanel" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+    </ControlGroup>
+    <ControlGroup Text="Menus and Toolbars">
+      <Control Text="ContextMenuStrip" Type="System.Windows.Forms.ContextMenuStrip" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="MenuStrip" Type="System.Windows.Forms.MenuStrip" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="StatusStrip" Type="System.Windows.Forms.StatusStrip" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="ToolStrip" Type="System.Windows.Forms.ToolStrip" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="ToolStripContainer" Type="System.Windows.Forms.ToolStripContainer" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+    </ControlGroup>
+    <ControlGroup Text="Data">
+      <Control Text="DataGridView" Type="System.Windows.Forms.DataGridView" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+    </ControlGroup>
+    <ControlGroup Text="Components">
+      <Control Text="BackgroundWorker" Type="System.ComponentModel.BackgroundWorker" Assembly="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="DirectoryEntry" Type="System.DirectoryServices.DirectoryEntry" Assembly="System.DirectoryServices, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Path="" />
+      <Control Text="DirectorySearcher" Type="System.DirectoryServices.DirectorySearcher" Assembly="System.DirectoryServices, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Path="" />
+      <Control Text="ErrorProvider" Type="System.Windows.Forms.ErrorProvider" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="EventLog" Type="System.Diagnostics.EventLog" Assembly="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="FileSystemWatcher" Type="System.IO.FileSystemWatcher" Assembly="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="HelpProvider" Type="System.Windows.Forms.HelpProvider" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="ImageList" Type="System.Windows.Forms.ImageList" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="MessageQueue" Type="System.Messaging.MessageQueue" Assembly="System.Messaging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Path="" />
+      <Control Text="PerformanceCounter" Type="System.Diagnostics.PerformanceCounter" Assembly="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="Process" Type=" System.Diagnostics.Process" Assembly="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="SerialPort" Type="System.IO.Ports.SerialPort" Assembly="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="ServiceController" Type="System.ServiceProcess.ServiceController" Assembly="System.ServiceProcess, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Path="" />
+      <Control Text="Timer" Type="System.Windows.Forms.Timer" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+    </ControlGroup>
+    <ControlGroup Text="Printing">
+      <Control Text="PageSetupDialog" Type="System.Windows.Forms.PageSetupDialog" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="PrintDialog" Type="System.Windows.Forms.PrintDialog" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="PrintDocument" Type="System.Drawing.Printing.PrintDocument" Assembly="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Path="" />
+      <Control Text="PrintPreviewControl" Type="System.Windows.Forms.PrintPreviewControl" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="PrintPreviewDialog" Type="System.Windows.Forms.PrintPreviewDialog" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+    </ControlGroup>
+    <ControlGroup Text="Dialogs">
+      <Control Text="ColorDialog" Type="System.Windows.Forms.ColorDialog" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="FolderBrowserDialog" Type="System.Windows.Forms.FolderBrowserDialog" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="FontDialog" Type="System.Windows.Forms.FontDialog" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="OpenFileDialog" Type="System.Windows.Forms.OpenFileDialog" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="SaveFileDialog" Type="System.Windows.Forms.SaveFileDialog" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+    </ControlGroup>
+  </Category>
+</ToolBoxConfig>

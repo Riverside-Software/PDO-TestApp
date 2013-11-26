@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Animals>
+	<AnimalGroup category="Mammals">
+		<Animal type="Cat" legs="4" tail="true" domestic="true"></Animal>
+		<Animal type="Chimpanzee" legs="2" thumbs="true"></Animal>
+		<Animal type="Dog" legs="4" tail="true" domestic="true"></Animal>
+		<Animal type="Elephant" legs="4" tail="true" trunk="true"></Animal>
+		<Animal type="Ferret" legs="4" tail="true" domestic="true"></Animal>
+		<Animal type="Wolf" legs="4" tail="true"></Animal>
+		<Animal type="Zebra" legs="4" tail="true" stripes="true"></Animal>
+	</AnimalGroup>
+	<AnimalGroup category="Reptiles">		
+		<Animal type="Gecko" legs="4" tail="true" tvstar="true"></Animal>
+		<Animal type="Iguana" legs="4" tail="true"></Animal>		
+		<Animal type="Snake" venomous="true"></Animal>
+	</AnimalGroup>
+	<AnimalGroup category="Birds">
+		<Animal type="Bluejay" color="blue"></Animal>	
+		<Animal type="Flamingo" color="pink" flightless="true"></Animal>
+		<Animal type="Parrot" talking="true" color="rainbow"></Animal>
+		<Animal type="Penguin" color="tuxedo" flightless="true"></Animal>	
+		<Animal type="Robin" color="red"></Animal>	
+	</AnimalGroup>
+</Animals>

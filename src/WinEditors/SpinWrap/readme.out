@@ -1,0 +1,7 @@
+This sample shows the SpinWrap Property works for the UltraWinEditors.
+
+The SpinWrap property returns or sets a value indicating whether the control's spin button should wrap its value. If true, the spin button will wrap the value incremented/decremented based on its Min/Max value.
+
+The SpinWrap for the UltraWinEditors is set in the CheckEditor_CheckedChanged event.
+
+ABL examples derived from Infragistics sources, copyright ©1992-2008 Infragistics, Inc., Windsor Corporate Park, 50 Millstone Road, Building 200 - Suite 150, East Windsor, NJ 08520. All rights reserved.

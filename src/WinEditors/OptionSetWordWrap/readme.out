@@ -1,0 +1,5 @@
+This sample shows the word wrapping for the UltraOptionSetControl.
+
+The word wrapping is acheived by specifying the maximal width for the columns of items. You can specify a definite width for the columns by setting the MinColumnWidth to the same value as the MaxColumnWidth.
+
+ABL examples derived from Infragistics sources, copyright ©1992-2008 Infragistics, Inc., Windsor Corporate Park, 50 Millstone Road, Building 200 - Suite 150, East Windsor, NJ 08520. All rights reserved.

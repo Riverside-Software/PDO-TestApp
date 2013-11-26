@@ -1,0 +1,14 @@
+This sample shows how to modify at runtime some UltraDockManager and DockableControlPane properties. 
+
+Form1 is the main class of the sample, it has some controls docked at design time, this controls are used to show how they behave when a property is changed to them.
+Form1 launch the ChangeProperties class, which is used to apply the changes to the controls in Form1.
+
+The properties shown in ChangeProperties for the DockableControlPane are:
+-Pinned
+-Minimized
+-Float
+
+The properties shown in ChangeProperties for the UltraDockManager are:
+-Save Layout XML file
+-Load Layout XML file
+-Show Navigator

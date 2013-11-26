@@ -1,0 +1,15 @@
+This sample shows how populate a UltraTree from a ProBindingSource control, setting the DataSource attribute at runtime.
+
+The DataSource and DataMember property values for the UltraTree control is set in the optBindTo value changed event (optBindTo_ValueChanged), this is done by calling the UltraTree SetDataBinding method.
+Other relevant code is in the UltraTree events like:
+
+AfterDataNodesCollectionPopulated:
+This event fires after the tree has populated a Nodes collection with data from the data source. Since the nodes collection has been populated with nodes at this point, this is an excellent place to autosize the columns based on their contents.
+
+ColumnSetGenerated:
+This event will fire whenever the tree automatically generates a ColumnSet. The ColumnSet is not neccessarily attach to any particular group of Nodes at this point, so this is an appropriate place to apply appearances and properties that apply at a ColumnSet level.
+
+InitializeDataNode:
+This event fires every time a node is added to the tree from a data source. It's a good place to apply Appearances that are dependent on the value of a cell.
+
+ABL examples derived from Infragistics sources, copyright ©1992-2008 Infragistics, Inc., Windsor Corporate Park, 50 Millstone Road, Building 200 - Suite 150, East Windsor, NJ 08520. All rights reserved.

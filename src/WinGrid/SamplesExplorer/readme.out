@@ -1,0 +1,723 @@
+ABL examples derived from Infragistics sources, copyright ©1992-2008 Infragistics, Inc., 
+Windsor Corporate Park, 50 Millstone Road, Building 200 - Suite 150, East Windsor, NJ 08520. 
+All rights reserved. 
+
+I - Events used throughout the samples. 
+------------------------------------------------
+a. Infragistics.Win.UltraWinGrid.UltraGrid:InitializeLayout
+  - Hides columns and manipulates formats.
+  - Deals with grid appearance properties like alpha blending and colors. 
+
+b. Progress.Windows.Form:Load
+  - set control properties. 
+  - populates combos.   
+  - sets the grid's datasource.
+        
+UltraDropDown
+-------------
+Demonstrates how the UltraDropDown control can be used to provide the end user 
+with multi-column dropdown lists. 
+
+The form is designed with an empty UltraGrid and UltraDropDown control. The two
+controls are bound to their data sources at runtime.  
+
+The UltraGrid is bound to a CustOrderDataService, which is an ABL class 
+(Service Adapter) that provides customer, order and orderline data from a 
+Data Access object connected to the Sports2000 database. 
+
+The UltraDropDown Grid is bound to another ABL DataService that provides
+item data from Sports2000 and is used as a dropdown in the Itemnum column of the 
+UltraGrid. 
+
+The UltraDropDown's ValueMember property specifies the column in the 
+UltraDropDown control that will supply the value to the UltraGrid cell, 
+analogous to a ValueListItem's or a SmartDataField's DataValue. 
+
+The UltraDropDown's DisplayMember property specifies the column in the 
+UltraDropDown control that will supply the display text to the UltraGrid cell, 
+analogous to a ValueListItem's DisplayText or a SmartDataField's DisplayField. 
+
+The UltraDropDown control appears to be a ValueList from the grid's 
+perspective and the "ItemNum" column's ValueList property is set to the 
+UltraDropDown control to make it appear as a dropdown list in the grid. 
+
+(See the ConfigureUltraDropDown() method for details.)
+
+ColumnStyles         
+------------
+This sample illustrates the various ColumnStyles supported in the DataGrid. It 
+also shows a multi column drop down that is not a supported ColumnStyle. 
+
+The "Select column styles to show" combo box has a list of all the styles and 
+selecting one of the styles will make the Grid go to that column. The 
+"Description" field shows a short description of the style (some of the styles
+do not have any description). The "Select when buttons display" lists options on
+how and when columns that have buttons should visualize the buttons. Selecting 
+an option will apply the choice to all columns and demonstrate the chosen 
+behavior. The AutoFit columns option is currently not implemented due to a 
+problem. (TODO fix error and remove this)     
+
+The sample is highly dynamic and reads the supported ColumnStyles from the 
+class. The styles are stored in a temp-table that are used to create a DataTable 
+as well as populate the combo with the Styles. The GridData columns are created 
+from this temp-table in the initializeLayout event of the DataGrid.  
+
+The data are completely random and mostly genererated using the ABL's 
+random function. The DropDopwn and DropDown list combo boxes in the DataGrid 
+are populated with data from sports2000 through an ABL DataService. They are 
+not populated with data binding, but are using a dedicated Infragistic API in 
+the service. The returned ValueList is added to GridData:Layout:ValueLists from 
+where the controls retrieve the data on the initialization event. 
+
+The DropDownValidate column is just populated with numbers and added to the  
+GridData:Layout:ValueLists collection, which then is used to poulate the combo 
+on the initialization event.   
+
+The last column in the Grid is the multi drop downlist, which is not one of 
+the supported ColumnStyles. This sample is using a Progress Binding Source that 
+provides a state temp-table from the sports2000 state table. It is bound to a 
+Win.UltraWinGrid.UltraDropDownDropDownCombo that is added to the Form at design 
+time. 
+
+ValueLists
+------------
+This sample illustrates how to use ValueLists to provide the end user with 
+dropdown lists.  
+
+The sample starts up showing a grid with data. Checking the "show value 
+lists" check box will add a Value List to the  "Spacelines", "ArrivalPort", 
+"Departure Port" and "Status" fields. The SpaceLines Value List has an image 
+in addition to the text. Note that the calendar popup appears automatically 
+for a column that is mapped to a date field.    
+
+The data is from an ABL DataSource with random generated data. The DataGrid is 
+databound to the ProDataset while the 3 valuelists are populated from the other 
+temp-tables in the grid using a dedicated Infragistic API in the service. The 
+returned ValueList is added to GridData:Layout:ValueLists from where the 
+controls retrieve the data when the ValueLists are enabled. 
+ 
+The sample also has a check box that enables Alpha Blending. 
+         
+UIElements
+----------
+This sample illustrates and shows details about all the UI Elements of the 
+UltraGrid when you click on them. 
+
+The form uses two Splitters and two Panels to split the area in three virtual
+panels. The grid is not on a panel and is manually resized in PositionGrid, 
+which is called from the Splitter's Move event and the form's Resize and Load
+event.    
+
+At runtime the ListView on bottom left is populated with properties from the 
+UI element with focus while the multiline TextBox on bottom right shows the 
+element ancestry by walking through the parent attribute of the elements with
+the current UI element at top.
+   
+The Grid's MouseEntryElement event calls DisplayUIElementProperties() to 
+refresh the ListView with properties, DisplayUIElementAncestors() to show the  
+ancestry in the TextBox and HighlightUIElement() which marks the element
+red with white foreground.  
+
+The Grid's MouseLeaveElement event calls HighlightUIElement() to reset the 
+UI element color. 
+
+--
+The form is designed with an empty UltraGrid that is bound at runtime to a 
+CustOrderDataService, which is an ABL class (Service Adapter) that provides 
+customer, order and orderline data from a Data Access object connected to the 
+Sports2000 database.   
+
+
+
+Sorting
+-------
+This sample demonstrates the automatic sorting capabilities of the UltraGrid. 
+All columns on all levels can be sorted ascending and descending. The sort
+on a child level row is applied to all child rows of all parents.  
+
+The form is designed with an empty UltraGrid that is bound at runtime to a 
+DeptEmployeeDataService, which is an ABL class (Service Adapter) that provides 
+department, employee and family data from a Data Access object connected to the 
+Sports2000 database.
+       
+RowProperties
+-------------
+This sample demonstrates the various properties that can be set on the row, 
+including AutoPreview, variable row height, alternating colors, and more.
+
+The set of controls on the left on the form are all defined with events that 
+modifies a row attribute that corresponds to the control's label dynamically at 
+runtime. 
+
+This sample also shows how to walk through a grid's bands and columns at runtime
+to check and change column attributes. The FormatCurrencyColumns is called from 
+the grid's InitializeLayout event to set the Format of all decimal column's. 
+
+The form's load event combo sets the max and min value of the trackbars
+(sliders) and calls PopulateRowSizingCombo() and 
+PopulateRowConnectorStyleCombo() to populate the two comvo boxes. 
+
+The form is designed with an empty UltraGrid that is bound at runtime to a 
+CustOrderDataService, which is an ABL class (Service Adapter) that provides 
+customer, order and orderline data from a Data Access object connected to the 
+Sports2000 database.   
+
+PerformAction
+-------------  
+This sample demonstrates the use of the PerformAction method and the KeyMappings
+collection, which together allow all actions of a grid to be manipulated at 
+runtime from events or by the user from keys. The keys can also be added to the
+grid's keymapping collection at runtime. 
+
+The "PerformAction" tab allows one to test the use of the various actions that
+can be applied to the grid. The "CurrentState" ListBox shows the state of the 
+grid at any time or more specifically, every 100 millisecond as specified by a 
+timer. The "UltraAction" combo allows one to select an action from the list of 
+actions that can be applied to the grid. The two check boxes can be checked to 
+test the action with shift and/or cntrl.
+
+Clicking the "Perform Action" button will call the UltraGrid's PerformAction() 
+with the selected action as the first parameter while the check boxes Checked
+attribute is passed to the shiftkey and controlkey parameters. The Click event
+shows an error message if PerformAction returns false in the case the action
+could not be performed in the current state. 
+
+The "KeyMappings" tab allows one to test the setting of key mappings for the 
+grid. The "Keys" allows one to select a key from the list of the forms supported
+keys. The "Action to Map" allows one to select one of the grid's supported 
+actions (similar to the "UltraAction" on the first tab). There are also two 
+multi select list boxes that has state values that can be selected to specify 
+what the key mapping should have as required state and disallowed state.
+
+Clicking the "Add Key Mapping" button will add a new GridKeyActionMappingkey 
+instance to the grid's KeyActionMappings collection. The constructor of 
+the Infragistics.Win.UltraWinGrid.GridKeyActionMappingkey parameters keyCode,
+actionCode, stateDisallowed and stateRequired are set from the controls in the 
+form. (The constructor also has a disallowed and a required parameter for 
+special keys ((Alt, Ctrl, Shift), which are set to ? and not used.) 
+
+--
+The form is designed with an empty UltraGrid that is bound at runtime to a 
+DeptEmployeeDataService, which is an ABL class (Service Adapter) that provides 
+department, employee and family data from a Data Access object connected to the 
+Sports2000 database.
+
+The sample uses Progress.Util.EnumHelper to check and set enumerated members
+at runtime. The And() is used in PopulateCurrentStateValaues() to loop through 
+the supported GridState values and compare it to the CurrentValue to add the 
+matching values to the "CurrentValue" Listbox. The Or() is used in 
+GetDisallowedStateForKeyMapping and GetRequiredStateForKeyMapping to return 
+multiple states from the multi ListBoxes and pass to the GridKeyActionMappingkey
+ constuctor's disallow and required state parameters.
+ 
+AlphaBlending
+-------------
+Ths sample demonstrates the alpha blending properties of the controls. Alpha 
+Blending is a function of the Windows Operating System (Win98/Win2000). Some 
+display elements overlay others and this allows the UltraGrid to control the 
+transparency of cells, rows, headers and other display elements. 
+
+The form has two TrackBar components that are defined with Scroll events that 
+calls an UpdateDisplay() method that sets the AlphaLevel property of the
+grid's Row-, Header- and CellAppearance. The upper TrackBar controls the Header
+and Row, while the lower controls the Cell. 
+
+--
+The form is designed with an empty UltraGrid that is bound at runtime to a 
+DeptEmployeeDataService, which is an ABL class (Service Adapter) that provides 
+department, employee and family from a Data Access object connected to the 
+Sports2000 database.
+
+SummaryRows
+-----------
+This sample demonstrates how to configure the UltraGrid as well as let the user
+control how to display total, average, max, min and/or count for columns in 
+dedicated summary rows.  
+
+Right-click on a column to add it to its Band's Summaries collection, or modify 
+its SummarySettings if it has already been added. Click the 
+'Summary Row Settings' button to display the Summary Row Settings dialog.
+
+The orderline Qty and Extended price is set up to show the sum programatically 
+in the form's Load event (frmRowSummaries_Load). 
+
+Pressing the "Summary Row Settings" will open a dialog (frmSummaryRowSettings) 
+that displays and edits the following summary settings. 
+
+1. AllowRowSummaries. 
+Use the "select band" combo to select whether to apply the setting to all or 
+one of the bands and select one of the six "AllowRowSummaries" options. 
+
+2. Appearance on the summary footer.   
+Select one of the three summary footer areas in the "Appearances" radio-set and
+manipulate properties in the PropertyGrid on the right side. 
+
+3. BorderStyle.
+Select the style to apply to the ccurrent selected summary footer.   
+
+4. SummaryFooterCaptionVisible
+Click on the tri-state check-box to set the visibility of the summary footer
+caption to true, false or indeterminate (?).  
+
+---
+The form contains a System.Windows.Forms.PropertyGrid, which is activated in 
+event procedures by setting the PropertyGrid's SelectedObject to the applicable
+object.   
+
+The form is designed with an empty UltraGrid that is bound at runtime to a 
+DeptEmployeeDataService, which is an ABL class (Service Adapter) that provides 
+department, employee and family from a Data Access object connected to the 
+Sports2000 database.
+
+CustomDrawing (NOT IMPLEMENTED)
+-------------------------------
+This sample demonstrates the custom drawing capabilites of the grid.
+
+Move your cursor over the grid's background to see the custom drawing of the 
+background. The UltraGrid allows you to custom draw everything it draws. The 
+form implements Infragistics.Win.IUIElementDrawFilter in order to be added as  
+the grid's DrawFilter. The GetPhasesToFilter() is set to filter the 
+BeforeDrawForeGround event. The DrawFilter() is customized to draw an image at 
+the current cursor position.
+
+--
+The form is designed with an empty UltraGrid that is bound at runtime to a 
+EmployeeDataService, which is an ABL class (Service Adapter) that provides 
+employee data from a Data Access object connected to the Sports2000 database.
+
+RowFiltering
+------------
+This sample demonstrates the row filtering feature, which adds a filter drop 
+down on the column header. This includes a custom option that opens a dialog 
+where the user can add multiple filter criteria on the column.   
+
+The form starts up with filter on Country and State. Each column header have a 
+filter drop down on the column. 
+
+The "Row Filter Action" combo-box switches between hiding, disabling or just
+changing appearance of the filtered rows.
+
+The 4 buttons all opens an Appearance Attribute dialog (frmAppearencePicker.cls)
+that displays and edits appearance settings of the filtered or unfiltered rows 
+or columns.
+
+---
+The form is designed with an empty UltraGrid that is bound at runtime to a 
+DeptEmployeeDataService, which is an ABL class (Service Adapter) that provides 
+department, employee and family from a Data Access object connected to the 
+Sports2000 database.
+
+CardView
+--------
+This sample demonstrates the features of CardView, which is a setting that 
+makes the grid layout its column in a viewer-like fashion. 
+
+The form starts up with the CardView attribute set to true on the Customer band.
+It has 3 tabs that all can be used to test different CardView looks and 
+behavior. 
+
+The "Activate CardView on Band" combo-box on the "Card Settings" tab is defined 
+to set CardView to true on any of the three bands and turn it off on the others.
+
+The 16 entries in the ListView on the "Looks" tab represents some sample 
+appearances that is applied to the CardView upon selection. 
+ 
+The other tabs on the "Card Settings" tab allows properties to be changed 
+individually throug PropertyGrids attached to the current CardView and the 
+Override object that holds the Grid's Appearance object. 
+
+The "Grid Settings" tab has a combo box that shows and changes the ViewStyle 
+of the grid and check boxes to turn on caption and AlphaBlending. It also has a
+PropertyGrid that displays and edits all grid properties. 
+
+The "Notes" tab explains how the user can control size and gruping with the 
+mouse and also explains which properties that can be used to control max 
+number of rows an columns.    
+----
+
+The form is designed with an empty UltraGrid that is bound at runtime to a 
+CustOrderDataService, which is an ABL class (Service Adapter) that provides 
+customer, order and orderline data from a Data Access object connected to the 
+Sports2000 database.
+
+The "Country" column's drop down value list with flag images is hard coded in 
+PopulateFlagsValueList() with images from an ImageList.   
+
+The ApplyCurrentLook() method has the hard coded 16 CardView sample cases.
+
+The SetupForNewBand() method sets up the selected band as a CardView.
+ 
+Appearances
+-----------
+This sample demonstrates the UltraWinGrid's extensive appearance hierarchy. 
+
+Double Click on an appearance node in the treeview or right click an select
+a menu item from the drop down menu to open the PropertyGrid and adjust the 
+appearance of the corresponding grid control.
+
+The "Support Themes" check box is defined to set the grid's SupportThemes. 
+Setting this to false will turn off the appearance properties that are set by the
+Window's Theme and use the values from the grid.
+ 
+--
+The form is designed with an empty UltraGrid that is bound at runtime to an 
+EmployeeDataService, which is an ABL class (Service Adapter) that provides 
+employee data from a Data Access object that reads data from an XML file.
+
+The treeview layout is hard coded in PopulateTree(). The Double Click event
+method (tvwAppearances_DoubleClick) starts a new frmAppearancePicker() to edit 
+the control that corresponds to the selected node. 
+
+The Grid's MouseDown event method (gridAppearances_MouseDown) checks for a 
+Right-mouse click and sets the popup menus sensitivity and context variables 
+to use in the menu events.
+ 
+The menu item events calls LoadAppearancePicker that starts a new 
+frmAppearancePicker() to edit the control that corresponds to the menu item.
+ 
+ViewStyle
+--------- 
+This sample demontrates the ViewStyle and ViewStyleBand properties, which
+controls the overall look and feel of the grid. 
+ 
+The form has radio sets that are defined to set the grid's ViewStyle to
+MultiBand or SingleBand and the grid's ViewStyleBand to Horizontal, 
+Vertical or OutlookGroupBy. One can also set one of the band's CardView to 
+true and set the grid to merge cells, use Borders, Spacing, Background,
+AlphaBlending and set the BackColor. There is also an option to use compact
+group by box when the ViewStyleBand is OutlookGroupBy.
+
+--
+The form is designed with an empty UltraGrid that is bound at runtime to an 
+EmployeeDataService, which is an ABL class (Service Adapter) that provides 
+employee data from a Data Access object connected to the Sports2000 database.
+
+The InitializeBandProperties has code to hide most of the columns when 
+the ViewStyle is MultiBand and the ViewStyleBand is horizontal. 
+
+ColumnChooser
+-------------
+This sample demonstrates several variatons of the Column Chooser Functionality, 
+which allows the user to remove and add columns to the grid.
+
+The form has two pages with two grids that both illustrates variations of 
+the ColumnChooser. The first page shows the built in Column Chooser and has 
+controls that accepts changes to Column Chooser as well as Column Chooser 
+related settings for the columns. The second page shows how to customize the 
+column chooser and the button starts a CustomColumnChooser.cls, which is part 
+of the samples source code. 
+
+The CustomColumnChooser dialog has the ColumnChooser as well, but with addtional
+ controls to add new and delete columns. The new button starts a 
+NewColumnDialog.cls, which has a Formula control that allows one to define 
+fields that shows data based on formulas of the other columns.  
+
+---
+The form is designed with two empty UltraGrids that is bound at runtime to a 
+CustOrderDataService, which is an ABL class (Service Adapter) that provides 
+cusdtomer, order and orderline from a Data Access object connected to the 
+Sports2000 database.
+
+FixedHeaders
+-------------
+This sample demonstrates the fixed headers feature, which allows selected 
+columns as specified by code or the user, to remain fixed while scrolling 
+horizontally. 
+ 
+The form starts up with some columns fixed in each band.
+
+The "Fixed Headers On" check-box is set up to turn the feature on or off using 
+the grid's DisplayLayout:UseFixedHeaders. 
+
+The "Fixed Header Indicator" combo shows the valid options and applies changes 
+to the Override:FixedHeaderIndicator, which contols how the fixed columns are 
+visualized and manipulated by the user. 
+
+The "Fixed Cell Separator Color" is a color picker that applies a color to the 
+Override:FixedCellSeparatorColor. 
+
+The buttons opens the frmAppearancePicker with a PropertyGrid to adjust the 
+appearance of the fixed header (Override:FixedHeaderAppearance) or fixed cell
+(Override:FixedCellAppearance).
+
+---
+The form is designed with two empty UltraGrids that is bound at runtime to a 
+CustOrderDataService, which is an ABL class (Service Adapter) that provides 
+customer, order and orderline from a Data Access object connected to the 
+Sports2000 database.
+
+The grid's InitializeLayout event sets CustNum, OrderNum, LineNum and ItemNum 
+columns' Header:Fixed to true.
+
+Virtual Rows (frmUltraDataSource1.cls)
+--------------------------------------
+This sample demonstrates the UltraDataSource component in virtual mode and shows
+an example that scrolls (virtually) through 1 million rows.  
+
+It demonstrates the concept with minimal amount of code and dynamically 
+generated data. This exact approach would not be used in a real application, 
+but it illustrates low level grid functionality that could be useful to resolve 
+perfomance issues or other customizations.  
+
+The grid's LoadStyle is set to LoadOnDemand in the form's load 
+event.
+		
+The data source's CellDataRequested event is used to load data, which in this
+case are generated from the Row:Index and Column:Index. The cell's CacheData 
+is set to false in the event to prevent the grid from caching the data. 
+
+Virtual Rows (frmUltraDataSource2.cls)
+--------------------------------------
+This sample also demonstrates the UltraDataSource component in virtual mode and 
+shows. This exact approach would rarely be used in a real application, but it 
+illustrates low level grid functionality that could be useful to resolve 
+perfomance issues or other customizations. 
+
+This sample highlights that the built in sorting would not work when data is 
+loaded in the CellDataRequested event and overrides the AfterSortChange event to
+control the sorting. It also overrides the BeforeRowFilterDropDownPopulate event
+to control the filter popup menu. 
+
+Note that allthough the sorting works, the repositioning is relative to the 
+grid's index number. I.e. if you are on record 1000 and perform a resort, the 
+grid will still be on row 1000, but in relation to the new sort expression.    
+
+-----
+The data of the grid is stored in a Temp-table and a "preselect" query is used 
+to apply sorting and to ensure that the grid's index can be used as a key to 
+get the corresponding data from the temp-table in the CellDataRequested event.   
+
+Filter Row
+----------
+This sample demonstrates the Fixed FilterRow feature, which will add a row 
+dedicated to filter criteria above the data rows.   
+
+The form has two pages above the grid. The first page allows you to manipulate 
+the various attributes related to the FilterRow feature, with Grid wide 
+settings on the left. The right side has combo-box that allow you to select a 
+column and apply similar attributes on column level. The second page allows you
+to manipulate the appearance of various visual parts affected by the FilterRow 
+feature. There is also a section that sets properties for the separator between
+the grid and the FilterRow 
+  
+The filter row user interface is enabled by setting the FilterUIType to 
+FilterRow. This is done in the gird's InitializeLayout event procedure, which
+also sets up several other related properties and fills the various property 
+combo boxes with data. 
+
+---
+The form is designed with an empty UltraGrid that is bound at runtime to a 
+CustOrderDataService, which is an ABL class (Service Adapter) that provides 
+customer, order and orderline from a Data Access object connected to the 
+Sports2000 database.
+
+Document Export
+---------------
+This sample demonstrates document exporting capabilities of the UltraGrid, 
+including the ability to preview the output.
+
+The form allows you to select the print format (pdf or xps) and decide whether 
+and how to print page numbers. You can also check whether to add various text 
+sections. There is an “open the file after export” option that allows you to 
+see the report in Adobe reader (pdf) or IE (xps).
+
+The second band has three columns that are defined to Allow Summaries, which
+also will be exported if specified.   
+
+---
+The form utilizes several non-visual classes for the export:
+The Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter is
+used to export the report to a file.
+
+The Infragistics.Win.Printing.UltraPrintPreviewDialog is used to Preview the
+grid report. 
+
+The Infragistics.Win.Printing.UltraPrintDocument does the actual printing and 
+its PrintPage event is used to control the printing.   
+
+--
+The form is designed with an empty UltraGrid that is bound at runtime to a 
+DeptEmployeeDataService, which is an ABL class (Service Adapter) that provides 
+department, employee and family data from a Data Access object connected to the 
+Sports2000 database.
+
+Excel Export
+------------ 
+This sample demonstrates export of images and formulas to Excel. 
+   	
+The Form has a Folder with a grid on each page. The first page has a grid with 
+various formulas added as custom Summary Rows. The second page shows employee
+records with an images. The Form has an Export to Excel button that exports the 
+current page to demonstate export of formulas and images to excel.  
+
+--
+The UltraGrid on the first page is designed with 3 fields added manually in the 
+UltraGrid designer. A corresponding temp-table is added as data source at 
+runtime. 
+ 
+The UltraGrid on the second page is designed using an XML schema 
+(DataServices/EmployeeService.xsd) and is bound to an EmployeeService at 
+runtime.  The EmployeeService is an ABL class (Service Adapter) that provides 
+employee data from a Data Access object that reads the data from an XML file. 
+
+The sample uses an UltraGridExcelExport component and the formula and image are 
+managed in various events of this component.   
+
+The formulas are defined in the grid designer, which uses the UltraCalcManager
+to define formulas. 
+
+RowLayout
+---------
+This sample demonstrates the Row Layout functionality, which gives complete 
+control of the grid layoyut and can be saved and loaded from external files.
+
+The sample has a TabControl with 5 pages. The 4 first pages shows Employee
+grids of two types; a standard view RowLayout and a CardView RowLayout, which 
+both are shown in two exact similar versions. The first grid of each type is 
+built at design time with the UltraGrid designer while the second of each grid
+has a row layout that is created with code at runtime. The sample also shows 
+how to make a BLOB with image be treated as such in the grid. ()  
+
+The last page shows a regular view that is using a row layout loaded from an 
+external file. This page has controls that allows you to select a band and 
+turn UseRowLayout off and on and manipulate and test various row layout 
+properties, many of which controls how the grid itself can be manipulated at 
+runtime. This abilty to save and load row layouts allows many grids' to use the 
+same layout and/or have many layouts for the same grid. It can be used to allow 
+the user to save his own layout, whihc almost is a requirement for the user to 
+truly benefit from the various abilites to control the layout at runtime.   
+ 
+-----
+The UltraGrids on page 1 and 3 are designed using an XML schema 
+(DataServices/EmployeeService.xsd). All the 4 Employee grids are bound to the 
+same EmployeeService at runtime. The EmployeeService is an ABL class 
+(Service Adapter) that provides employee data from a Data Access object that 
+reads the data from an XML file. 
+
+The UltraGrid on page 5 is bound at runtime to a CustOrderDataService, which is 
+an ABL class (Service Adapter) that provides customer, order and orderline from 
+a Data Access object connected to the Sports2000 database.
+
+The stored row layout was built in the UltraGrid designer, but was stored using 
+the layout's own save method: ultragrid1:displaylayout:Save( "RowLayout2.lyt" ).  
+The load method is then used in the grid's initializeLayout event handler. 
+
+Note that the while the design time and runtime UltraGrid's look exactly similar
+there might still be row layout properties that are different.  
+
+Conditional Formatting
+----------------------
+This sample demonstrates how to change the appearance of columns based on data 
+using ConditionValueAppearances. 
+
+Note that most of the effects in this sample could be achieved more easily and 
+with less code by using the grid's InitializeRow event. However, the conditional
+formatting feature has several advantages over the InitializeRow event. First, 
+conditional formatting can be set up at Design-time. Also, conditional 
+formatting can be saved along with the grid's DisplayLayout, and you can 
+display the conditional formatting designer dialog to the users so they can 
+create custom formatting (which will save along with the DisplayLayout). 
+ 
+Try changing the values in the grid cells or sort the columns. 
+The formatting will update appropriately.
+
+----
+The UltraGrid is bound to ProBindingSource which has manual definitions and 
+is bound to a temp-table at run time. (The definitions in the bindingsource
+are not required). The data, numbers from -10 to 10 in each column are  
+generated in CreateData.
+
+Empty Rows
+-----------
+This sample demonstrates the Empty Rows Functionality, which controls how to 
+visualize the area in the grid where there is no data. 
+
+The form has controls that allows you to test various empty row related 
+attributes. The "Show Empty Rows" check box turns the grid's  
+EmptyRowSettings:ShowEmptyRows off and on. The "Style" combo box allows you to 
+select and apply styles for the grid's EmptyRowSettings:ShowEmptyRows attribute.
+The four buttons allows you to manipulate appearance attributes of the 
+empty area, empty row, empty cell and the empty area row selector.
+
+-------
+The form is designed with an empty UltraGrid that is bound at runtime to an 
+ABL SampleData class that provides a dataset with generated data.   
+
+Fixed Rows
+----------
+This sample demonstrates the Fixed Rows Functionality, which specifies a number 
+of visible rows on the top of the grid that are always visible, even when the 
+user scrolls the other rows in the grid. It can be used to display column 
+titles and other fixed information, or it can be set up so that the user can 
+select rows to add to the list.   
+
+The form has controls that allows you to select and test various fixed row 
+attributes and manipulate appearance of various fixed row components. You can 
+keep them unsorted or define them as using the same sort as the rest of the 
+columns while still appearing on the top. 
+
+----
+The form is designed with an empty UltraGrid that is bound at runtime to a 
+CustOrderDataService, which is an ABL class (Service Adapter) that provides 
+customer, order and orderline data from a Data Access object connected to the 
+Sports2000 database. 
+
+Fixed AddRow
+------------
+This sample demonstrates the fixed Add Row feature, which allow you to fix the 
+add-row so it doesn't scroll.  
+
+The form has controls that allows you to select and test various add row 
+attributes and manipulate appearance of various fixed add row components. 
+
+----
+The form is designed with an empty UltraGrid that is bound at runtime to a 
+CustOrderDataService, which is an ABL class (Service Adapter) that provides 
+customer, order and orderline data from a Data Access object connected to the 
+Sports2000 database. 
+
+Merged Cells
+------------
+This sample demonstrates the Merged Cells Functionality, which merges columns 
+for all rows that has the same value in the column. 
+
+The form has controls that allows you to select and test attributes and 
+manipulate appearance of merged cell attributes on the grid and on individual 
+cells. 
+
+----
+The form is designed with an empty UltraGrid that is bound at runtime to a 
+CustOrderDataService, which is an ABL class (Service Adapter) that provides 
+customer, order and orderline data from a Data Access object connected to the 
+Sports2000 database. 
+
+Formulas
+--------
+This sample demonstrates use of the CalcManager in the grid and how formulas 
+can reference any grid component, relative row, as well as controls external to 
+grid. It also demonstrates how formulas can be assigned at runtime. 
+
+The form has a SalesTaxRate field that is referenced in the Summary formulas. 
+There is also a combo box with a set of predefined formulas that can be applied 
+to the empty column at left. Note that some of the formulas refer to the 
+previous grid column (-1) and is thus expected to show #REF for the first row.
+There are also a formula that show the use of isError() to avoid this problem. 
+  
+----
+The form is designed with an UltraGrid that is bound to a ProBindingSource 
+defined from DataServices.CategoryItems.xsd. The grid is bound at runtime to 
+a corresponding DataServices.CategroyItems.cls class, which provides a dataset 
+with generated data.   
+  
+The SalesTaxRate control is defined with CalcSettings Alias and property Text
+in order to appear in the formula builder.
+
+Misc Features 1
+---------------
+This sample demonstrates 8 different features in detail.
+
+----
+The form is designed with an UltraGrid that is bound to CustOrderService 
+that provides customer, order and orderline data from a Data Access object connected to the 
+Sports2000 database. and another to EmployeeService. The StateServise is also used through out the
+samples. 

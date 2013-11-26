@@ -1,0 +1,6 @@
+This sample shows how to load temp-table records in an UltraWinListView.
+
+The ProDataSet temp-table records are populated in the populateDataSet method.
+
+The populateListViewWithGroups() method reads the temp-table records and load them into the UltraListView.
+The 'Detail' view shows the records in columns, these columns are created in the createListViewColumns() method.

@@ -1,0 +1,5 @@
+This sample shows how to control the visibility of the axis of the chart.  The UltraWinChart allows this through a Visible property on each available axis (X, X2, Y, Y2).
+
+This sampe allows you to manipulate the visibility of the X and Y axis of the chart.  Simply check the X Axis VIsible or YAxis Visible checkbox to show or hide the indicated axis from the chart.
+
+ABL examples derived from Infragistics sources, copyright ©1992-2008 Infragistics, Inc., Windsor Corporate Park, 50 Millstone Road, Building 200 - Suite 150, East Windsor, NJ 08520. All rights reserved.

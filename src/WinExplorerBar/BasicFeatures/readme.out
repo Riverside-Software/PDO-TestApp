@@ -1,0 +1,46 @@
+This sample features the Basic Properties for an UltraWinExplorerBar.
+
+The properties are grouped in 4 tabs "Look and Behavior", "Groups and Items", "Layouts" and "Events". All the new property values are applied to the UltraWinExplorerBar on the right of the form.
+
+Tabs description:
+
+Tab 1: "Look and Behavior"
+This tab show look properties like Control Style, Group Style, and View Style. And behavior properties like Accept Focus, and Show Expansion Indicators.
+
+The PropertyGrid controls are bind to the ExplorerBar GroupSettings and ItemSettings through their ‘SelectedObject’ property:
+
+pgItemSettings:SelectedObject = ultraExplorerBar1:ItemSettings.
+
+Hence, any change made to the GroupSettings or ItemSettings are reflected in the PropertyGrid controls.
+
+The combo-boxes items are loaded in methods like LoadStyleCombo and LoadViewStyleCombo. The purpose of these procedures is to show how to load items for the Infragistics UltraComboEditor at runtime using the System.Array and Infragistics ValueListItem objects.
+
+The advantage of loading combo-box items using the ValueListItem is that in its DataValue property any kind of object could be stored. For example the ExplorerBar value for the Style property is stored in the following way:
+
+valueListExplorerBar:DataValue = UltraExplorerBarStyle:ExplorerBar
+valueListExplorerBar:DisplayText = "ExplorerBar"
+
+Then, in the value changed event for the combo (coStyle_valueChanged method), the combo-box ‘Value’ property is cast to the required object type:
+
+ultraExplorerBar1:Style = CAST(coStyle:Value, UltraExplorerBarStyle).
+
+
+Tab 2: "Groups and Items"
+This tab shows how to add and remove groups and items at runtime.
+
+The code for the add and remove items are in the Add/Remove groups and items buttons events: cmdAddGroup_Click, cmdRemoveGroup_Click, cmdAddItem_Click and cmdRemoveItem_Click.
+
+The methods LoadGroupItems and InitializeGroupsItemsControls load the groups and items in the coGroup and coItems combo-boxes.
+
+Tab 3: "Layouts"
+This tab is used to set the margins and layout properties for the groups and items. The UltraWinExplorerBar layout can be only modified when the ‘Style’ property is set to ‘ExplorerBar’.
+
+Tab 4: "Events"
+This tab show how events are fired with the user iteration.
+The grid at the top shows the list fired events when an operation is made.
+
+In order to log the events in the grid, each event calls the LogEvent method that adds the event in the grid.
+
+The grid at the bottom contains a list of events that could be canceled, if the event is checked in that grid, and then the event is canceled before its execution. The IsEventCancelled methods returns a logical value saying if the event has to be cancelled or not.
+
+ABL examples derived from Infragistics sources, copyright ©1992-2008 Infragistics, Inc., Windsor Corporate Park, 50 Millstone Road, Building 200 - Suite 150, East Windsor, NJ 08520. All rights reserved.
