@@ -79,9 +79,9 @@ END PROCEDURE.
 /* Standard List Definitions                                            */
 &Scoped-Define ENABLED-OBJECTS EDITOR-1 FILL-IN-1 FILL-IN-2 FILL-IN-3 ~
 FILL-IN-4 FILL-IN-5 FILL-IN-6 FILL-IN-7 FILL-IN-8 BUTTON-1 BUTTON-2 ~
-BUTTON-3 
+BUTTON-3 FILL-IN-9 BUTTON-4 
 &Scoped-Define DISPLAYED-OBJECTS EDITOR-1 FILL-IN-1 FILL-IN-2 FILL-IN-3 ~
-FILL-IN-4 FILL-IN-5 FILL-IN-6 FILL-IN-7 FILL-IN-8 
+FILL-IN-4 FILL-IN-5 FILL-IN-6 FILL-IN-7 FILL-IN-8 FILL-IN-9 FILL-IN-10 
 
 /* Custom List Definitions                                              */
 /* List-1,List-2,List-3,List-4,List-5,List-6                            */
@@ -143,6 +143,10 @@ DEFINE BUTTON BUTTON-3
      LABEL ".Net Window" 
      SIZE 21 BY 1.14.
 
+DEFINE BUTTON BUTTON-4 
+     LABEL "Go!" 
+     SIZE 9 BY 1.14.
+
 DEFINE VARIABLE EDITOR-1 AS CHARACTER 
      VIEW-AS EDITOR NO-WORD-WRAP SCROLLBAR-HORIZONTAL SCROLLBAR-VERTICAL
      SIZE 60 BY 9.76 NO-UNDO.
@@ -151,6 +155,11 @@ DEFINE VARIABLE FILL-IN-1 AS CHARACTER FORMAT "X(256)":U
      LABEL "SESSION:PARAMETER" 
      VIEW-AS FILL-IN 
      SIZE 44 BY 1 NO-UNDO.
+
+DEFINE VARIABLE FILL-IN-10 AS CHARACTER FORMAT "X(256)":U 
+     LABEL "Numéro version sur serveur" 
+     VIEW-AS FILL-IN 
+     SIZE 14 BY 1 NO-UNDO.
 
 DEFINE VARIABLE FILL-IN-2 AS CHARACTER FORMAT "X(256)":U 
      LABEL "DLC" 
@@ -187,6 +196,11 @@ DEFINE VARIABLE FILL-IN-8 AS CHARACTER FORMAT "X(256)":U
      VIEW-AS FILL-IN 
      SIZE 44 BY 1 NO-UNDO.
 
+DEFINE VARIABLE FILL-IN-9 AS CHARACTER FORMAT "X(256)":U INITIAL "http://pdo.rssw.eu:8080/" 
+     LABEL "Vérification JSON" 
+     VIEW-AS FILL-IN 
+     SIZE 39 BY 1 NO-UNDO.
+
 
 /* ************************  Frame Definitions  *********************** */
 
@@ -203,13 +217,16 @@ DEFINE FRAME DEFAULT-FRAME
      BUTTON-1 AT ROW 23.14 COL 5 WIDGET-ID 26
      BUTTON-2 AT ROW 23.14 COL 27 WIDGET-ID 30
      BUTTON-3 AT ROW 23.14 COL 49 WIDGET-ID 32
+     FILL-IN-9 AT ROW 25.29 COL 19 COLON-ALIGNED WIDGET-ID 34
+     BUTTON-4 AT ROW 25.29 COL 62 WIDGET-ID 36
+     FILL-IN-10 AT ROW 26.95 COL 38 COLON-ALIGNED WIDGET-ID 38
      "Content of sample.txt" VIEW-AS TEXT
           SIZE 25 BY .62 AT ROW 1.48 COL 24 WIDGET-ID 4
           FONT 6
     WITH 1 DOWN NO-BOX KEEP-TAB-ORDER OVERLAY 
          SIDE-LABELS NO-UNDERLINE THREE-D 
          AT COL 1 ROW 1
-         SIZE 74.4 BY 24.86 WIDGET-ID 100.
+         SIZE 73 BY 27.71 WIDGET-ID 100.
 
 
 /* *********************** Procedure Settings ************************ */
@@ -229,11 +246,11 @@ IF SESSION:DISPLAY-TYPE = "GUI":U THEN
   CREATE WINDOW C-Win ASSIGN
          HIDDEN             = YES
          TITLE              = "Test application"
-         HEIGHT             = 24.86
-         WIDTH              = 73.8
-         MAX-HEIGHT         = 24.86
+         HEIGHT             = 27.71
+         WIDTH              = 73
+         MAX-HEIGHT         = 27.71
          MAX-WIDTH          = 80
-         VIRTUAL-HEIGHT     = 24.86
+         VIRTUAL-HEIGHT     = 27.71
          VIRTUAL-WIDTH      = 80
          RESIZE             = yes
          SCROLL-BARS        = no
@@ -257,6 +274,8 @@ ELSE {&WINDOW-NAME} = CURRENT-WINDOW.
   VISIBLE,,RUN-PERSISTENT                                               */
 /* SETTINGS FOR FRAME DEFAULT-FRAME
    FRAME-NAME                                                           */
+/* SETTINGS FOR FILL-IN FILL-IN-10 IN FRAME DEFAULT-FRAME
+   NO-ENABLE                                                            */
 IF SESSION:DISPLAY-TYPE = "GUI":U AND VALID-HANDLE(C-Win)
 THEN C-Win:HIDDEN = no.
 
@@ -274,15 +293,15 @@ THEN C-Win:HIDDEN = no.
 
 CREATE CONTROL-FRAME CtrlFrame ASSIGN
        FRAME           = FRAME DEFAULT-FRAME:HANDLE
-       ROW             = 23.38
-       COLUMN          = 4
+       ROW             = 21.95
+       COLUMN          = 3
        HEIGHT          = 1.76
        WIDTH           = 7
        WIDGET-ID       = 28
        HIDDEN          = yes
        SENSITIVE       = yes.
 /* CtrlFrame OCXINFO:CREATE-CONTROL from: {F0B88A90-F5DA-11CF-B545-0020AF6ED35A} type: PSTimer */
-      CtrlFrame:MOVE-AFTER(BUTTON-3:HANDLE IN FRAME DEFAULT-FRAME).
+      CtrlFrame:MOVE-AFTER(FILL-IN-8:HANDLE IN FRAME DEFAULT-FRAME).
 
 &ENDIF
 
@@ -344,6 +363,35 @@ END.
 ON CHOOSE OF BUTTON-3 IN FRAME DEFAULT-FRAME /* .Net Window */
 DO:
     RUN runner.p.
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME BUTTON-4
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL BUTTON-4 C-Win
+ON CHOOSE OF BUTTON-4 IN FRAME DEFAULT-FRAME /* Go! */
+DO:
+    DEF VAR http AS System.Net.HttpWebRequest no-undo.
+    def var response as System.Net.HttpWebResponse no-undo.
+    def var reader as System.IO.StreamReader no-undo.
+    def var json as char no-undo.
+    def var jsonobj as Progress.Json.ObjectModel.JsonObject no-undo.
+    def var jsonobj2 as Progress.Json.ObjectModel.JsonObject no-undo.
+    def var myParser AS Progress.Json.ObjectModel.ObjectModelParser no-undo.
+    
+    http = cast(System.Net.HttpWebRequest:Create(fill-in-9:screen-value + "api/rest/prowcapp/" + fill-in-5:screen-value), "System.Net.HttpWebRequest").
+    response = cast(http:GetResponse(), System.Net.HttpWebResponse).
+    reader = new System.IO.StreamReader(response:GetResponseStream()).
+    json = reader:readToEnd().
+
+    message "JSON payload : " json view-as alert-box.    
+    myParser = NEW Progress.Json.ObjectModel.ObjectModelParser().
+    jsonobj = cast(myParser:Parse(json), Progress.Json.ObjectModel.JsonObject).
+    jsonobj2 = jsonobj:getJsonObject("WebclientApplication").
+    assign fill-in-10:screen-value = STRING(jsonobj2:GetInteger("version")).
+    
 END.
 
 /* _UIB-CODE-BLOCK-END */
@@ -504,10 +552,10 @@ PROCEDURE enable_UI :
 ------------------------------------------------------------------------------*/
   RUN control_load.
   DISPLAY EDITOR-1 FILL-IN-1 FILL-IN-2 FILL-IN-3 FILL-IN-4 FILL-IN-5 FILL-IN-6 
-          FILL-IN-7 FILL-IN-8 
+          FILL-IN-7 FILL-IN-8 FILL-IN-9 FILL-IN-10 
       WITH FRAME DEFAULT-FRAME IN WINDOW C-Win.
   ENABLE EDITOR-1 FILL-IN-1 FILL-IN-2 FILL-IN-3 FILL-IN-4 FILL-IN-5 FILL-IN-6 
-         FILL-IN-7 FILL-IN-8 BUTTON-1 BUTTON-2 BUTTON-3 
+         FILL-IN-7 FILL-IN-8 BUTTON-1 BUTTON-2 BUTTON-3 FILL-IN-9 BUTTON-4 
       WITH FRAME DEFAULT-FRAME IN WINDOW C-Win.
   {&OPEN-BROWSERS-IN-QUERY-DEFAULT-FRAME}
   VIEW C-Win.
