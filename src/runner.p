@@ -26,4 +26,3 @@ mainForm = NEW SamplesMain().
 mainForm:show().
 WAIT-FOR System.Windows.Forms.Application:Run(mainForm).
 DELETE OBJECT mainForm NO-ERROR.
-QUIT.
