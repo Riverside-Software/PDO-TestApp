@@ -50,6 +50,14 @@ PROCEDURE _wsplitpath EXTERNAL "msvcrt.dll" CDECL.
     DEFINE INPUT PARAMETER ext   AS LONG.
 END PROCEDURE.
 
+PROCEDURE _splitpath EXTERNAL "msvcrt.dll" CDECL.
+    DEFINE INPUT PARAMETER path  AS CHARACTER.
+    DEFINE INPUT PARAMETER drive AS LONG.
+    DEFINE INPUT PARAMETER DIR   AS LONG.
+    DEFINE INPUT PARAMETER fName AS LONG.
+    DEFINE INPUT PARAMETER ext   AS LONG.
+END PROCEDURE.
+
 PROCEDURE WideCharToMultiByte EXTERNAL "kernel32.dll".
     DEFINE INPUT  PARAMETER cp    AS LONG.       /* UNIT CodePage */
     DEFINE INPUT  PARAMETER flags AS LONG.       /* DWORD dwFlags */
@@ -581,8 +589,10 @@ FUNCTION bottomDir RETURNS CHARACTER
 
     SET-SIZE(m1) = {&MAX_FNAME}.
     SET-SIZE(m2) = {&MAX_EXT}.
-    RUN _wsplitpath(CODEPAGE-CONVERT(src, 'UCS2'), 0, 0, GET-POINTER-VALUE(m1), GET-POINTER-VALUE(m2)).
-    ASSIGN c = wc2char(m1) + wc2char(m2).
+    RUN _splitpath(src, 0, 0, GET-POINTER-VALUE(m1), GET-POINTER-VALUE(m2)).
+    ASSIGN c = GET-STRING(m1, 1) + GET-STRING(m2, 1).
+    /*RUN _wsplitpath(CODEPAGE-CONVERT(src, 'UCS2'), 0, 0, GET-POINTER-VALUE(m1), GET-POINTER-VALUE(m2)).
+    ASSIGN c = wc2char(m1) + wc2char(m2).*/
     SET-SIZE(m1) = 0.
     SET-SIZE(m2) = 0.
     
@@ -609,9 +619,10 @@ FUNCTION parentDir RETURNS CHARACTER
         
     SET-SIZE(m1) = {&MAX_DRIVE}.
     SET-SIZE(m2) = {&MAX_PATH}.
-    RUN _wsplitpath(CODEPAGE-CONVERT(src, 'UCS2'), GET-POINTER-VALUE(m1), GET-POINTER-VALUE(m2), 0, 0).
-
-    ASSIGN c = wc2char(m1) + wc2char(m2).
+    RUN _splitpath(src, 0, 0, GET-POINTER-VALUE(m1), GET-POINTER-VALUE(m2)).
+    ASSIGN c = GET-STRING(m1, 1) + GET-STRING(m2, 1).
+    /*RUN _wsplitpath(CODEPAGE-CONVERT(src, 'UCS2'), GET-POINTER-VALUE(m1), GET-POINTER-VALUE(m2), 0, 0).
+    ASSIGN c = wc2char(m1) + wc2char(m2).*/
     SET-SIZE(m1) = 0.
     SET-SIZE(m2) = 0.
 
