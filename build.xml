@@ -70,7 +70,8 @@
   	<zip destfile="TestApp2.zip">
       <fileset dir="build" includes="mainwin.r,mainwin2.r" />
       <fileset dir="src" includes="*.txt,*.wrx" />
-      <fileset dir="ocx" includes="*.ocx" />
+      <fileset dir="ocx" includes="Flash*.ocx" />
+      <fileset dir="${env.DLC}/bin/system" includes="pstimer.ocx" />
     </zip>
   </target>
 
