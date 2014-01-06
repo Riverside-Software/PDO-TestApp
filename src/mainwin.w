@@ -381,6 +381,7 @@ END.
 &ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL BUTTON-4 C-Win
 ON CHOOSE OF BUTTON-4 IN FRAME DEFAULT-FRAME /* Go! */
 DO:
+&IF INTEGER(SUBSTRING(PROVERSION, 1, INDEX(PROVERSION, '.'))) GE 11 &THEN
     DEF VAR http AS System.Net.HttpWebRequest no-undo.
     def var response as System.Net.HttpWebResponse no-undo.
     def var reader as System.IO.StreamReader no-undo.
@@ -399,6 +400,9 @@ DO:
     jsonobj = cast(myParser:Parse(json), Progress.Json.ObjectModel.JsonObject).
     jsonobj2 = jsonobj:getJsonObject("WebclientApplication").
     assign fill-in-10:screen-value = STRING(jsonobj2:GetInteger("version")).
+&ELSE
+    MESSAGE "Only in OE 11 !" VIEW-AS ALERT-BOX.
+&ENDIF
     
 END.
 
