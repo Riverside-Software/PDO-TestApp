@@ -623,7 +623,7 @@ FUNCTION parentDir RETURNS CHARACTER
         
     SET-SIZE(m1) = {&MAX_DRIVE}.
     SET-SIZE(m2) = {&MAX_PATH}.
-    RUN _splitpath(src, 0, 0, GET-POINTER-VALUE(m1), GET-POINTER-VALUE(m2)).
+    RUN _splitpath(src, GET-POINTER-VALUE(m1), GET-POINTER-VALUE(m2), 0, 0).
     ASSIGN c = GET-STRING(m1, 1) + GET-STRING(m2, 1).
     /*RUN _wsplitpath(CODEPAGE-CONVERT(src, 'UCS2'), GET-POINTER-VALUE(m1), GET-POINTER-VALUE(m2), 0, 0).
     ASSIGN c = wc2char(m1) + wc2char(m2).*/
