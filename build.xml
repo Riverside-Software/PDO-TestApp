@@ -32,12 +32,12 @@
   <target name="dist" depends="build">
   	<zip destfile="TestApp1.zip">
       <fileset dir="build" includes="mainwin.r" />
-      <fileset dir="src" includes="*.txt,mainwin.wrx,*.ini" />
+      <fileset dir="src" includes="*.txt,mainwin.wrx,*.ini,*.ico" />
       <fileset dir="ocx" includes="pstimer.ocx" />
     </zip>
   	<zip destfile="TestApp2.zip">
       <fileset dir="build" includes="mainwin.r,mainwin2.r" />
-      <fileset dir="src" includes="*.txt,*.wrx,*.ini" />
+      <fileset dir="src" includes="*.txt,*.wrx,*.ini,*.ico" />
       <fileset dir="ocx" includes="*.ocx" />
     </zip>
   	<zip destfile="TestApp3.zip">
@@ -65,12 +65,12 @@
   <target name="dist-v10" depends="build-v10">
   	<zip destfile="TestApp1.zip">
       <fileset dir="build" includes="mainwin.r" />
-      <fileset dir="src" includes="*.txt,mainwin.wrx,*.ini" />
+      <fileset dir="src" includes="*.txt,mainwin.wrx,*.ini,*.ico" />
       <fileset dir="ocx" includes="pstimer.ocx" />
     </zip>
   	<zip destfile="TestApp2.zip">
       <fileset dir="build" includes="mainwin.r,mainwin2.r" />
-      <fileset dir="src" includes="*.txt,*.wrx,*.ini" />
+      <fileset dir="src" includes="*.txt,*.wrx,*.ini,*.ico" />
       <fileset dir="ocx" includes="Flash*.ocx" />
       <fileset dir="${DLC}/bin/system" includes="pstimer.ocx" />
     </zip>
