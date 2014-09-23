@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ToolBoxConfig>
+  <Category Text="OpenEdge" Remove="False">
+    <ControlGroup Text="Common Controls">
+      <Control Text="UltraButton" Type="Infragistics.Win.Misc.UltraButton" Assembly="Infragistics2.Win.Misc.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraCalendarCombo" Type="Infragistics.Win.UltraWinSchedule.UltraCalendarCombo" Assembly="Infragistics2.Win.UltraWinSchedule.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraCheckEditor" Type="Infragistics.Win.UltraWinEditors.UltraCheckEditor" Assembly="Infragistics2.Win.UltraWinEditors.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraCombo" Type="Infragistics.Win.UltraWinGrid.UltraCombo" Assembly="Infragistics2.Win.UltraWinGrid.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraComboEditor" Type="Infragistics.Win.UltraWinEditors.UltraComboEditor" Assembly="Infragistics2.Win.UltraWinEditors.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraCurrencyEditor" Type="Infragistics.Win.UltraWinEditors.UltraCurrencyEditor" Assembly="Infragistics2.Win.UltraWinEditors.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraDateTimeEditor" Type="Infragistics.Win.UltraWinEditors.UltraDateTimeEditor" Assembly="Infragistics2.Win.UltraWinEditors.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraDropDown" Type="Infragistics.Win.UltraWinGrid.UltraDropDown" Assembly="Infragistics2.Win.UltraWinGrid.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraExplorerBar" Type="Infragistics.Win.UltraWinExplorerBar.UltraExplorerBar" Assembly="Infragistics2.Win.UltraWinExplorerBar.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraLabel" Type="Infragistics.Win.Misc.UltraLabel" Assembly="Infragistics2.Win.Misc.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraListBar" Type="Infragistics.Win.UltraWinListBar.UltraListBar" Assembly="Infragistics2.Win.UltraWinListBar.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraListView" Type="Infragistics.Win.UltraWinListView.UltraListView" Assembly="Infragistics2.Win.UltraWinListView.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraMaskedEdit" Type="Infragistics.Win.UltraWinMaskedEdit.UltraMaskedEdit" Assembly="Infragistics2.Win.UltraWinMaskedEdit.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraNumericEditor" Type="Infragistics.Win.UltraWinEditors.UltraNumericEditor" Assembly="Infragistics2.Win.UltraWinEditors.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraOptionSet" Type="Infragistics.Win.UltraWinEditors.UltraOptionSet" Assembly="Infragistics2.Win.UltraWinEditors.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraPictureBox" Type="Infragistics.Win.UltraWinEditors.UltraPictureBox" Assembly="Infragistics2.Win.UltraWinEditors.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraPrintPreviewThumbnail" Type="Infragistics.Win.Printing.UltraPrintPreviewThumbnail" Assembly="Infragistics2.Win.Misc.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraProgressBar" Type="Infragistics.Win.UltraWinProgressBar.UltraProgressBar" Assembly="Infragistics2.Win.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraStatusBar" Type="Infragistics.Win.UltraWinStatusBar.UltraStatusBar" Assembly="Infragistics2.Win.UltraWinStatusBar.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraScrollBar" Type="Infragistics.Win.UltraWinScrollBar.UltraScrollBar" Assembly="Infragistics2.Win.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraTextEditor" Type="Infragistics.Win.UltraWinEditors.UltraTextEditor" Assembly="Infragistics2.Win.UltraWinEditors.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraTree" Type="Infragistics.Win.UltraWinTree.UltraTree" Assembly="Infragistics2.Win.UltraWinTree.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraPrintPreviewControl" Type="Infragistics.Win.Printing.UltraPrintPreviewControl" Assembly="Infragistics2.Win.Misc.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraMonthViewMulti" Type="Infragistics.Win.UltraWinSchedule.UltraMonthViewMulti" Assembly="Infragistics2.Win.UltraWinSchedule.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="C:\WINDOWS\assembly\GAC_MSIL\Infragistics2.Win.UltraWinSchedule.v8.1\8.1.20081.1000__7dd5c3163f2cd0cb\Infragistics2.Win.UltraWinSchedule.v8.1.dll" />
+      <Control Text="UltraDayView" Type="Infragistics.Win.UltraWinSchedule.UltraDayView" Assembly="Infragistics2.Win.UltraWinSchedule.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="C:\WINDOWS\assembly\GAC_MSIL\Infragistics2.Win.UltraWinSchedule.v8.1\8.1.20081.1000__7dd5c3163f2cd0cb\Infragistics2.Win.UltraWinSchedule.v8.1.dll" />
+    </ControlGroup>
+    <ControlGroup Text="Common Dialogs">
+      <Control Text="UltraPrintPreviewDialog" Type="Infragistics.Win.Printing.UltraPrintPreviewDialog" Assembly="Infragistics2.Win.UltraWinPrintPreviewDialog.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="OpenFileDialog" Type="System.Windows.Forms.OpenFileDialog" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="SaveFileDialog" Type="System.Windows.Forms.SaveFileDialog" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+    </ControlGroup>
+    <ControlGroup Text="Components">
+      <Control Text="ImageList" Type="System.Windows.Forms.ImageList" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="UltraCalendarInfo" Type="Infragistics.Win.UltraWinSchedule.UltraCalendarInfo" Assembly="Infragistics2.Win.UltraWinSchedule.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraCalendarLook" Type="Infragistics.Win.UltraWinSchedule.UltraCalendarLook" Assembly="Infragistics2.Win.UltraWinSchedule.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraDockManager" Type="Infragistics.Win.UltraWinDock.UltraDockManager" Assembly="Infragistics2.Win.UltraWinDock.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraPrintDocument" Type="Infragistics.Win.Printing.UltraPrintDocument" Assembly="Infragistics2.Win.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraTabbedMdiManager" Type="Infragistics.Win.UltraWinTabbedMdi.UltraTabbedMdiManager" Assembly="Infragistics2.Win.UltraWinTabbedMdi.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraToolTipManager" Type="Infragistics.Win.UltraWinToolTip.UltraToolTipManager" Assembly="Infragistics2.Win.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+    </ControlGroup>
+    <ControlGroup Text="Containers">
+      <Control Text="Panel" Type="System.Windows.Forms.Panel" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="SplitContainer" Type="System.Windows.Forms.SplitContainer" Assembly="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Path="" />
+      <Control Text="UltraGroupBox" Type="Infragistics.Win.Misc.UltraGroupBox" Assembly="Infragistics2.Win.Misc.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraTabControl" Type="Infragistics.Win.UltraWinTabControl.UltraTabControl" Assembly="Infragistics2.Win.UltraWinTabControl.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+    </ControlGroup>
+    <ControlGroup Text="Data">
+      <Control Text="ProBindingSource" Type="Progress.Data.BindingSource" Assembly="" Path="c:\Progress102a\bin\Progress.NetUI.dll" />
+      <Control Text="UltraGrid" Type="Infragistics.Win.UltraWinGrid.UltraGrid" Assembly="Infragistics2.Win.UltraWinGrid.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+      <Control Text="UltraGridColumnChooser" Type="Infragistics.Win.UltraWinGrid.UltraGridColumnChooser" Assembly="Infragistics2.Win.UltraWinGrid.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+    </ControlGroup>
+    <ControlGroup Text="Menus and Toolbars">
+      <Control Text="UltraToolbarsManager" Type="Infragistics.Win.UltraWinToolbars.UltraToolbarsManager" Assembly="Infragistics2.Win.UltraWinToolbars.v8.1, Version=8.1.20081.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Path="" />
+    </ControlGroup>
+  </Category>
+</ToolBoxConfig>

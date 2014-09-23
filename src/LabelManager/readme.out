@@ -1,0 +1,111 @@
+This sample features a LabelManager that creates labels for data bound controls
+using the control's databinding.    
+
+One of the major drawbacks of most UI tools is that the label of a column
+is not part of the field object as in ABL. The label has to be added manually. 
+This is a prodcutivity issue, since it requires double work at desing time. It 
+is also limiting in advanced UI logic, since you cannot easily get the label of 
+a column if you want it to reflect data or state. (for example set a label red 
+on error). The major problem is the fact that captioning ends up as 
+hard-coded "dumb" text in the presentation layer.          
+
+This sample illustrates how one can continue to define captioning information 
+in the Business Repository/Data Dictionary, where this information rightfully 
+belong, also when developing a Net UI. The shown approach eliminates the need 
+to add and write label texts manually when designing .Net forms, while still 
+allowing full use of .Net UI features to control the appearance of the labels. 
+
+The purpose of this sample is to illustrate the capability and not to 
+illustrate a "best" approach or the recommended approach. It is meant as a 
+reminder that caption (label, tooltip and help) management is an important topic 
+in an application (development) architecture and that a manager approach can 
+increase both productivity, quality and flexibility. There are many alternative 
+approaches. Existing .Net support as well as patterns should be investigated 
+before deciding on the best approach for a given project, application or 
+framework.    
+
+One should in particular investigate the UltraGrid, which reads labels from the 
+schema without the need of a manager, and has the ability to show data in a 
+"viewer" like format, and has more than 40 different ColumnStyles to support 
+masking, formatting and data type issues.  
+  
+One of the drawbacks of the approach as shown is that the labels are not shown 
+at design time and it is probably pretty hard to extend it to do that. It is 
+also necessary to add code for each databound control that should not have any
+label (no-label). The "no-label" choice could be added as a Visual Designer 
+property on each control through .Net's Property Extention Provider mechanism, 
+similar to how the tooltipManager works (TODO - get the .Net support right and
+clarify, possibly mention that it can be done in C# )   
+
+---
+The sample implementation demonstrates how labels can be created from the 
+databinding while utilizing Net's capabilities to control attributes like 
+Colors and Fonts. 
+
+The LabelManager gets the labels from the Controls' BindingSource, which can get
+the meta schema directly from an ABL object (table, query or prodataset) or
+from the definition, entered manually or imported from an xsd, used to bind the 
+Controls in the Visual Designer.
+ 
+A real implementation might go further:
+- Manage text for tooltip and help. Formatting can also be considered as part 
+  of the business definition that should not need to be (hard-)coded in the 
+  presentation layer.   
+- The basic approach can be used for internationalization support. 
+- Dynamic's users could implement a label provider that feeds the LabelManager
+  with data from the Repository.  
+  
+A real implementation might be simpler:
+- One could probably eliminate the use of a temp-table if one does not need to 
+  change label attributes at runtime. 
+ 
+Usage: 
+1. The Manager is activated for a form by newing it with the Form (this-object)
+    new LabelManager(this-object). 
+
+2. The Manager has attributes that can be set before the Form (this-object) is 
+   activated. In this case the empty consrtructor should be used to new it.
+   
+     define private variable labelManager as LabelManager no-undo.
+     labelManager = new LabelManager(). 
+     labelManager:Foreground = System.Drawing.Color:Blue.  
+     labelManager:Font = new System.Drawing.Font("Arial",10.0).  
+     labelManager:AlignLeft = true.
+     labelManager:ActivateForm(this-object).
+
+3. It is necessary to tell the manager which columns to NOT add labels for. 
+
+     define private variable labelManager as LabelManager no-undo.
+     labelManager = new LabelManager(). 
+     labelManager:AddNoLabeledControl(ultraTextEditor1).  
+     labelManager:ActivateForm(this-object).
+   
+3. The Manager can be kept alive at runtime to allow label attributes to be 
+   changed at runtime. Setting of Font, Color and AlignLeft will refresh 
+   all managed labels. 
+
+4. The Manager can be used at runtime to keep track of labels for Control events. 
+   One can use the GetLabel(Control) to access a label and manipulate it to 
+   reflect data and state from the control's events, for example to set the 
+   label red on error. Note that the current implementation does not store 
+   individual properties for the label and setting of any Label Manager 
+   attribute will refresh Text, Font, Color and AlignLeft for all label 
+   attributes. One should thus avoid changing the Manager attributes if the same
+   attributes are used to reflect state on individual labels, but one could 
+   utilize this to reset the labels to "normal" state by calling DrawLabels.   
+    
+Demonstration:
+The two samples use manual databinding to a CustomerService and illustrates 
+how the UI can use labels directly from the schema. The actual labels in this
+case is defined directly in the temp-tables in the DataService. A more common
+approach is probably to bind with the Visual Designer against an xsd, which can 
+be exported from a prodataset.   
+
+1. CustomerForm.cls
+The CustomerForm sample shows the simplest approach of just newing the 
+LabelManager with the form. 
+
+2. CustomerFormAdv.cls
+The CustomerFormAdv sample shows how properties can be set before the control is 
+activated and how the properties also can be changed at runtime. The Form has
+a simple toolbar that allows runtime changes to Font, Color and Alignment. 

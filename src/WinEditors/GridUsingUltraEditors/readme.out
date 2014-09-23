@@ -1,0 +1,7 @@
+This sample shows how to embed editor controls in the UltraGrid columns.
+
+The relevant code of this sample is in the Form1_Load event, this method setup the form objects and associates the UltraOptionSet, UltraCalculatorDropDown and UltraCurrencyEditor to their respective columns.
+
+The UltraGrid is bind to a DataTable in order to get its data, the records for the DataTable are created in the GET accessor of the OrdersTable property. 
+
+ABL examples derived from Infragistics sources, copyright ©1992-2008 Infragistics, Inc., Windsor Corporate Park, 50 Millstone Road, Building 200 - Suite 150, East Windsor, NJ 08520. All rights reserved.

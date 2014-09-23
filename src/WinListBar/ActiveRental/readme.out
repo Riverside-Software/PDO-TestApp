@@ -1,0 +1,9 @@
+This sample shows how the UltraWinListBar control works, including the following features:
+
+- programmatically adding groups
+- programmatically adding/removing items from groups
+- programmatically adding images to ImageLists
+- programmatically assigning images located in ImageLists to groups/items in the UltraWinListBar
+- use of Timer control
+
+ABL examples derived from Infragistics sources, copyright ©1992-2008 Infragistics, Inc., Windsor Corporate Park, 50 Millstone Road, Building 200 - Suite 150, East Windsor, NJ 08520. All rights reserved.

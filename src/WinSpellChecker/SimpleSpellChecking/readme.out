@@ -1,0 +1,9 @@
+This sample shows how to work with Infragistics Spellchecker control.
+Learn how to add spell checking support to various controls. The spellChecker is attached to various controls (text editor, 
+rich text editor, ultragrid) and allows correction of misspelled words, adding new entries tu user dictionary, etc.
+Different parts of the code show how to attach the spellchecker to controls, how to implement and dynamically add menu items to 
+context menu and associate actions with the items, how to call spellchecker dialog, how to add and remove autocorrections or 
+entries to user dictionaries (contextMenuSuggestion_Click, spellCheckedControl_MouseDown, contextMenuAddToDictionary_Click, 
+btAddAutoCorrection_Click, btRemoveFromUserDictionary_Click).
+
+ABL examples derived from Infragistics sources, copyright ©1992-2008 Infragistics, Inc., Windsor Corporate Park, 50 Millstone Road, Building 200 - Suite 150, East Windsor, NJ 08520. All rights reserved.

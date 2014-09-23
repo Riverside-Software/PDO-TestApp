@@ -1,0 +1,19 @@
+This sample features an ultraCalcManager, which is a property extension provider that adds pseudo properties to the property sheet of each Control. "Pseudo" refers to the fact that these are not properties on the actual Control. The extention provider keeps track of both Controls and values.
+
+This sample shows two different approaches; design time and runtime and each of them are using two slightly different formulas, sum or addition. The columns in the "Formulas Created at Design-time" group all define these at design time in the Property Sheet where the property appears as an expandable "CalcSettings in ultraCalcManager1" property in each column. 
+
+The columns that are to be summarized or added define PropertyName = "Text". The "Text" refers to the Control property that the ultraCalc uses and listens for changes on.
+
+The "Total" columns define PropertyName = "Text" as well and in addition uses a Formula property which has a popup dialog to assist with the actual formula definition. 
+
+The generated code is inserted together with the Control properties, but calls a method in the provider and pass both the Control and property value as this excerpt from the generated InitializeComponent:
+     
+		/* txtAddition1 */
+		/*  */
+		ultraCalcManager1:SetCalcSettings(txtAddition1, NEW Infragistics.Win.UltraWinCalcManager.CalcSettings(?, ?, ?, "Text", Infragistics.Win.UltraWinCalcManager.CalcErrorIconAlignment:Default, ?)).
+		txtAddition1:<some other property>  
+	    txtAddition1:<some other property>  
+	  
+The columns in the "Formulas Created at Run-time" uses the same ultraCalcManager methods as the above, but at runtime only. The SetPropertyName() and SetFormula() methods wraps the actual setting, while CreateAdditionFormulas and CreateSumFunctionFormulas calls these for the applicable columns.  The Forms load event is defined at design time to load the formulas.
+
+ABL examples derived from Infragistics sources, copyright ©1992-2008 Infragistics, Inc., Windsor Corporate Park, 50 Millstone Road, Building 200 - Suite 150, East Windsor, NJ 08520. All rights reserved.

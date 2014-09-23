@@ -1,0 +1,5 @@
+This sample shows how to embed editor controls in an UltraGrid.
+
+The relevant code of this sample is in the SetupEditors method, which gets the object reference of the column and assign its editor using the column:EditorControl property.
+
+ABL examples derived from Infragistics sources, copyright ©1992-2008 Infragistics, Inc., Windsor Corporate Park, 50 Millstone Road, Building 200 - Suite 150, East Windsor, NJ 08520. All rights reserved.

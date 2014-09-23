@@ -1,0 +1,157 @@
+This sample demonstrates how the UltraGrid and the ProBindingSource can be
+used to support batching and sorting of data. 
+
+The main purpose of the sample is to illustate the usage of UltraGrid and 
+ProBindingSource properties and events for batching and/or sorting purposes. 
+It also illustrates what information and basic operations the batching and 
+sorting service must provide, and it does show the basic ABL constructs and 
+mechanisms needed in the service and the data access, but the service is 
+largely simplifed and using defaults where a production service would 
+not. 
+
+The part of the service needed to issue the request over an appserver is 
+missing. It is also somewhat irrelevant for the actual batching and sorting. 
+
+Sorting
+-------    
+The use of ABL sorting in the sample is recommended also if one don't plan to 
+implement batching.  
+
+The resort behavior is the grid's default sort behavior, which keeps the ordinal 
+position on a resort, if possible. Some would prefer that the current record 
+remained current, but this adds some tough requirements to the service with 
+batching. (See Forward batching below).  
+
+Batching
+--------
+The only purpose of batching is to achieve better performance in ABL n-tier 
+architectures where the application data is managed in temp-tables, as is the 
+case with adm2 SDOs as well as in SOA architectures implemented in the ABL 
+according to the OERA. 
+  
+Batching is not the ideal solution for someone who want to use the UltraGrid to 
+replace the ABL browser as a direct database browser, allthough it could give 
+acceptable initial performance for cases where more than a million record is 
+browsed and the UltraGrid otherwise would take very long to load. The 
+introduction of a temp-table for data might require many changes in an 
+application that works directly against the database, but it could also be a 
+first step towards a layered architecture. The introduction of the new UI is
+bound to require changes anyway. 
+
+The use of a dataset is almost mandatory for batching because it supports 
+filling of temp-tables and transport oover a session and has its own support
+for batching. 
+
+Forward batching
+----------------
+The default batching is appending data, which potentially could lead to a lot 
+of data in temp-tables. It can of course be argued that the user never would, 
+or should need to, scroll through 2 million records. In fact, ADM2 also appends 
+data while scrolling, and has the exact same issue, but it supports a 
+RebuildOnReposition mode that empties the temp-table when a find (position, not 
+filter) or find last is executed allowing these operations to be fast. 
+The default batching will not allow the user to immediately go fast to the 
+last record of 10 million records. It is fully possible that solutions to the
+adm2's RebuildOnReposition could be implemented to allow fast find and find last
+with the UltraGrid, but it require far more work. Also note that a two-way 
+batching also is rather complicated to implement on the server side/in a service. 
+
+Running the Sample
+------------------
+The Form has controls that allows you to turn batching on and off and set 
+batch size before and while you browse the data. It also shows the number of 
+records in the probinding source and the time of each sort in milliseconds. 
+A combo box allows you to change the HeaderClickAction of the band and see how 
+the various options affect the sort behavior.       
+     
+- Fetch data without batching first. The sample does not allow you 
+  to turn off batching once you have feched data. (Not for any particular reason 
+  other than the fact that it does not work and gives errors).
+  
+- Try resort without batching. Change the HederClickAction to Sort* and 
+  test sort time with default sort. Go back to External* and see 
+  how much faster the sort is when the sort is handled in the ABL query.   
+  Both these times will of course increase with the amount of data.
+ 
+- Try various batch sizes and scroll with the scroll bar or select a row 
+  and use cursor up and down. (Note that the Home and End behavior is not 
+  handled and the default behavior is not working very well with batching.)      
+  The jumping scroll bar is probably the main UI drawback of batching. Not 
+  only because it jumps, but because it does not give any clue of how much 
+  data the user actually is scrolling. It is still smoother than the adm2
+  browser in that it does not reposition to the top of each batch while 
+  scrolling.  
+
+- Try resort with batching. This reopens the database query. 
+  -- Set the batch size to 100 - 400 and notice that the database sort also is 
+     fast even including the fill of the temp-table, in particular with 
+     indexed fields like ordernum, itemnum and status.  
+  -- Increase the batch size to 1000, 5000 and notice the time increase. (these 
+     times would of course be very different on an appserver). Notice the 
+     difference on indexed fields disappears indicating that the time is 
+     spent on the fill. 
+
+- Test the ExternalMultiSort. Press SHIFT while clicking on column sort and
+  the sort is applied on multiple columns. The most impressive part of this
+  is perhaps how easy it is to implement, thanks to the UltraGrid band's
+  SortColumns Collection. 
+     
+- Make the browse high and set batch to 10 Fetch data and notice that the size 
+  is filled. This is default OffEnd behavior, the event simply fires until the 
+  grid is full. (each event would be a separate request, so one might still
+  avoid a too small batches and/or change the batch size on resize) 
+          
+Basic code  
+----------
+The AfterRowChange event handler handles the sorting when the HeaderClickAction 
+is ExternalSort*. It does this by passing the value returned from a 
+SortExpression() method that converts the band's SortColumns to an ABL sort 
+expression, to the Service's ResortData(). The ResortData() applies the sort
+and reopens the query if the service is not batching. If the service is batching
+then it issues a new request for data with the new query and sort expression.   
+
+The bindingsource's Batching property is set from a HasLast method in the
+Service after any fetch request.
+
+The bindingsource's OffEnd handles the request for a new batch by calling
+OrderLineService:FetchNextBatch(). This returns the number of records, 
+which is added to the RowsAdded of the OffEndArgs parameter, which tells the 
+grid that more data is added. 
+    
+Data and Service
+----------------
+The sample binds to a BatchingService class, which is a sample Service 
+Adapter and Business Entity in one, and that supports batching of the top table 
+in its dataset. The actual class in the sample is an OrderLineService class with 
+data from sports2000 orderline table. (Its 13000 or so records is not 
+necessarily large enough to need batching.) 
+
+The main purpose of batching is to achieve performance in n-tier environents, 
+but the call over the session is not implemented as the purpose of the sample 
+is to show the details needed for batching.
+ 
+The approach in the sample has not been tested with a parent child dataset (or 
+any other table for that matter), but it should work in principle, as all batch
+and sort operations are against the top table and the general recommendation is 
+that child data sort is left to the grid and that batching on child data should 
+be avoided. The batching would not work with active many-to-one relationships 
+with or without reposition.
+
+Support for batching in a service with a prodataset require far more work than 
+this sample might lead one to believe. The following lists some of the issues 
+that need to be resolved:
+
+- Tables in a many-to-one relationship, will need to be merged as the 
+  data in the next batch might already exist on the client. 
+  
+- Tables in a many-to-one reposition relationship are expected to be
+  returned with all data on the first request, so work migth be needed 
+  to skip these tables on subsequent request. This means that empty-dataset
+  cannot be used and mechanisms might be needed to empty child data with 
+  parent data.    
+   
+- The batch context should ideally not use ROWIDS, as these are reused when a
+  record is deleted. A user could in theory delete and create a new record 
+  in the time between when the ROWID was read and the next batch request.  
+ 
+
