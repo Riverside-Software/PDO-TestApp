@@ -81,16 +81,25 @@ println "Generating MSI files..."
 eu.rssw.pdo.ws.PackageGenerationReport report = srv.generateMSI(v.id)
 if (!report.packagePresent) {
  println "CANDLE REPORT"
- for (i in report.candleReport) { println "** " + i } 
+ for (i in report.candleReport) { println "** " + i }
  println "LIGHT REPORT"
- for (i in report.lightReport) { println "** " + i } 
+ for (i in report.lightReport) { println "** " + i }
 }
 
 
 println "Activating version..."
-//srv.activateVersion(v.id)
+int retVal = srv.activateVersion(v.id)
+if (retVal != 0) {
+  println "Version not activated : " + retVal;
+  return 1;
+}
+
 println "Generating install bundle..."
-// srv.generateBundle(v.id, "11.3", false, false)
+report = srv.generateBundle(v.id, "11.3", false, false)
+if (!report.packagePresent) {
+  println "Bundle not generated : ";
+  return 1;
+}
 
 println "Done !"
 
