@@ -1,0 +1,14 @@
+This sample shows how to create and dock controls at runtime to an UltraDockManager.
+In order to dock the controls and let the user to move those controls around the form, the UltraDockManager handles DockAreaPane, DockableControlPane and DockableGroupPane controls. This sample shows how to create and interact with those controls by coding.
+
+Form1 is the main class of the sample, it has the following three combo boxes:
+
+-Control to create: allows to select which control to be created. The sample provides two ABL User Controls, they are ListViewUserControl and TreeUserControl. Those controls are the one to be added in the form.
+
+-Docking position: the position in which the control is going to be docked, the valid values are DockedBottom, DockedTop, DockedLeft, DockedRight and Floating.
+
+-Grouping style: when more than one control is docked in the same docking position, they have to be grouped. The Grouping Style option says how those controls are grouped. The valid values are: Horizontal Split, Vertical Split, TabGroup and SlidingGroup.
+
+The "Create Control" button calls the CreateDockingControl method in the class DockingForm. This method creates and docks the new control in the UltraDockManager.
+
+NOTE: After a control is docked in the UltraDockManger, it can be dragged and dropped in another docking position. For this sample that option is disabled due a bug in the Infragistics Controls. Once a control is moved to another docking position, then no more controls could be added to the form.

@@ -1,0 +1,20 @@
+This ABL sample application shows how to bind data to some of the Infragistic Controls
+using the Progress Datasource, Progress.Data.BindingSource.
+
+The controls used in this sample are:
+
+Progress.Windows.Form.
+Infragistics.Win.UltraWinGrid.UltraGrid
+Infragistics.Win.UltraWinEditors.UltraTextEditor
+Infragistics.Win.UltraWinEditors.UltraNumericEditor
+Infragistics.Win.UltraWinEditors.UltraCurrencyEditor
+Infragistics.Win.UltraWinMaskedEdit.UltraMaskedEdit
+Infragistics.Win.UltraWinScrollBar.UltraScrollBar
+Infragistics.Win.UltraWinProgressBar.UltraProgressBar
+Infragistics.Win.UltraWinSchedule.UltraCalendarCombo
+Infragistics.Win.UltraWinEditors.UltraPictureBox
+Infragistics.Win.UltraWinTree.UltraTree
+Infragistics.Win.UltraWinGrid.UltraCombo
+Infragistics.Win.UltraWinStatusBar.UltraStatusBar
+Infragistics.Win.Misc.UltraButton
+Infragistics.Win.Misc.UltraLabel

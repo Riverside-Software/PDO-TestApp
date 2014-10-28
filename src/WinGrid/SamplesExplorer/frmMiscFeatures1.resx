@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?><root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element msdata:IsDataSet="true" name="root">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element minOccurs="0" name="value" type="xsd:string"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element minOccurs="0" msdata:Ordinal="1" name="value" type="xsd:string"/>
+                <xsd:element minOccurs="0" msdata:Ordinal="2" name="comment" type="xsd:string"/>
+              </xsd:sequence>
+              <xsd:attribute msdata:Ordinal="1" name="name" type="xsd:string" use="required"/>
+              <xsd:attribute msdata:Ordinal="3" name="type" type="xsd:string"/>
+              <xsd:attribute msdata:Ordinal="4" name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element minOccurs="0" msdata:Ordinal="1" name="value" type="xsd:string"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="ultraGridPrintDocument1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>147, 17</value>
+  </metadata>
+  <data name="ultraLabel14.Text" xml:space="preserve">
+    <value>The UltraCombo supports displaying custom buttons. Custom buttons are added via the ButtonsLeft and ButtonsRight properties of the UltraCombo.  UltraCombo also exposes EditrButtonClick, SpinEditorButtonClick, BeforeEditorButtonCheckStateChanged, AfterEditorButtonCheckStateChanged, BeforeEditorButtonDropDown and AfterEditorButtonDropDown events which are fired when  custom buttons are clicked. Which events fire depend on what type of custom button is clicked.</value>
+  </data>
+  <data name="ultraLabel11.Text" xml:space="preserve">
+    <value>You can hide either the headers or the cells of a column in row-layout mode. The capability to hide headers or cells of a column is not only available in headers-with-cells mode, where column headers are contained within every row, but is avaialble in non-headers-with-cells mode as well. This provides even greater flexibility when it comes to creating row-layouts. Following row-layout was created in the designer. The headers that you see are actually four unbound columns that do not have their cells visible at all. Where as all the other columns have their headers hidden and only their cells visible. To fascilitate this functionality,  LabelsOnly member was added to the LabelPosition enum (which is associated with the LabelPosition property of the RowLayoutColumnInfo) and also None enum member now is honored in non-headers-with-cells mode.</value>
+  </data>
+  <data name="ultraLabel12.Text" xml:space="preserve">
+    <value>By default when a column is sorted or filtered the actual sorting or filtering of the row collection is delayed until either the next paint message or the row collection is accessed (by either accessing the Count property, the indexer or the enumerator). 5.1 and newer versions make it easier and more intuitive to  synchronously sort/filter rows. A typical reason for syncrhonously sorting/filtering is to display a Wait cursor while the sortng/filtering takes place. UltraGrid now exposes ProcessMode property on the BeforeSortChangeEventArgs and EnsureSortedAndFiltered method on the RowsCollection.</value>
+  </data>
+  <data name="ultraLabel10.Text" xml:space="preserve">
+    <value>By default the UltraGrid extends the first header left to occupy the space over the row selectors. The RowSelectorHeaderStyle property on the Override lets you control this behavior.  Setting it to SeparateElement will show a header over the row selector. For demonstration purposes this sample implements code to show a message box and select all rows if you click on the row selector header.</value>
+  </data>
+  <data name="ultraLabel6.Text" xml:space="preserve">
+    <value>The UltraCombo supports the LimitToList property and the ItemNotInList event. Setting the LimitToList to true will cause the UltraCombo to by default retain focus when the user attempts to leave the control after entering a non-existant value. Whenever the user attempts to leave the control with an invalid value the ItemNotInList event is fired. This event is fired regardless of the LimitToList property setting. You can control whether to retain focus in that event's event handler as well. To demonstrate this functionality, enter a value that does not exist in the drop down list and then attempt to click the Button. You will notice that the UltraCombo retains the focus. NOTE: When the UltraCombo retains the focus, the Button's Click event won't fire and you won't see the message that the button's Click event handler shows.</value>
+  </data>
+  <data name="ultraLabel2.Text" xml:space="preserve">
+    <value>The UltraWinGrid supports displaying vertical scrollbars in card-view. When card rows do not fit in the available card area, a vertical scrollbar is displayed letting the user scroll the scrolled out of cells into view. This functionality is enabled by default. To demonstrate the functionality resize the form smaller to a point where the card rows do not fit the available height. You will notice that a vertical scrollbar shows up in the card area. You can also resize the card-area of child bands small enough and cause the vertical scrollbar to show up as well.</value>
+  </data>
+  <data name="ultraLabel3.Text" xml:space="preserve">
+    <value>The UltraCombo and UltraDropDown support sorting, sizing and filtering columns through the UI. To see how the functionality works, drop down the UltraCombo below or the UltraDropDown in one of the cells in the UltraGrid below and resize, sort or filter columns.</value>
+  </data>
+  <metadata name="bindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+</root>

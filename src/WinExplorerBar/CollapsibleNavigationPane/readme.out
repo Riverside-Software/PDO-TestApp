@@ -1,0 +1,16 @@
+This sample shows how to use and interact with a Collapsible Navigation Pane for the UltraWinExplorerBar. This sample also shows how to load objects in the UltraListView, and how to the UltraWinExplorerBar and the UltraListView could work together.
+
+The collapsible ExplorerBar on the left of the Form has three defined groups, “Calendar”, “Customers” and “Orders”.
+
+When the “Customers” group is selected, the collapsible pane is filled with “Customers” names read from the sports2000.Customer table, this is done in the PopulateListViewWithCustomers method. This shows the “Customers” label in the collapsible pane, when expanding this pane all the customers could be seen, when double-clicking in a customer, all of the customers order are displayed in the UltraListView on the right. The listView_ItemDoubleClick event if fired when double-clicking in a collapsible pane item object.
+By double-clicking in an Order in the UltraListView will show the orderline records for the selected order.
+
+When selecting the “Orders” group in the ExplorerBar, the collapsible pane is filled with “Orders” names read from the sports2000.Order table. When double-clicking in an Order, the OrderLines for that order are shown in the UltraListView.
+
+When selecting the “Calendar” group in the ExplorerBar, the collapsible pane is filled with the UltraMonthViewMulti control, which is used to select a day or a range of days to be shown in the calendar. This calendar is shown in the UltraListView, and contains a calendar for each employee read from the sports2000.Employee table.
+
+Methods like PopulateListViewWithCustomers, PopulateListViewWithOrderDetails, PopulateListViewWithProducts are the ones that get the data from the ProDataSet temp-tables and load them into the UltraListView.
+
+Events ultraCalendarInfo1_*, ultraEmplorerBar1_*, ultraMonthViewMulti1_* and ultraToolbarsManager1_* are the ones that calls the required methods to populate and setup the UltraWinExplorerBar and UltraListView controls.
+
+ABL examples derived from Infragistics sources, copyright ©1992-2008 Infragistics, Inc., Windsor Corporate Park, 50 Millstone Road, Building 200 - Suite 150, East Windsor, NJ 08520. All rights reserved.

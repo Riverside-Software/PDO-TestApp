@@ -1,0 +1,5 @@
+This sample shows how to use the Scaling and Scrolling options for the UltraWinCart.
+
+The UltraWinChart gives you the option of adding scrollbars to the X and Y axis of the chart. When the EnableScrollbar property is set to True, the UltraWinChart will scale the chart image to increase its size, and automatically add scrollbar elements to the chart.
+
+ABL examples derived from Infragistics sources, copyright ©1992-2008 Infragistics, Inc., Windsor Corporate Park, 50 Millstone Road, Building 200 - Suite 150, East Windsor, NJ 08520. All rights reserved.

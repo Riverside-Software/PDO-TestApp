@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?><root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element msdata:IsDataSet="true" name="root">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element minOccurs="0" name="value" type="xsd:string"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element minOccurs="0" msdata:Ordinal="1" name="value" type="xsd:string"/>
+                <xsd:element minOccurs="0" msdata:Ordinal="2" name="comment" type="xsd:string"/>
+              </xsd:sequence>
+              <xsd:attribute msdata:Ordinal="1" name="name" type="xsd:string" use="required"/>
+              <xsd:attribute msdata:Ordinal="3" name="type" type="xsd:string"/>
+              <xsd:attribute msdata:Ordinal="4" name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element minOccurs="0" msdata:Ordinal="1" name="value" type="xsd:string"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="fllFormattedText.Value" xml:space="preserve">
+    <value>FormattedLinkLabel can display formatted text like &lt;b title="&amp;lt;b&amp;gt;bold&amp;lt;/b&amp;gt;"&gt;bold&lt;/b&gt;, &lt;i title="&amp;lt;i&amp;gt;italics&amp;lt;/i&amp;gt;"&gt;italics&lt;/i&gt;, and &lt;u title="&amp;lt;u&amp;gt;underline&amp;lt;/u&amp;gt;"&gt;underline&lt;/u&gt;.&lt;BR/&gt;
+&lt;BR/&gt;
+FormattedLinkLabel can also display text in different colors and fonts like &lt;font face="Tahoma" size="8pt" color="Green" title="&amp;lt;font face='Tahoma' size='8pt' color='Green'&amp;gt;Tahoma Green 8&amp;lt;/font&amp;gt;"&gt;Tahoma Green 8&lt;/font&gt; and &lt;font face="Arial" size="10pt" color="Red" title="&amp;lt;font face='Arial' size='10pt' color='Red'&amp;gt;Arial Red 10&amp;lt;/font&amp;gt;"&gt;Arial Red 10&lt;/font&gt;&lt;BR/&gt;
+&lt;BR/&gt;
+FormattedLinkLabel can insert hyperlinks anywhere in the text.
+Click &lt;a href="http://www.Infragistics.com" title="&amp;lt;a href='http://www.Infragistics.com'&amp;gt;here&amp;lt;/a&amp;gt;"&gt;here&lt;/a&gt;.&lt;BR/&gt;
+&lt;BR/&gt;
+FormattedLinkLabel supports aligned text:&lt;BR/&gt;
+&lt;p align="left" title="&amp;lt;p align='left'&amp;gt;Left&amp;lt;/p&amp;gt;"&gt;Left&lt;/p&gt;
+&lt;p align="center" title="&amp;lt;p align='Center'&amp;gt;Center&amp;lt;/p&amp;gt;"&gt;Center&lt;/p&gt;
+&lt;p align="right" title="&amp;lt;p align='right'&amp;gt;Right&amp;lt;/p&amp;gt;"&gt;Right&lt;/p&gt;
+&lt;BR/&gt;
+FormattedLinkLabel supports &lt;b&gt;tooltips&lt;/b&gt;! Mouse over any of the formatted text above and a tooltip will appear showing the XML format that acheived that formatting. 
+
+</value>
+  </data>
+  <data name="fllTreatAsType.Value" xml:space="preserve">
+    <value>These &lt;b&gt;FormattedLinkLabels&lt;/b&gt;have had their &lt;b&gt;TreatAsType &lt;/b&gt;properties set to &lt;b&gt;URL. &lt;/b&gt;As a result, they will always interpret their entire value as a URL. If this link is a web page or an application on the system, it will be launched automatically. If not, you can trap the &lt;b&gt;LinkClicked&lt;/b&gt; event and handle the link however you want. </value>
+  </data>
+</root>
