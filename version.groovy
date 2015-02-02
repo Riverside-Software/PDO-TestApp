@@ -96,7 +96,7 @@ if (retVal != 0) {
 }
 
 println "Generating install bundle..."
-report = srv.generateBundle(v.id, "11.3", false, false)
+report = srv.generateBundle(v.id, args[4], false, false)
 if (!report.packagePresent) {
   println "Bundle not generated : ";
   return 1;
