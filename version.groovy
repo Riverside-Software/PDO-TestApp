@@ -64,8 +64,8 @@ srv.uploadFiles(param);
 
 // OCX files as SelfReg
 println "Tagging OCX files..."
-// srv.getDirectory(v.id).files.each { element -> if (element.fileName == 'pstimer.ocx') srv.updateMsiAction(element.id, 1); }
-// srv.getDirectory(v.id).files.each { element -> if (element.fileName == 'Flash32_11_9_900_117.ocx') srv.updateMsiAction(element.id, 1); }
+srv.getDirectory(v.id).files.each { element -> if (element.fileName == 'pstimer.ocx') srv.updateMsiAction(element.id, 1); }
+srv.getDirectory(v.id).files.each { element -> if (element.fileName == 'Flash32_11_9_900_117.ocx') srv.updateMsiAction(element.id, 1); }
 
 // Delete every StartupMode, in order to recreate them
 println "Deleting existing startup modes..." 
