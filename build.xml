@@ -3,17 +3,17 @@
   <taskdef uri="antlib:eu/rssw/pct" resource="eu/rssw/pct/antlib.xml" />
   <taskdef resource="PCT.properties" />
 
-  <echo message="A n'utiliser qu'avec la version 11.3.1" />
+  <echo message="A n'utiliser qu'avec la version 11.3 ou plus" />
   <DlcHome value="${DLC}" />
   <property environment="env" />
 
   <target name="build">
     <mkdir dir="build" />
     <mkdir dir="db" />
-    <pct:compile destDir="build" graphicalMode="true" minSize="true" assemblies="assemblies-11.3">
+    <pct:compile destDir="build" graphicalMode="true" minSize="true" assemblies="assemblies-${VERSION}">
       <fileset dir="src" includes="**/*.w,**/*.cls,*.p" />
       <propath>
-  	    <pathelement location="src" />
+        <pathelement location="src" />
       </propath>
     </pct:compile>
   </target>
@@ -24,33 +24,33 @@
     <pct:compile destDir="build" graphicalMode="true" minSize="true">
       <fileset dir="src" includes="**/*.w" />
       <propath>
-  	    <pathelement location="src" />
+        <pathelement location="src" />
       </propath>
     </pct:compile>
   </target>
 
   <target name="dist" depends="build">
-  	<zip destfile="TestApp1.zip">
+    <zip destfile="TestApp1.zip">
       <fileset dir="build" includes="mainwin.r" />
       <fileset dir="src" includes="*.txt,mainwin.wrx,*.ini,*.ico" />
       <fileset dir="ocx" includes="pstimer.ocx" />
     </zip>
-  	<zip destfile="TestApp2.zip">
+    <zip destfile="TestApp2.zip">
       <fileset dir="build" includes="mainwin.r,mainwin2.r" />
       <fileset dir="src" includes="*.txt,*.wrx,*.ini,*.ico" />
       <fileset dir="ocx" includes="*.ocx" />
     </zip>
-  	<zip destfile="TestApp3.zip">
+    <zip destfile="TestApp3.zip">
       <fileset dir="${DLC}/bin/infragistics/winforms" />
-      <fileset dir="assemblies-11.3" />
+      <fileset dir="assemblies-${VERSION}" />
       <fileset dir="ocx" />
       <fileset dir="build" />
       <fileset dir="src">
-	    <include name="*.ini" />
+      <include name="*.ini" />
         <include name="**/*.txt" />
         <include name="**/*.wrx" />
-	      <include name="**/*.resx" />
- 	      <include name="**/*.jpg" />
+        <include name="**/*.resx" />
+         <include name="**/*.jpg" />
         <include name="**/*.bmp" />
         <include name="**/*.xsd" />
         <include name="**/*.xml" />
@@ -58,17 +58,17 @@
         <include name="**/*.gif" />
         <include name="**/*.png" />
         <include name="**/*.out" />
-	    </fileset>
+      </fileset>
     </zip>
   </target>
 
   <target name="dist-v10" depends="build-v10">
-  	<zip destfile="TestApp1.zip">
+    <zip destfile="TestApp1.zip">
       <fileset dir="build" includes="mainwin.r" />
       <fileset dir="src" includes="*.txt,mainwin.wrx,*.ini,*.ico" />
       <fileset dir="ocx" includes="pstimer.ocx" />
     </zip>
-  	<zip destfile="TestApp2.zip">
+    <zip destfile="TestApp2.zip">
       <fileset dir="build" includes="mainwin.r,mainwin2.r" />
       <fileset dir="src" includes="*.txt,*.wrx,*.ini,*.ico" />
       <fileset dir="ocx" includes="Flash*.ocx" />
