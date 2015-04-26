@@ -50,7 +50,7 @@
         <include name="**/*.txt" />
         <include name="**/*.wrx" />
         <include name="**/*.resx" />
-         <include name="**/*.jpg" />
+        <include name="**/*.jpg" />
         <include name="**/*.bmp" />
         <include name="**/*.xsd" />
         <include name="**/*.xml" />
