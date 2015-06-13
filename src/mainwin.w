@@ -30,6 +30,9 @@
 
 CREATE WIDGET-POOL.
 
+DEFINE VARIABLE t AS System.Threading.Tasks.Task NO-UNDO.
+DEFINE VARIABLE tmr AS System.Windows.Forms.Timer NO-UNDO.
+
 /* ***************************  Definitions  ************************** */
 
 /* Parameters Definitions ---                                           */
@@ -87,7 +90,7 @@ END PROCEDURE.
 /* Standard List Definitions                                            */
 &Scoped-Define ENABLED-OBJECTS EDITOR-1 FILL-IN-1 FILL-IN-2 FILL-IN-3 ~
 FILL-IN-4 FILL-IN-5 FILL-IN-6 FILL-IN-7 FILL-IN-8 BUTTON-1 BUTTON-2 ~
-BUTTON-3 BUTTON-5 BUTTON-6 FILL-IN-9 BUTTON-4 
+BUTTON-3 BUTTON-5 BUTTON-6 FILL-IN-9 BUTTON-4 BUTTON-7 
 &Scoped-Define DISPLAYED-OBJECTS EDITOR-1 FILL-IN-1 FILL-IN-2 FILL-IN-3 ~
 FILL-IN-4 FILL-IN-5 FILL-IN-6 FILL-IN-7 FILL-IN-8 FILL-IN-9 FILL-IN-10 
 
@@ -163,6 +166,10 @@ DEFINE BUTTON BUTTON-6
      LABEL "List root files" 
      SIZE 21 BY 1.14.
 
+DEFINE BUTTON BUTTON-7 
+     LABEL "Trigger silent update" 
+     SIZE 23 BY 1.14.
+
 DEFINE VARIABLE EDITOR-1 AS CHARACTER 
      VIEW-AS EDITOR NO-WORD-WRAP SCROLLBAR-HORIZONTAL SCROLLBAR-VERTICAL
      SIZE 60 BY 9.76 NO-UNDO.
@@ -233,11 +240,12 @@ DEFINE FRAME DEFAULT-FRAME
      BUTTON-1 AT ROW 23.14 COL 5 WIDGET-ID 26
      BUTTON-2 AT ROW 23.14 COL 27 WIDGET-ID 30
      BUTTON-3 AT ROW 23.14 COL 49 WIDGET-ID 32
-     BUTTON-5 AT ROW 24.71 COL 16 WIDGET-ID 40
-     BUTTON-6 AT ROW 24.76 COL 38 WIDGET-ID 42
+     BUTTON-5 AT ROW 24.81 COL 5 WIDGET-ID 40
+     BUTTON-6 AT ROW 24.81 COL 27 WIDGET-ID 42
      FILL-IN-9 AT ROW 26.43 COL 18.8 COLON-ALIGNED WIDGET-ID 34
      BUTTON-4 AT ROW 26.43 COL 61.8 WIDGET-ID 36
      FILL-IN-10 AT ROW 28.1 COL 37.8 COLON-ALIGNED WIDGET-ID 38
+     BUTTON-7 AT ROW 29.33 COL 26 WIDGET-ID 44
      "Content of sample.txt" VIEW-AS TEXT
           SIZE 25 BY .62 AT ROW 1.48 COL 24 WIDGET-ID 4
           FONT 6
@@ -472,6 +480,31 @@ END PROCEDURE.
 /* _UIB-CODE-BLOCK-END */
 &ANALYZE-RESUME
 
+&Scoped-define SELF-NAME BUTTON-7
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL BUTTON-7 C-Win
+ON CHOOSE OF BUTTON-7 IN FRAME DEFAULT-FRAME /* Trigger silent update */
+DO:
+&IF INTEGER(SUBSTRING(PROVERSION, 1, INDEX(PROVERSION, '.'))) GE 11 &THEN
+    DEFINE VARIABLE p AS System.Net.WebClient NO-UNDO.
+
+    ASSIGN p = NEW System.Net.WebClient().
+    t = p:DownloadFileTaskAsync(NEW System.Uri(FILL-IN-9:SCREEN-VALUE + replace(fill-in-5:screen-value, '/', '.') + ".installer"), "lastversion.msi").
+    
+    tmr = NEW System.Windows.Forms.Timer().
+    tmr:tick:SUBSCRIBE("DownloadOK").
+    tmr:INTERVAL = 1000.
+    tmr:START().
+
+    /* Doesn't work -- p:DownloadFileCompleted:Subscribe("downloadOK").*/
+&ELSE
+    MESSAGE "Only in OE 11 !" VIEW-AS ALERT-BOX.
+&ENDIF
+    
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
 
 &UNDEFINE SELF-NAME
 
@@ -597,6 +630,34 @@ END PROCEDURE.
 /* _UIB-CODE-BLOCK-END */
 &ANALYZE-RESUME
 
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE downloadOK C-Win 
+PROCEDURE downloadOK :
+/*------------------------------------------------------------------------------
+  Purpose:     
+  Parameters:  <none>
+  Notes:       
+------------------------------------------------------------------------------*/
+  DEFINE INPUT PARAMETER sender AS System.OBJECT NO-UNDO.
+  DEFINE INPUT PARAMETER e AS System.EventArgs NO-UNDO.
+
+  DEFINE VARIABLE p AS System.Diagnostics.Process NO-UNDO.
+
+  IF t:isCompleted THEN DO:
+     tmr:Stop().
+     MESSAGE "New version downloaded - Application will quit" VIEW-AS ALERT-BOX INFO BUTTONS OK.
+    
+    ASSIGN p = new System.Diagnostics.Process().
+    ASSIGN p:StartInfo:FileName    = "msiexec"
+           p:StartInfo:Arguments   = "/i lastversion.msi"
+           /* p:StartInfo:WindowStyle = System.Diagnostics.ProcessWindowStyle:Hidden */ .
+    p:Start().
+    QUIT.
+ END.
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
 &ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE enable_UI C-Win  _DEFAULT-ENABLE
 PROCEDURE enable_UI :
 /*------------------------------------------------------------------------------
@@ -614,7 +675,7 @@ PROCEDURE enable_UI :
       WITH FRAME DEFAULT-FRAME IN WINDOW C-Win.
   ENABLE EDITOR-1 FILL-IN-1 FILL-IN-2 FILL-IN-3 FILL-IN-4 FILL-IN-5 FILL-IN-6 
          FILL-IN-7 FILL-IN-8 BUTTON-1 BUTTON-2 BUTTON-3 BUTTON-5 BUTTON-6 
-         FILL-IN-9 BUTTON-4 
+         FILL-IN-9 BUTTON-4 BUTTON-7 
       WITH FRAME DEFAULT-FRAME IN WINDOW C-Win.
   {&OPEN-BROWSERS-IN-QUERY-DEFAULT-FRAME}
   VIEW C-Win.
