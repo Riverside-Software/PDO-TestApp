@@ -90,7 +90,7 @@ END PROCEDURE.
 /* Standard List Definitions                                            */
 &Scoped-Define ENABLED-OBJECTS EDITOR-1 FILL-IN-1 FILL-IN-2 FILL-IN-3 ~
 FILL-IN-4 FILL-IN-5 FILL-IN-6 FILL-IN-7 FILL-IN-8 BUTTON-1 BUTTON-2 ~
-BUTTON-3 BUTTON-5 BUTTON-6 FILL-IN-9 BUTTON-4 BUTTON-7 
+BUTTON-3 BUTTON-5 BUTTON-6 FILL-IN-9 BUTTON-4 BUTTON-8 BUTTON-9 BUTTON-7 
 &Scoped-Define DISPLAYED-OBJECTS EDITOR-1 FILL-IN-1 FILL-IN-2 FILL-IN-3 ~
 FILL-IN-4 FILL-IN-5 FILL-IN-6 FILL-IN-7 FILL-IN-8 FILL-IN-9 FILL-IN-10 
 
@@ -167,8 +167,16 @@ DEFINE BUTTON BUTTON-6
      SIZE 21 BY 1.14.
 
 DEFINE BUTTON BUTTON-7 
-     LABEL "Trigger silent update" 
+     LABEL "Trigger full install" 
      SIZE 23 BY 1.14.
+
+DEFINE BUTTON BUTTON-8 
+     LABEL "Trigger patch" 
+     SIZE 15 BY 1.14.
+
+DEFINE BUTTON BUTTON-9 
+     LABEL "Trigger user-mode patch" 
+     SIZE 25 BY 1.14.
 
 DEFINE VARIABLE EDITOR-1 AS CHARACTER 
      VIEW-AS EDITOR NO-WORD-WRAP SCROLLBAR-HORIZONTAL SCROLLBAR-VERTICAL
@@ -180,7 +188,7 @@ DEFINE VARIABLE FILL-IN-1 AS CHARACTER FORMAT "X(256)":U
      SIZE 44 BY 1 NO-UNDO.
 
 DEFINE VARIABLE FILL-IN-10 AS CHARACTER FORMAT "X(256)":U 
-     LABEL "Numéro version sur serveur" 
+     LABEL "Server-side version #" 
      VIEW-AS FILL-IN 
      SIZE 14 BY 1 NO-UNDO.
 
@@ -219,8 +227,8 @@ DEFINE VARIABLE FILL-IN-8 AS CHARACTER FORMAT "X(256)":U
      VIEW-AS FILL-IN 
      SIZE 44 BY 1 NO-UNDO.
 
-DEFINE VARIABLE FILL-IN-9 AS CHARACTER FORMAT "X(256)":U INITIAL "http://pdo.rssw.eu:8080/" 
-     LABEL "Vérification JSON" 
+DEFINE VARIABLE FILL-IN-9 AS CHARACTER FORMAT "X(256)":U INITIAL "http://pdo.riverside-software.fr/" 
+     LABEL "JSON" 
      VIEW-AS FILL-IN 
      SIZE 39 BY 1 NO-UNDO.
 
@@ -245,7 +253,9 @@ DEFINE FRAME DEFAULT-FRAME
      FILL-IN-9 AT ROW 26.43 COL 18.8 COLON-ALIGNED WIDGET-ID 34
      BUTTON-4 AT ROW 26.43 COL 61.8 WIDGET-ID 36
      FILL-IN-10 AT ROW 28.1 COL 37.8 COLON-ALIGNED WIDGET-ID 38
-     BUTTON-7 AT ROW 29.33 COL 26 WIDGET-ID 44
+     BUTTON-8 AT ROW 29.33 COL 4 WIDGET-ID 46
+     BUTTON-9 AT ROW 29.33 COL 21 WIDGET-ID 48
+     BUTTON-7 AT ROW 29.33 COL 49 WIDGET-ID 44
      "Content of sample.txt" VIEW-AS TEXT
           SIZE 25 BY .62 AT ROW 1.48 COL 24 WIDGET-ID 4
           FONT 6
@@ -464,31 +474,17 @@ END.
 &ANALYZE-RESUME
 
 
-&Scoped-define SELF-NAME CtrlFrame
-&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL CtrlFrame C-Win OCX.Tick
-PROCEDURE CtrlFrame.PSTimer.Tick .
-/*------------------------------------------------------------------------------
-  Purpose:     
-  Parameters:  None required for OCX.
-  Notes:       
-------------------------------------------------------------------------------*/
-
-    chCtrlFrame:PSTimer:Interval = 0.
-    MESSAGE "OCX.Tick". 
-END PROCEDURE.
-
-/* _UIB-CODE-BLOCK-END */
-&ANALYZE-RESUME
-
 &Scoped-define SELF-NAME BUTTON-7
 &ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL BUTTON-7 C-Win
-ON CHOOSE OF BUTTON-7 IN FRAME DEFAULT-FRAME /* Trigger silent update */
+ON CHOOSE OF BUTTON-7 IN FRAME DEFAULT-FRAME /* Trigger full install */
 DO:
 &IF INTEGER(SUBSTRING(PROVERSION, 1, INDEX(PROVERSION, '.'))) GE 11 &THEN
     DEFINE VARIABLE p AS System.Net.WebClient NO-UNDO.
 
+    assign button-8:sensitive = false
+           button-9:sensitive = false.
     ASSIGN p = NEW System.Net.WebClient().
-    t = p:DownloadFileTaskAsync(NEW System.Uri(FILL-IN-9:SCREEN-VALUE + replace(fill-in-5:screen-value, '/', '.') + ".installer"), "lastversion.msi").
+    t = p:DownloadFileTaskAsync(NEW System.Uri(FILL-IN-9:SCREEN-VALUE + replace(fill-in-5:screen-value, '/', '.') + ".userinstaller"), "lastversion.msi").
     
     tmr = NEW System.Windows.Forms.Timer().
     tmr:tick:SUBSCRIBE("DownloadOK").
@@ -501,6 +497,75 @@ DO:
 &ENDIF
     
 END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME BUTTON-8
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL BUTTON-8 C-Win
+ON CHOOSE OF BUTTON-8 IN FRAME DEFAULT-FRAME /* Trigger patch */
+DO:
+  &IF INTEGER(SUBSTRING(PROVERSION, 1, INDEX(PROVERSION, '.'))) GE 11 &THEN
+    DEFINE VARIABLE p AS System.Net.WebClient NO-UNDO.
+
+    assign button-7:sensitive = false
+           button-9:sensitive = false.
+    ASSIGN p = NEW System.Net.WebClient().
+    t = p:DownloadFileTaskAsync(NEW System.Uri(FILL-IN-9:SCREEN-VALUE + replace(fill-in-5:screen-value, '/', '.') + ".patch?admin=1"), "lastversion.msp").
+    
+    tmr = NEW System.Windows.Forms.Timer().
+    tmr:tick:SUBSCRIBE("DownloadOKPatch").
+    tmr:INTERVAL = 1000.
+    tmr:START().
+&ELSE
+    MESSAGE "Only in OE 11 !" VIEW-AS ALERT-BOX.
+&ENDIF
+
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME BUTTON-9
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL BUTTON-9 C-Win
+ON CHOOSE OF BUTTON-9 IN FRAME DEFAULT-FRAME /* Trigger user-mode patch */
+DO:
+    &IF INTEGER(SUBSTRING(PROVERSION, 1, INDEX(PROVERSION, '.'))) GE 11 &THEN
+    DEFINE VARIABLE p AS System.Net.WebClient NO-UNDO.
+
+    assign button-7:sensitive = false
+           button-8:sensitive = false.
+    ASSIGN p = NEW System.Net.WebClient().
+    t = p:DownloadFileTaskAsync(NEW System.Uri(FILL-IN-9:SCREEN-VALUE + replace(fill-in-5:screen-value, '/', '.') + ".patch?admin=0"), "lastversion.msp").
+    
+    tmr = NEW System.Windows.Forms.Timer().
+    tmr:tick:SUBSCRIBE("DownloadOKPatch").
+    tmr:INTERVAL = 1000.
+    tmr:START().
+&ELSE
+    MESSAGE "Only in OE 11 !" VIEW-AS ALERT-BOX.
+&ENDIF
+
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME CtrlFrame
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL CtrlFrame C-Win OCX.Tick
+PROCEDURE CtrlFrame.PSTimer.Tick .
+/*------------------------------------------------------------------------------
+  Purpose:     
+  Parameters:  None required for OCX.
+  Notes:       
+------------------------------------------------------------------------------*/
+
+    chCtrlFrame:PSTimer:Interval = 0.
+    MESSAGE "OCX.Tick". 
+END PROCEDURE.
 
 /* _UIB-CODE-BLOCK-END */
 &ANALYZE-RESUME
@@ -658,6 +723,35 @@ END PROCEDURE.
 /* _UIB-CODE-BLOCK-END */
 &ANALYZE-RESUME
 
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE downloadOKPatch C-Win 
+PROCEDURE downloadOKPatch :
+/*------------------------------------------------------------------------------
+  Purpose:     
+  Parameters:  <none>
+  Notes:       
+------------------------------------------------------------------------------*/
+  DEFINE INPUT PARAMETER sender AS System.OBJECT NO-UNDO.
+  DEFINE INPUT PARAMETER e AS System.EventArgs NO-UNDO.
+
+  DEFINE VARIABLE p AS System.Diagnostics.Process NO-UNDO.
+
+  IF t:isCompleted THEN DO:
+     tmr:Stop().
+     MESSAGE "New version downloaded - Application will quit" VIEW-AS ALERT-BOX INFO BUTTONS OK.
+    
+    ASSIGN p = new System.Diagnostics.Process().
+    ASSIGN p:StartInfo:FileName    = "msiexec"
+           p:StartInfo:Arguments   = "/update lastversion.msp"
+           /* p:StartInfo:WindowStyle = System.Diagnostics.ProcessWindowStyle:Hidden */ .
+    p:Start().
+    QUIT.
+ END.
+ 
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
 &ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE enable_UI C-Win  _DEFAULT-ENABLE
 PROCEDURE enable_UI :
 /*------------------------------------------------------------------------------
@@ -675,7 +769,7 @@ PROCEDURE enable_UI :
       WITH FRAME DEFAULT-FRAME IN WINDOW C-Win.
   ENABLE EDITOR-1 FILL-IN-1 FILL-IN-2 FILL-IN-3 FILL-IN-4 FILL-IN-5 FILL-IN-6 
          FILL-IN-7 FILL-IN-8 BUTTON-1 BUTTON-2 BUTTON-3 BUTTON-5 BUTTON-6 
-         FILL-IN-9 BUTTON-4 BUTTON-7 
+         FILL-IN-9 BUTTON-4 BUTTON-8 BUTTON-9 BUTTON-7 
       WITH FRAME DEFAULT-FRAME IN WINDOW C-Win.
   {&OPEN-BROWSERS-IN-QUERY-DEFAULT-FRAME}
   VIEW C-Win.
