@@ -4,6 +4,8 @@ import eu.rssw.pdo.ws.Product
 import eu.rssw.pdo.ws.Version
 import eu.rssw.pdo.ws.StartupMode
 import eu.rssw.pdo.ws.FileUploadParameter;
+import eu.rssw.pdo.ws.MsiInstallerProperty;
+import eu.rssw.pdo.ws.MsiInstallerPropertyArray;
 
 import javax.activation.DataHandler;
 import javax.xml.ws.Binding;
@@ -96,7 +98,16 @@ if (retVal != 0) {
 }
 
 println "Generating install bundle..."
-report = srv.generateBundle(v.id, args[4], false, false)
+MsiInstallerPropertyArray lst = new MsiInstallerPropertyArray()
+lst.item = new java.util.ArrayList<MsiInstallerProperty>()
+if (args.length >= 6) {
+  println "Using TARGETDIR=" + args[5]
+  MsiInstallerProperty targetDirProp = new MsiInstallerProperty()
+  targetDirProp.setName("TARGETDIR")
+  targetDirProp.setValue(args[5])
+  lst.item.add(targetDirProp)
+}
+report = srv.generateBundleProps(v.id, args[4], false, false, false, lst)
 if (!report.packagePresent) {
   println "Bundle not generated : ";
   return 1;
