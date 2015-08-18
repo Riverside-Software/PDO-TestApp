@@ -107,7 +107,7 @@ if (args.length >= 6) {
   targetDirProp.setValue(args[5])
   lst.item.add(targetDirProp)
 }
-report = srv.generateBundleProps(v.id, args[4], false, false)
+report = srv.generateBundleProps(v.id, args[4], false, false, false, lst)
 if (!report.packagePresent) {
   println "Bundle not generated : ";
   return 1;
