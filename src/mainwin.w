@@ -456,18 +456,18 @@ END.
 ON CHOOSE OF BUTTON-6 IN FRAME DEFAULT-FRAME /* List root files */
 DO:
     DEFINE VARIABLE cFileStream AS CHARACTER NO-UNDO.
-    DEFINE VARIABLE foo AS CHARACTER NO-UNDO.
-    DEFINE VARIABLE bar AS CHARACTER NO-UNDO.
+    /* DEFINE VARIABLE foo AS CHARACTER NO-UNDO.
+    DEFINE VARIABLE bar AS CHARACTER NO-UNDO. */
 
-    INPUT FROM OS-DIR (".") ECHO.
-    
+    EDITOR-1:READ-FILE("sample.txt")
+    EDITOR-1:INSERT-STRING('~n~n' + "FILE LIST" + '~n').
+    INPUT FROM OS-DIR (".").
     REPEAT:
-       IMPORT cFileStream foo bar.
-       
-        DISPLAY cFileStream FORMAT "X(30)" LABEL 'name of the file'
-                foo FORMAT "X(50)" LABEL 'FULL-PATHNAME'
-                bar FORMAT "X(50)" LABEL 'PATHNAME' with 1 col.
+       IMPORT cFileStream ^ ^.
+       EDITOR-1:MOVE-TO-EOF().
+       EDITOR-1:INSERT-STRING(cFileStream + '~n'). 
     END.
+    EDITOR-1:INSERT-STRING("~nSEARCH PADEO_TestFile.txt : " + SEARCH("PADEO_TestFile.txt") + '~n'). 
 END.
 
 /* _UIB-CODE-BLOCK-END */
