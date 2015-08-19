@@ -460,6 +460,7 @@ DO:
     DEFINE VARIABLE bar AS CHARACTER NO-UNDO. */
 
     EDITOR-1:READ-FILE("sample.txt").
+    EDITOR-1:MOVE-TO-EOF().
     EDITOR-1:INSERT-STRING('~n~n' + "FILE LIST" + '~n').
     INPUT FROM OS-DIR (".").
     REPEAT:
