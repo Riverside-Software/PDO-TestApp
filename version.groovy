@@ -106,6 +106,10 @@ if (args.length >= 6) {
   targetDirProp.setName("TARGETDIR")
   targetDirProp.setValue(args[5])
   lst.item.add(targetDirProp)
+  MsiInstallerProperty features = new MsiInstallerProperty()
+  features.setName("ADDLOCAL")
+  features.setValue("DefaultInstall,WritableDir")
+  lst.item.add(features)
 }
 report = srv.generateBundleProps(v.id, args[4], false, false, false, lst)
 if (!report.packagePresent) {
