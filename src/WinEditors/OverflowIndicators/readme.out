@@ -1,0 +1,6 @@
+This sample shows how to add or remove the OverflowIndicators to WinEditor controls.
+The editor will display an overflow indicator when the display text is not completely visible. When the user mouses over the overflow indicator it displays a tooltip which shows all of the display text.
+
+The relevant code of this sample is in the Form1_Load event, and chkUseOverflowIndicators_CheckedChanged method, which set/unset the ShowOverflowIndicator attribute.
+
+ABL examples derived from Infragistics sources, copyright ©1992-2008 Infragistics, Inc., Windsor Corporate Park, 50 Millstone Road, Building 200 - Suite 150, East Windsor, NJ 08520. All rights reserved.

@@ -1,0 +1,5 @@
+This sample shows how to use and configure an UltraProgressBar.
+
+In the Form1 form, a set of controls set the required values for the UltraProgressBar, see the events for that controls in order to see how the UltraProgressBar attributes are set.
+
+ABL examples derived from Infragistics sources, copyright ©1992-2008 Infragistics, Inc., Windsor Corporate Park, 50 Millstone Road, Building 200 - Suite 150, East Windsor, NJ 08520. All rights reserved.
