@@ -33,6 +33,9 @@ CREATE WIDGET-POOL.
 DEFINE VARIABLE t AS System.Threading.Tasks.Task NO-UNDO.
 DEFINE VARIABLE tmr AS System.Windows.Forms.Timer NO-UNDO.
 
+DEFINE TEMP-TABLE ttTmp NO-UNDO
+  FIELD fld1 AS CHARACTER.
+
 /* ***************************  Definitions  ************************** */
 
 /* Parameters Definitions ---                                           */
@@ -597,6 +600,10 @@ MAIN-BLOCK:
 DO ON ERROR   UNDO MAIN-BLOCK, LEAVE MAIN-BLOCK
    ON END-KEY UNDO MAIN-BLOCK, LEAVE MAIN-BLOCK:
   RUN enable_UI.
+  
+  CREATE ttTmp.
+  ASSIGN ttTmp.Fld1 = "Test Value 'é'".
+
   EDITOR-1:read-file("sample.txt").
   assign fill-in-1:screen-value = session:parameter.
   ASSIGN fill-in-2:SCREEN-VALUE = PROVERSION.
