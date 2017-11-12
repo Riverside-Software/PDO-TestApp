@@ -10,9 +10,13 @@
   <target name="build">
     <mkdir dir="build" />
     <mkdir dir="db" />
-    <echo file="src/sample.txt">Jenkins build ${env.BUILD_TAG}</echo>
+    <sports2000 destDir="db" dbName="sp2k" />
+    <echo file="src/sample.txt">Jenkins build ${env.BUILD_TAG} - ${env.BRANCH_NAME}</echo>
+    <echo file="src/branch.txt">${env.BRANCH_NAME}
+</echo>
     <pct:compile destDir="build" graphicalMode="true" minSize="true" assemblies="assemblies-${VERSION}">
-      <fileset dir="src" includes="**/*.w,**/*.cls,*.p" />
+      <fileset dir="src" includes="**/*.w,**/*.cls,**/*.p" />
+      <DBConnection dbName="sp2k" dbDir="db" singleUser="true" />
       <propath>
         <pathelement location="src" />
       </propath>
@@ -22,8 +26,10 @@
   <target name="build-v10">
     <mkdir dir="build" />
     <mkdir dir="db" />
+    <sports2000 destDir="db" dbName="sp2k" />
     <pct:compile destDir="build" graphicalMode="true" minSize="true">
       <fileset dir="src" includes="**/*.w" />
+      <DBConnection dbName="sp2k" dbDir="db" singleUser="true" />
       <propath>
         <pathelement location="src" />
       </propath>
@@ -31,6 +37,9 @@
   </target>
 
   <target name="dist" depends="build">
+    <zip destfile="linux.zip">
+      <fileset dir="build" includes="linux/*.r" />
+    </zip>
     <zip destfile="TestApp1.zip">
       <fileset dir="build" includes="mainwin.r" />
       <fileset dir="src" includes="*.txt,mainwin.wrx,*.ini,*.ico" />
@@ -42,6 +51,7 @@
       <fileset dir="ocx" includes="*.ocx" />
     </zip>
     <zip destfile="TestApp3.zip">
+      <fileset dir="." includes="*.bat" />
       <fileset dir="${DLC}/bin/infragistics/winforms" />
       <fileset dir="assemblies-${VERSION}" />
       <fileset dir="ocx" />
