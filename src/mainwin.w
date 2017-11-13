@@ -413,7 +413,22 @@ END.
 ON CHOOSE OF BUTTON-4 IN FRAME DEFAULT-FRAME /* Go! */
 DO:
 &IF INTEGER(SUBSTRING(PROVERSION, 1, INDEX(PROVERSION, '.'))) GE 11 &THEN
-    DEF VAR http AS System.Net.HttpWebRequest no-undo.
+  DEF VAR xx AS CHAR NO-UNDO.
+  INPUT FROM "branch.txt".
+  IMPORT UNFORMATTED xx.
+  INPUT CLOSE.
+  
+  DEF VAR hApsv AS HANDLE NO-UNDO.
+  DEF VAR zz AS CHAR NO-UNDO.
+  CREATE SERVER hApsv.
+  hApsv:CONNECT(SUBSTITUTE('-AppService Demo-&1 -H 10.0.0.81 -S 5162', xx)).
+  RUN getcust.p ON hApsv  (INPUT 10, OUTPUT zz).
+  hApsv:DISCONNECT().
+  DELETE OBJECT hApsv.
+  
+  assign fill-in-10:screen-value = zz.
+  
+    /* DEF VAR http AS System.Net.HttpWebRequest no-undo.
     def var response as System.Net.HttpWebResponse no-undo.
     def var reader as System.IO.StreamReader no-undo.
     def var json as char no-undo.
@@ -430,7 +445,7 @@ DO:
     myParser = NEW Progress.Json.ObjectModel.ObjectModelParser().
     jsonobj = cast(myParser:Parse(json), Progress.Json.ObjectModel.JsonObject).
     jsonobj2 = jsonobj:getJsonObject("WebclientApplication").
-    assign fill-in-10:screen-value = STRING(jsonobj2:GetInteger("version")).
+    assign fill-in-10:screen-value = STRING(jsonobj2:GetInteger("version")). */
 &ELSE
     MESSAGE "Only in OE 11 !" VIEW-AS ALERT-BOX.
 &ENDIF
