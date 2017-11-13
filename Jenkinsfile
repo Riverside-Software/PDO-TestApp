@@ -28,13 +28,17 @@ stage ('deployment') {
     ws ("Z:\\TestDeployment\\${BRANCH_NAME}") {
       unstash name: 'windows-build'
       unzip zipFile: 'TestApp3.zip'
-      /* script {
-        echo 'foobar'
-        def ant = new AntBuilder()
-        echo 'foobar2'
-        ant.unzip (src: "Z:\\TestDeployment\\${BRANCH_NAME}\\TestApp3.zip", dest: '.')
-        echo 'foobar3'
-      }*/
+      bat 'del TestApp3.zip'
+      withEnv("DLC=${tool name: 'OpenEdge-11.7', type: 'jenkinsci.plugin.openedge.OpenEdgeInstallation'}"]) {
+        bat "%DLC%\bin\asbman -name restbroker1 -start"
+      }
+    }
+  }
+  node ('unix') {
+    ws ("/ebs/ebs1/TestDeployment/${BRANCH_NAME}") {
+      unstash name: 'windows-build'
+      unzip zipFile: 'TestApp3.zip'
+      sh 'rm TestApp3.zip'
     }
   }
 }
