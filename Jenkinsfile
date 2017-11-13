@@ -29,7 +29,7 @@ stage ('deployment') {
       unstash name: 'windows-build'
       unzip zipFile: 'TestApp3.zip'
       bat 'del TestApp3.zip'
-      withEnv("DLC=${tool name: 'OpenEdge-11.7', type: 'jenkinsci.plugin.openedge.OpenEdgeInstallation'}"]) {
+      withEnv(["DLC=${tool name: 'OpenEdge-11.7', type: 'jenkinsci.plugin.openedge.OpenEdgeInstallation'}"]) {
         bat "%DLC%\bin\asbman -name restbroker1 -start"
       }
     }
