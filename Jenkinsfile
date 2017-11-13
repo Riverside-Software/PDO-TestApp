@@ -30,8 +30,7 @@ stage ('deployment') {
       unzip zipFile: 'TestApp3.zip'
       bat 'del TestApp3.zip'
       withEnv(["DLC=${tool name: 'OpenEdge-11.7', type: 'jenkinsci.plugin.openedge.OpenEdgeInstallation'}"]) {
-        bat "> 00-runtime.bat echo pushd %%~dp0 ^&^& %DLC%\\bin\\prowin -p mainwin.p ^&^& popd"
-        // bat "%DLC%\\bin\\asbman -name restbroker1 -start"
+        bat "echo OK..."
       }
     }
   }
