@@ -17,7 +17,7 @@ stage ('Build') {
 
 stage ('WebClient') {
   node ('windows') {
-    bat "java -cp Z:\\Tools\\pdo\\pdo-groovy.jar groovy.ui.GroovyMain version.groovy \"http://pdo.riverside-software.fr\" \"Riverside\" \"TestAppGroovy\" \"TestApp3.zip\" \"11.7\" \"C:\\FooBar\" || exit /b 1"
+    // bat "java -cp Z:\\Tools\\pdo\\pdo-groovy.jar groovy.ui.GroovyMain version.groovy \"http://pdo.riverside-software.fr\" \"Riverside\" \"TestAppGroovy\" \"TestApp3.zip\" \"11.7\" \"C:\\FooBar\" || exit /b 1"
     // bat "java -cp Z:\\Tools\\pdo\\pdo-groovy.jar groovy.ui.GroovyMain delete.groovy \"http://pdo.riverside-software.fr\" \"Riverside\" \"TestAppGroovy\" 5 || exit /b 1"
     // rem Z:\Tools\signtool\signtool.exe sign /t http://timestamp.comodoca.com/authenticode /f Z:\Jenkins\comodo.p12 /p "%COMODO_PASSWORD%" /path/to/bundle.exe
   }
@@ -28,8 +28,11 @@ stage ('deployment') {
     ws ("Z:\\TestDeployment\\${BRANCH_NAME}") {
       unstash name: 'windows-build'
       script {
+        echo 'foobar'
         def ant = new AntBuilder()
+        echo 'foobar2'
         ant.unzip src: 'TestApp3.zip', dest: '.'
+        echo 'foobar3'
       }
     }
   }
