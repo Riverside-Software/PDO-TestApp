@@ -34,7 +34,7 @@ stage ('deployment') {
       }
     }
   }
-  node ('unix') {
+  node ('linux') {
     ws ("/ebs/ebs1/TestDeployment/${BRANCH_NAME}") {
       unstash name: 'windows-build'
       unzip zipFile: 'TestApp3.zip'
