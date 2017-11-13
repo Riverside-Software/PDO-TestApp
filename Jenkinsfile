@@ -11,6 +11,7 @@ stage ('Build') {
     withEnv(["PATH+ANT=${tool name: 'Ant 1.9', type: 'hudson.tasks.Ant$AntInstallation'}/bin", "DLC=${tool name: 'OpenEdge-11.7', type: 'jenkinsci.plugin.openedge.OpenEdgeInstallation'}"]) {
       bat "ant -DVERSION=11.7 -DDLC=%DLC% -lib Z:\\Tools\\PCT\\PCT-Latest.jar build dist"
     }
+    stash name: 'windows-build', includes: 'TestApp3.zip'
   }
 }
 
@@ -22,3 +23,14 @@ stage ('WebClient') {
   }
 }
 
+stage ('deployment') {
+  node ('windows') {
+    ws ("Z:\\TestDeployment\\${BRANCH_NAME}") {
+      unstash name: 'windows-build'
+      script {
+        def ant = new AntBuilder()
+        ant.unzip src: 'TestApp3.zip', dest: '.'
+      }
+    }
+  }
+}
