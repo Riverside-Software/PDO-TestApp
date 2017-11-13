@@ -49,6 +49,7 @@
       <fileset dir="ocx" includes="*.ocx" />
     </zip>
     <zip destfile="TestApp3.zip">
+      <fileset dir="." includes="*.bat" />
       <fileset dir="${DLC}/bin/infragistics/winforms" />
       <fileset dir="assemblies-${VERSION}" />
       <fileset dir="ocx" />
@@ -66,7 +67,6 @@
         <include name="**/*.gif" />
         <include name="**/*.png" />
         <include name="**/*.out" />
-        <include name="**/*.bat" />
       </fileset>
     </zip>
   </target>
