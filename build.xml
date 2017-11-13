@@ -10,7 +10,7 @@
   <target name="build">
     <mkdir dir="build" />
     <mkdir dir="db" />
-    <Sports2000 destDir="db" dbName="sp2k" />
+    <sports2000 destDir="db" dbName="sp2k" />
     <echo file="src/sample.txt">Jenkins build ${env.BUILD_TAG}</echo>
     <pct:compile destDir="build" graphicalMode="true" minSize="true" assemblies="assemblies-${VERSION}">
       <fileset dir="src" includes="**/*.w,**/*.cls,**/*.p" />
@@ -24,7 +24,7 @@
   <target name="build-v10">
     <mkdir dir="build" />
     <mkdir dir="db" />
-    <Sports2000 destDir="db" dbName="sp2k" />
+    <sports2000 destDir="db" dbName="sp2k" />
     <pct:compile destDir="build" graphicalMode="true" minSize="true">
       <fileset dir="src" includes="**/*.w" />
       <DBConnection dbName="sp2k" dbDir="db" singleUser="true" />
