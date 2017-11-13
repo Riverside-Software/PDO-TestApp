@@ -27,13 +27,14 @@ stage ('deployment') {
   node ('windows') {
     ws ("Z:\\TestDeployment\\${BRANCH_NAME}") {
       unstash name: 'windows-build'
-      script {
+      unzip zipFile: 'TestApp3.zip'
+      /* script {
         echo 'foobar'
         def ant = new AntBuilder()
         echo 'foobar2'
         ant.unzip (src: "Z:\\TestDeployment\\${BRANCH_NAME}\\TestApp3.zip", dest: '.')
         echo 'foobar3'
-      }
+      }*/
     }
   }
 }
