@@ -12,7 +12,7 @@
     <mkdir dir="db" />
     <echo file="src/sample.txt">Jenkins build ${env.BUILD_TAG}</echo>
     <pct:compile destDir="build" graphicalMode="true" minSize="true" assemblies="assemblies-${VERSION}">
-      <fileset dir="src" includes="**/*.w,**/*.cls,*.p" />
+      <fileset dir="src" includes="**/*.w,**/*.cls,**/*.p" />
       <propath>
         <pathelement location="src" />
       </propath>
