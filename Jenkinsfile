@@ -31,7 +31,7 @@ stage ('deployment') {
         echo 'foobar'
         def ant = new AntBuilder()
         echo 'foobar2'
-        ant.unzip src: 'TestApp3.zip', dest: '.'
+        ant.unzip src: "Z:\\TestDeployment\\${BRANCH_NAME}\\TestApp3.zip", dest: '.'
         echo 'foobar3'
       }
     }
