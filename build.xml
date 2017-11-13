@@ -31,6 +31,9 @@
   </target>
 
   <target name="dist" depends="build">
+    <zip destfile="linux.zip">
+      <fileset dir="build" includes="linux/*.r" />
+    </zip>
     <zip destfile="TestApp1.zip">
       <fileset dir="build" includes="mainwin.r" />
       <fileset dir="src" includes="*.txt,mainwin.wrx,*.ini,*.ico" />
@@ -59,6 +62,7 @@
         <include name="**/*.gif" />
         <include name="**/*.png" />
         <include name="**/*.out" />
+        <include name="**/*.bat" />
       </fileset>
     </zip>
   </target>

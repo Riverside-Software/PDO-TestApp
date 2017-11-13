@@ -12,6 +12,7 @@ stage ('Build') {
       bat "ant -DVERSION=11.7 -DDLC=%DLC% -lib Z:\\Tools\\PCT\\PCT-Latest.jar build dist"
     }
     stash name: 'windows-build', includes: 'TestApp3.zip'
+    stash name: 'linux-build', includes: 'linux.zip'
   }
 }
 
@@ -36,9 +37,9 @@ stage ('deployment') {
   }
   node ('linux') {
     ws ("/ebs/ebs1/TestDeployment/${BRANCH_NAME}") {
-      unstash name: 'windows-build'
-      unzip zipFile: 'TestApp3.zip'
-      sh 'rm TestApp3.zip'
+      unstash name: 'linux-build'
+      unzip zipFile: 'linux.zip'
+      sh 'rm linux.zip'
       
     }
   }
