@@ -191,7 +191,7 @@ DEFINE VARIABLE FILL-IN-1 AS CHARACTER FORMAT "X(256)":U
      SIZE 44 BY 1 NO-UNDO.
 
 DEFINE VARIABLE FILL-IN-10 AS CHARACTER FORMAT "X(256)":U 
-     LABEL "Server-side version #" 
+     LABEL "Server-side xxxx version #" 
      VIEW-AS FILL-IN 
      SIZE 14 BY 1 NO-UNDO.
 
@@ -617,7 +617,7 @@ DO ON ERROR   UNDO MAIN-BLOCK, LEAVE MAIN-BLOCK
   RUN enable_UI.
   
   CREATE ttTmp.
-  ASSIGN ttTmp.Fld1 = "Test Value 'é'".
+  ASSIGN ttTmp.Fld1 = "Test Value 'Ã©'".
 
   EDITOR-1:read-file("sample.txt").
   assign fill-in-1:screen-value = session:parameter.
@@ -811,8 +811,8 @@ FUNCTION bottomDir RETURNS CHARACTER
     DEFINE VARIABLE m2 AS MEMPTR     NO-UNDO.
     DEFINE VARIABLE c  AS CHARACTER  NO-UNDO.
     
-    /* Si le nom termine par un anti-slash, on l'enlève */
-    /* Sinon ça bloque les remontées de niveau */ 
+    /* Si le nom termine par un anti-slash, on l'enlÃ¨ve */
+    /* Sinon Ã§a bloque les remontÃ©es de niveau */ 
     IF SUBSTRING(src, LENGTH(src)) EQ '~\' THEN
         ASSIGN src = SUBSTRING(src, 1, LENGTH(src) - 1).
 
@@ -841,8 +841,8 @@ FUNCTION parentDir RETURNS CHARACTER
     DEFINE VARIABLE m3 AS MEMPTR     NO-UNDO.
     DEFINE VARIABLE c  AS CHARACTER  NO-UNDO.
 
-    /* Si le nom termine par un anti-slash, on l'enlève */
-    /* Sinon ça bloque les remontées de niveau */ 
+    /* Si le nom termine par un anti-slash, on l'enlÃ¨ve */
+    /* Sinon Ã§a bloque les remontÃ©es de niveau */ 
     IF SUBSTRING(src, LENGTH(src)) EQ '~\' THEN
         ASSIGN src = SUBSTRING(src, 1, LENGTH(src) - 1).
         
