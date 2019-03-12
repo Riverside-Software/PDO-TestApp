@@ -77,7 +77,7 @@ println "Deleting existing startup modes..."
 v.startupModes.each { element -> srv.deleteStartupMode(element.id) }
 
 println "Creating new startup modes..."
-StartupMode sm1 = srv.createStartupMode2(v.id, 1, "-p mainwin.r -param PROWCINI", "TestApplication1" /* Shortcut name */, 1 /* PROWCINI */, "" /* Base URL */, "WinGrid/SamplesExplorer/Graphics/Indicators/jupiter_icon.ico")
+StartupMode sm1 = srv.createStartupMode2(v.id, 1, "-p mainwin.r -param PROWCINI -basekey INI -ininame std1.ini", "TestApplication1" /* Shortcut name */, 1 /* PROWCINI */, "" /* Base URL */, "WinGrid/SamplesExplorer/Graphics/Indicators/jupiter_icon.ico")
 StartupMode sm2 = srv.createStartupMode2(v.id, 2, "-p mainwin.r -param PROWCEXE", "TestApplication2" /* Shortcut name */, 2 /* PROWCEXE */, "" /* Base URL */, "WinGrid/SamplesExplorer/Graphics/Indicators/jupiter_icon.ico")
 StartupMode sm3 = srv.createStartupMode(v.id, 3, "-p mainwin.r -param NONE", "" /* Shortcut name */, 3 /* NONE */, "" /* Base URL */)
 StartupMode sm4 = srv.createStartupMode2(v.id, 4, "-p mainwin.r -param PROWCINI", "TestApplication3" /* Shortcut name */, 1 /* PROWCINI */, "[JSE_ROOT][VENDOR_NAME].[PRODUCT_NAME].prowcapp?version=[CURRENT_VERSION]&var1=[BUNDLEVAR1]&var=[BUNDLEVAR2]&mode={mode}[USER_MODE]" /* Base URL */, "WinGrid/SamplesExplorer/Graphics/Indicators/jupiter_icon.ico")
@@ -103,7 +103,7 @@ if (retVal != 0) {
 println "Generating install bundle..."
 MsiInstallerPropertyArray lst = new MsiInstallerPropertyArray()
 lst.item = new java.util.ArrayList<MsiInstallerProperty>()
-if (args.length >= 6) {
+/* if (args.length >= 6) {
   println "Using TARGETDIR=" + args[5]
   MsiInstallerProperty targetDirProp = new MsiInstallerProperty()
   targetDirProp.setName("TARGETDIR")
@@ -113,7 +113,7 @@ if (args.length >= 6) {
   features.setName("ADDLOCAL")
   features.setValue("DefaultInstall,WritableDir")
   lst.item.add(features)
-}
+} */
 report = srv.generateBundleProps(v.id, args[4], false, false, false, lst)
 if (!report.packagePresent) {
   println "Bundle not generated : ";
