@@ -25,10 +25,12 @@ pipeline {
     stage ('WebClient') {
       steps {
         script {
-          // bat "echo Disabled for now..."
-          bat "java -cp Z:\\Tools\\pdo\\pdo-groovy.jar groovy.ui.GroovyMain version.groovy \"http://pdo.riverside-software.fr\" \"Riverside\" \"TestAppGroovy\" \"TestApp3.zip\" \"11.7\" \"C:\\FooBar\" || exit /b 1"
-          bat "java -cp Z:\\Tools\\pdo\\pdo-groovy.jar groovy.ui.GroovyMain delete.groovy \"http://pdo.riverside-software.fr\" \"Riverside\" \"TestAppGroovy\" 5 || exit /b 1"
-          // rem Z:\Tools\signtool\signtool.exe sign /t http://timestamp.comodoca.com/authenticode /f Z:\Jenkins\comodo.p12 /p "%COMODO_PASSWORD%" /path/to/bundle.exe
+          withEnv(["PATH+JDK=${tool name: 'JDK8', type: 'jdk'}/bin"]) {
+            bat "java -cp Z:\\Tools\\pdo\\pdo-groovy.jar groovy.ui.GroovyMain version.groovy \"http://pdo.riverside-software.fr\" \"Riverside\" \"TestAppGroovy\" \"TestApp3.zip\" \"11.7\" \"C:\\FooBar\" || exit /b 1"
+            bat "java -cp Z:\\Tools\\pdo\\pdo-groovy.jar groovy.ui.GroovyMain delete.groovy \"http://pdo.riverside-software.fr\" \"Riverside\" \"TestAppGroovy\" 5 || exit /b 1"
+            // bat "echo Disabled for now..."
+            // rem Z:\Tools\signtool\signtool.exe sign /t http://timestamp.comodoca.com/authenticode /f Z:\Jenkins\comodo.p12 /p "%COMODO_PASSWORD%" /path/to/bundle.exe
+          }
         }
       }
     }
