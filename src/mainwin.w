@@ -92,8 +92,8 @@ END PROCEDURE.
 
 /* Standard List Definitions                                            */
 &Scoped-Define ENABLED-OBJECTS EDITOR-1 FILL-IN-1 FILL-IN-2 FILL-IN-3 ~
-FILL-IN-4 FILL-IN-5 FILL-IN-6 FILL-IN-7 FILL-IN-8 BUTTON-1 BUTTON-2 ~
-BUTTON-3 BUTTON-5 BUTTON-6 FILL-IN-9 BUTTON-4 BUTTON-8 BUTTON-9 BUTTON-7 
+FILL-IN-4 FILL-IN-5 FILL-IN-6 FILL-IN-7 FILL-IN-8 BUTTON-1 BUTTON-3 ~
+BUTTON-5 BUTTON-6 FILL-IN-9 BUTTON-4 BUTTON-8 BUTTON-9 BUTTON-7 BUTTON-10 
 &Scoped-Define DISPLAYED-OBJECTS EDITOR-1 FILL-IN-1 FILL-IN-2 FILL-IN-3 ~
 FILL-IN-4 FILL-IN-5 FILL-IN-6 FILL-IN-7 FILL-IN-8 FILL-IN-9 FILL-IN-10 
 
@@ -140,18 +140,14 @@ FUNCTION wco2char RETURNS CHARACTER
 /* Define the widget handle for the window                              */
 DEFINE VAR C-Win AS WIDGET-HANDLE NO-UNDO.
 
-/* Definitions of handles for OCX Containers                            */
-DEFINE VARIABLE CtrlFrame AS WIDGET-HANDLE NO-UNDO.
-DEFINE VARIABLE chCtrlFrame AS COMPONENT-HANDLE NO-UNDO.
-
 /* Definitions of the field level widgets                               */
 DEFINE BUTTON BUTTON-1 
      LABEL "Window with OCX" 
      SIZE 21 BY 1.14.
 
-DEFINE BUTTON BUTTON-2 
-     LABEL "PSTimer Message" 
-     SIZE 21 BY 1.14.
+DEFINE BUTTON BUTTON-10 
+     LABEL "User Full D/L" 
+     SIZE 15 BY 1.14.
 
 DEFINE BUTTON BUTTON-3 
      LABEL ".Net Window" 
@@ -170,16 +166,16 @@ DEFINE BUTTON BUTTON-6
      SIZE 21 BY 1.14.
 
 DEFINE BUTTON BUTTON-7 
-     LABEL "Trigger full install" 
-     SIZE 23 BY 1.14.
-
-DEFINE BUTTON BUTTON-8 
-     LABEL "Trigger patch" 
+     LABEL "Full D/L" 
      SIZE 15 BY 1.14.
 
+DEFINE BUTTON BUTTON-8 
+     LABEL "Patch D/L" 
+     SIZE 13 BY 1.14.
+
 DEFINE BUTTON BUTTON-9 
-     LABEL "Trigger user-mode patch" 
-     SIZE 25 BY 1.14.
+     LABEL "User Patch D/L" 
+     SIZE 18 BY 1.14.
 
 DEFINE VARIABLE EDITOR-1 AS CHARACTER 
      VIEW-AS EDITOR NO-WORD-WRAP SCROLLBAR-HORIZONTAL SCROLLBAR-VERTICAL
@@ -249,16 +245,16 @@ DEFINE FRAME DEFAULT-FRAME
      FILL-IN-7 AT ROW 20.05 COL 25 COLON-ALIGNED WIDGET-ID 22
      FILL-IN-8 AT ROW 21.24 COL 25 COLON-ALIGNED WIDGET-ID 24
      BUTTON-1 AT ROW 23.14 COL 5 WIDGET-ID 26
-     BUTTON-2 AT ROW 23.14 COL 27 WIDGET-ID 30
-     BUTTON-3 AT ROW 23.14 COL 49 WIDGET-ID 32
+     BUTTON-3 AT ROW 23.14 COL 27 WIDGET-ID 32
      BUTTON-5 AT ROW 24.81 COL 5 WIDGET-ID 40
      BUTTON-6 AT ROW 24.81 COL 27 WIDGET-ID 42
      FILL-IN-9 AT ROW 26.43 COL 18.8 COLON-ALIGNED WIDGET-ID 34
      BUTTON-4 AT ROW 26.43 COL 61.8 WIDGET-ID 36
      FILL-IN-10 AT ROW 28.1 COL 37.8 COLON-ALIGNED WIDGET-ID 38
      BUTTON-8 AT ROW 29.33 COL 4 WIDGET-ID 46
-     BUTTON-9 AT ROW 29.33 COL 21 WIDGET-ID 48
-     BUTTON-7 AT ROW 29.33 COL 49 WIDGET-ID 44
+     BUTTON-9 AT ROW 29.33 COL 18 WIDGET-ID 48
+     BUTTON-7 AT ROW 29.33 COL 37 WIDGET-ID 44
+     BUTTON-10 AT ROW 29.33 COL 54 WIDGET-ID 50
      "Content of sample.txt" VIEW-AS TEXT
           SIZE 25 BY .62 AT ROW 1.48 COL 24 WIDGET-ID 4
           FONT 6
@@ -324,28 +320,6 @@ THEN C-Win:HIDDEN = no.
  
 
 
-/* **********************  Create OCX Containers  ********************** */
-
-&ANALYZE-SUSPEND _CREATE-DYNAMIC
-
-&IF "{&OPSYS}" = "WIN32":U AND "{&WINDOW-SYSTEM}" NE "TTY":U &THEN
-
-CREATE CONTROL-FRAME CtrlFrame ASSIGN
-       FRAME           = FRAME DEFAULT-FRAME:HANDLE
-       ROW             = 21.95
-       COLUMN          = 3
-       HEIGHT          = 1.76
-       WIDTH           = 7
-       WIDGET-ID       = 28
-       HIDDEN          = yes
-       SENSITIVE       = yes.
-/* CtrlFrame OCXINFO:CREATE-CONTROL from: {F0B88A90-F5DA-11CF-B545-0020AF6ED35A} type: PSTimer */
-      CtrlFrame:MOVE-AFTER(FILL-IN-8:HANDLE IN FRAME DEFAULT-FRAME).
-
-&ENDIF
-
-&ANALYZE-RESUME /* End of _CREATE-DYNAMIC */
-
 
 /* ************************  Control Triggers  ************************ */
 
@@ -386,11 +360,29 @@ END.
 &ANALYZE-RESUME
 
 
-&Scoped-define SELF-NAME BUTTON-2
-&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL BUTTON-2 C-Win
-ON CHOOSE OF BUTTON-2 IN FRAME DEFAULT-FRAME /* PSTimer Message */
+&Scoped-define SELF-NAME BUTTON-10
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL BUTTON-10 C-Win
+ON CHOOSE OF BUTTON-10 IN FRAME DEFAULT-FRAME /* User Full D/L */
 DO:
-  chCtrlFrame:PSTimer:Interval = 2000.
+&IF INTEGER(SUBSTRING(PROVERSION, 1, INDEX(PROVERSION, '.'))) GE 11 &THEN
+    DEFINE VARIABLE p AS System.Net.WebClient NO-UNDO.
+
+    MESSAGE "Download from: " + FILL-IN-9:SCREEN-VALUE + replace(fill-in-5:screen-value, '/', '.') + ".userinstaller" VIEW-AS ALERT-BOX INFORMATION BUTTONS OK.
+    assign button-8:sensitive = false
+           button-9:sensitive = false.
+    ASSIGN p = NEW System.Net.WebClient().
+    t = p:DownloadFileTaskAsync(NEW System.Uri(FILL-IN-9:SCREEN-VALUE + replace(fill-in-5:screen-value, '/', '.') + ".userinstaller"), SESSION:TEMP-DIR + "\lastversion.msi").
+    
+    tmr = NEW System.Windows.Forms.Timer().
+    tmr:tick:SUBSCRIBE("DownloadOK").
+    tmr:INTERVAL = 1000.
+    tmr:START().
+
+    /* Doesn't work -- p:DownloadFileCompleted:Subscribe("downloadOK").*/
+&ELSE
+    MESSAGE "Only in OE 11 !" VIEW-AS ALERT-BOX.
+&ENDIF
+    
 END.
 
 /* _UIB-CODE-BLOCK-END */
@@ -432,15 +424,17 @@ DO:
   hApsv:DISCONNECT().
   DELETE OBJECT hApsv. */
   
-  message "Connexion " + SUBSTITUTE('-AppService Demo-&1 -H 10.0.0.81 -S 5162', xx) view-as alert-box.
+  /* message "Connexion " + SUBSTITUTE('-AppService Demo-&1 -H 10.0.0.81 -S 5162', xx) view-as alert-box. */
   
-    /* DEF VAR http AS System.Net.HttpWebRequest no-undo.
+    DEF VAR http AS System.Net.HttpWebRequest no-undo.
     def var response as System.Net.HttpWebResponse no-undo.
     def var reader as System.IO.StreamReader no-undo.
     def var json as char no-undo.
     def var jsonobj as Progress.Json.ObjectModel.JsonObject no-undo.
     def var jsonobj2 as Progress.Json.ObjectModel.JsonObject no-undo.
     def var myParser AS Progress.Json.ObjectModel.ObjectModelParser no-undo.
+    
+    MESSAGE "Connecting to : " + fill-in-9:screen-value + "api/rest/prowcapp/" + fill-in-5:screen-value.
     
     http = cast(System.Net.HttpWebRequest:Create(fill-in-9:screen-value + "api/rest/prowcapp/" + fill-in-5:screen-value), "System.Net.HttpWebRequest").
     response = cast(http:GetResponse(), System.Net.HttpWebResponse).
@@ -451,7 +445,7 @@ DO:
     myParser = NEW Progress.Json.ObjectModel.ObjectModelParser().
     jsonobj = cast(myParser:Parse(json), Progress.Json.ObjectModel.JsonObject).
     jsonobj2 = jsonobj:getJsonObject("WebclientApplication").
-    assign fill-in-10:screen-value = STRING(jsonobj2:GetInteger("version")). */
+    assign fill-in-10:screen-value = STRING(jsonobj2:GetInteger("version")).
 &ELSE
     MESSAGE "Only in OE 11 !" VIEW-AS ALERT-BOX.
 &ENDIF
@@ -501,15 +495,16 @@ END.
 
 &Scoped-define SELF-NAME BUTTON-7
 &ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL BUTTON-7 C-Win
-ON CHOOSE OF BUTTON-7 IN FRAME DEFAULT-FRAME /* Trigger full install */
+ON CHOOSE OF BUTTON-7 IN FRAME DEFAULT-FRAME /* Full D/L */
 DO:
 &IF INTEGER(SUBSTRING(PROVERSION, 1, INDEX(PROVERSION, '.'))) GE 11 &THEN
     DEFINE VARIABLE p AS System.Net.WebClient NO-UNDO.
 
+    // MESSAGE "Download from: " + FILL-IN-9:SCREEN-VALUE + replace(fill-in-5:screen-value, '/', '.') + ".installer" VIEW-AS ALERT-BOX INFORMATION BUTTONS OK.
     assign button-8:sensitive = false
            button-9:sensitive = false.
     ASSIGN p = NEW System.Net.WebClient().
-    t = p:DownloadFileTaskAsync(NEW System.Uri(FILL-IN-9:SCREEN-VALUE + replace(fill-in-5:screen-value, '/', '.') + ".userinstaller"), "lastversion.msi").
+    t = p:DownloadFileTaskAsync(NEW System.Uri(FILL-IN-9:SCREEN-VALUE + replace(fill-in-5:screen-value, '/', '.') + ".installer"), SESSION:TEMP-DIR + "\lastversion.msi").
     
     tmr = NEW System.Windows.Forms.Timer().
     tmr:tick:SUBSCRIBE("DownloadOK").
@@ -529,15 +524,16 @@ END.
 
 &Scoped-define SELF-NAME BUTTON-8
 &ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL BUTTON-8 C-Win
-ON CHOOSE OF BUTTON-8 IN FRAME DEFAULT-FRAME /* Trigger patch */
+ON CHOOSE OF BUTTON-8 IN FRAME DEFAULT-FRAME /* Patch D/L */
 DO:
   &IF INTEGER(SUBSTRING(PROVERSION, 1, INDEX(PROVERSION, '.'))) GE 11 &THEN
     DEFINE VARIABLE p AS System.Net.WebClient NO-UNDO.
 
+    // MESSAGE "Downloading from: " + FILL-IN-9:SCREEN-VALUE + replace(fill-in-5:screen-value, '/', '.') + ".patch?admin=1" VIEW-AS ALERT-BOX.
     assign button-7:sensitive = false
            button-9:sensitive = false.
     ASSIGN p = NEW System.Net.WebClient().
-    t = p:DownloadFileTaskAsync(NEW System.Uri(FILL-IN-9:SCREEN-VALUE + replace(fill-in-5:screen-value, '/', '.') + ".patch?admin=1"), "lastversion.msp").
+    t = p:DownloadFileTaskAsync(NEW System.Uri(FILL-IN-9:SCREEN-VALUE + replace(fill-in-5:screen-value, '/', '.') + ".patch?admin=1"), SESSION:TEMP-DIR + "\lastversion.msp").
     
     tmr = NEW System.Windows.Forms.Timer().
     tmr:tick:SUBSCRIBE("DownloadOKPatch").
@@ -555,15 +551,16 @@ END.
 
 &Scoped-define SELF-NAME BUTTON-9
 &ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL BUTTON-9 C-Win
-ON CHOOSE OF BUTTON-9 IN FRAME DEFAULT-FRAME /* Trigger user-mode patch */
+ON CHOOSE OF BUTTON-9 IN FRAME DEFAULT-FRAME /* User Patch D/L */
 DO:
     &IF INTEGER(SUBSTRING(PROVERSION, 1, INDEX(PROVERSION, '.'))) GE 11 &THEN
     DEFINE VARIABLE p AS System.Net.WebClient NO-UNDO.
 
+    // MESSAGE "Downloading from: " + FILL-IN-9:SCREEN-VALUE + replace(fill-in-5:screen-value, '/', '.') + ".patch?admin=0" VIEW-AS ALERT-BOX.
     assign button-7:sensitive = false
            button-8:sensitive = false.
     ASSIGN p = NEW System.Net.WebClient().
-    t = p:DownloadFileTaskAsync(NEW System.Uri(FILL-IN-9:SCREEN-VALUE + replace(fill-in-5:screen-value, '/', '.') + ".patch?admin=0"), "lastversion.msp").
+    t = p:DownloadFileTaskAsync(NEW System.Uri(FILL-IN-9:SCREEN-VALUE + replace(fill-in-5:screen-value, '/', '.') + ".patch?admin=0"), SESSION:TEMP-DIR + "\lastversion.msp").
     
     tmr = NEW System.Windows.Forms.Timer().
     tmr:tick:SUBSCRIBE("DownloadOKPatch").
@@ -574,23 +571,6 @@ DO:
 &ENDIF
 
 END.
-
-/* _UIB-CODE-BLOCK-END */
-&ANALYZE-RESUME
-
-
-&Scoped-define SELF-NAME CtrlFrame
-&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL CtrlFrame C-Win OCX.Tick
-PROCEDURE CtrlFrame.PSTimer.Tick .
-/*------------------------------------------------------------------------------
-  Purpose:     
-  Parameters:  None required for OCX.
-  Notes:       
-------------------------------------------------------------------------------*/
-
-    chCtrlFrame:PSTimer:Interval = 0.
-    MESSAGE "OCX.Tick". 
-END PROCEDURE.
 
 /* _UIB-CODE-BLOCK-END */
 &ANALYZE-RESUME
@@ -667,44 +647,6 @@ END.
 
 /* **********************  Internal Procedures  *********************** */
 
-&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE control_load C-Win  _CONTROL-LOAD
-PROCEDURE control_load :
-/*------------------------------------------------------------------------------
-  Purpose:     Load the OCXs    
-  Parameters:  <none>
-  Notes:       Here we load, initialize and make visible the 
-               OCXs in the interface.                        
-------------------------------------------------------------------------------*/
-
-&IF "{&OPSYS}" = "WIN32":U AND "{&WINDOW-SYSTEM}" NE "TTY":U &THEN
-DEFINE VARIABLE UIB_S    AS LOGICAL    NO-UNDO.
-DEFINE VARIABLE OCXFile  AS CHARACTER  NO-UNDO.
-
-OCXFile = SEARCH( "mainwin.wrx":U ).
-IF OCXFile = ? THEN
-  OCXFile = SEARCH(SUBSTRING(THIS-PROCEDURE:FILE-NAME, 1,
-                     R-INDEX(THIS-PROCEDURE:FILE-NAME, ".":U), "CHARACTER":U) + "wrx":U).
-
-IF OCXFile <> ? THEN
-DO:
-  ASSIGN
-    chCtrlFrame = CtrlFrame:COM-HANDLE
-    UIB_S = chCtrlFrame:LoadControls( OCXFile, "CtrlFrame":U)
-    CtrlFrame:NAME = "CtrlFrame":U
-  .
-  RUN initialize-controls IN THIS-PROCEDURE NO-ERROR.
-END.
-ELSE MESSAGE "mainwin.wrx":U SKIP(1)
-             "The binary control file could not be found. The controls cannot be loaded."
-             VIEW-AS ALERT-BOX TITLE "Controls Not Loaded".
-
-&ENDIF
-
-END PROCEDURE.
-
-/* _UIB-CODE-BLOCK-END */
-&ANALYZE-RESUME
-
 &ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE disable_UI C-Win  _DEFAULT-DISABLE
 PROCEDURE disable_UI :
 /*------------------------------------------------------------------------------
@@ -742,7 +684,7 @@ PROCEDURE downloadOK :
     
     ASSIGN p = new System.Diagnostics.Process().
     ASSIGN p:StartInfo:FileName    = "msiexec"
-           p:StartInfo:Arguments   = "/i lastversion.msi"
+           p:StartInfo:Arguments   = "/i ~"" + SESSION:TEMP-DIR + "~\lastversion.msi~""
            /* p:StartInfo:WindowStyle = System.Diagnostics.ProcessWindowStyle:Hidden */ .
     p:Start().
     QUIT.
@@ -770,7 +712,7 @@ PROCEDURE downloadOKPatch :
     
     ASSIGN p = new System.Diagnostics.Process().
     ASSIGN p:StartInfo:FileName    = "msiexec"
-           p:StartInfo:Arguments   = "/update lastversion.msp"
+           p:StartInfo:Arguments   = "/update ~"" + SESSION:TEMP-DIR + "~\lastversion.msp~""
            /* p:StartInfo:WindowStyle = System.Diagnostics.ProcessWindowStyle:Hidden */ .
     p:Start().
     QUIT.
@@ -792,13 +734,12 @@ PROCEDURE enable_UI :
                These statements here are based on the "Other 
                Settings" section of the widget Property Sheets.
 ------------------------------------------------------------------------------*/
-  RUN control_load.
   DISPLAY EDITOR-1 FILL-IN-1 FILL-IN-2 FILL-IN-3 FILL-IN-4 FILL-IN-5 FILL-IN-6 
           FILL-IN-7 FILL-IN-8 FILL-IN-9 FILL-IN-10 
       WITH FRAME DEFAULT-FRAME IN WINDOW C-Win.
   ENABLE EDITOR-1 FILL-IN-1 FILL-IN-2 FILL-IN-3 FILL-IN-4 FILL-IN-5 FILL-IN-6 
-         FILL-IN-7 FILL-IN-8 BUTTON-1 BUTTON-2 BUTTON-3 BUTTON-5 BUTTON-6 
-         FILL-IN-9 BUTTON-4 BUTTON-8 BUTTON-9 BUTTON-7 
+         FILL-IN-7 FILL-IN-8 BUTTON-1 BUTTON-3 BUTTON-5 BUTTON-6 FILL-IN-9 
+         BUTTON-4 BUTTON-8 BUTTON-9 BUTTON-7 BUTTON-10 
       WITH FRAME DEFAULT-FRAME IN WINDOW C-Win.
   {&OPEN-BROWSERS-IN-QUERY-DEFAULT-FRAME}
   VIEW C-Win.

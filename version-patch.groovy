@@ -66,18 +66,21 @@ srv.uploadFiles(param);
 
 // OCX files as SelfReg
 println "Tagging OCX files..."
-srv.getDirectory(v.id).files.each { element -> if (element.fileName == 'pstimer.ocx') srv.updateMsiAction(element.id, 1); }
+// srv.getDirectory(v.id).files.each { element -> if (element.fileName == 'pstimer.ocx') srv.updateMsiAction(element.id, 1); }
 srv.getDirectory(v.id).files.each { element -> if (element.fileName == 'Flash32_11_9_900_117.ocx') srv.updateMsiAction(element.id, 1); }
+// config/client.ini tagged as INI file
+println "Tagging INI files"
+srv.getDirectory(v.id).children.each { element -> if (element.name == 'config') { element.files.each { element2 -> if (element2.fileName == 'client.ini') srv.updateMsiAction(element2.id, 3); }}}
 
 // Delete every StartupMode, in order to recreate them
 println "Deleting existing startup modes..." 
 v.startupModes.each { element -> srv.deleteStartupMode(element.id) }
 
 println "Creating new startup modes..."
-StartupMode sm1 = srv.createStartupMode2(v.id, 1, "-p mainwin.r -param PROWCINI", "TestApplication1" /* Shortcut name */, 1 /* PROWCINI */, "" /* Base URL */, "WinGrid/SamplesExplorer/Graphics/Indicators/jupiter_icon.ico")
-StartupMode sm2 = srv.createStartupMode2(v.id, 2, "-p mainwin.r -param PROWCEXE", "TestApplication2" /* Shortcut name */, 2 /* PROWCEXE */, "" /* Base URL */, "WinGrid/SamplesExplorer/Graphics/Indicators/jupiter_icon.ico")
+StartupMode sm1 = srv.createStartupMode2(v.id, 1, "-p mainwin.r -param PROWCINI -basekey INI -ininame std1.ini -T %TEMP%", "TestApplication1" /* Shortcut name */, 1 /* PROWCINI */, "" /* Base URL */, "product.ico")
+StartupMode sm2 = srv.createStartupMode2(v.id, 2, "-p mainwin.r -param PROWCEXE -T %TEMP%", "TestApplication2" /* Shortcut name */, 2 /* PROWCEXE */, "" /* Base URL */, "product.ico")
 StartupMode sm3 = srv.createStartupMode(v.id, 3, "-p mainwin.r -param NONE", "" /* Shortcut name */, 3 /* NONE */, "" /* Base URL */)
-StartupMode sm4 = srv.createStartupMode2(v.id, 4, "-p mainwin.r -param PROWCINI", "TestApplication3" /* Shortcut name */, 1 /* PROWCINI */, "[JSE_ROOT][VENDOR_NAME].[PRODUCT_NAME].prowcapp?version=[CURRENT_VERSION]&var1=[BUNDLEVAR1]&var=[BUNDLEVAR2]&mode={mode}[USER_MODE]" /* Base URL */, "WinGrid/SamplesExplorer/Graphics/Indicators/jupiter_icon.ico")
+StartupMode sm4 = srv.createStartupMode2(v.id, 4, "-p mainwin.r -param PROWCINI -T %TEMP%", "TestApplication3" /* Shortcut name */, 1 /* PROWCINI */, "[JSE_ROOT][VENDOR_NAME].[PRODUCT_NAME].prowcapp?version=[CURRENT_VERSION]&var1=[BUNDLEVAR1]&var=[BUNDLEVAR2]&mode={mode}[USER_MODE]" /* Base URL */, "product.ico")
 srv.setDefaultMode(sm3.id);
 
 println "Generating MSI files..."

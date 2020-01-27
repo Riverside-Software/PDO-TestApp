@@ -43,7 +43,6 @@
     <zip destfile="TestApp1.zip">
       <fileset dir="build" includes="mainwin.r" />
       <fileset dir="src" includes="*.txt,mainwin.wrx,*.ini,*.ico" />
-      <fileset dir="ocx" includes="pstimer.ocx" />
     </zip>
     <zip destfile="TestApp2.zip">
       <fileset dir="build" includes="mainwin.r,mainwin2.r" />
