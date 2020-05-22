@@ -4,7 +4,7 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr:'10'))
     timeout(time: 15, unit: 'MINUTES')
     skipDefaultCheckout()
-    copyArtifactPermission('PDO');
+    copyArtifactPermission('*');
   }
 
   stages {
