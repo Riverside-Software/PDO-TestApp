@@ -114,7 +114,7 @@ lst.item = new java.util.ArrayList<MsiInstallerProperty>()
   features.setValue("DefaultInstall,WritableDir")
   lst.item.add(features)
 } */
-report = srv.generateBundleProps(v.id, args[4], false, false, false, lst)
+report = srv.generateBundleProps(v.id, args[4], false, false, true, lst)
 if (!report.packagePresent) {
   println "Bundle not generated : ";
   return 1;
