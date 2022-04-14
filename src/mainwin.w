@@ -158,7 +158,7 @@ DEFINE BUTTON BUTTON-4
      SIZE 9 BY 1.14.
 
 DEFINE BUTTON BUTTON-5 
-     LABEL "Write file" 
+     LABEL "Test Peter" 
      SIZE 21 BY 1.14.
 
 DEFINE BUTTON BUTTON-6 
@@ -603,7 +603,7 @@ DO ON ERROR   UNDO MAIN-BLOCK, LEAVE MAIN-BLOCK
   RUN enable_UI.
   
   CREATE ttTmp.
-  ASSIGN ttTmp.Fld1 = "Test Value 'é'".
+  ASSIGN ttTmp.Fld1 = "Test Value 'Ã©'".
 
   EDITOR-1:read-file("sample.txt").
   assign fill-in-1:screen-value = session:parameter.
@@ -758,8 +758,8 @@ FUNCTION bottomDir RETURNS CHARACTER
     DEFINE VARIABLE m2 AS MEMPTR     NO-UNDO.
     DEFINE VARIABLE c  AS CHARACTER  NO-UNDO.
     
-    /* Si le nom termine par un anti-slash, on l'enlève */
-    /* Sinon ça bloque les remontées de niveau */ 
+    /* Si le nom termine par un anti-slash, on l'enlÃ¨ve */
+    /* Sinon Ã§a bloque les remontÃ©es de niveau */ 
     IF SUBSTRING(src, LENGTH(src)) EQ '~\' THEN
         ASSIGN src = SUBSTRING(src, 1, LENGTH(src) - 1).
 
@@ -788,8 +788,8 @@ FUNCTION parentDir RETURNS CHARACTER
     DEFINE VARIABLE m3 AS MEMPTR     NO-UNDO.
     DEFINE VARIABLE c  AS CHARACTER  NO-UNDO.
 
-    /* Si le nom termine par un anti-slash, on l'enlève */
-    /* Sinon ça bloque les remontées de niveau */ 
+    /* Si le nom termine par un anti-slash, on l'enlÃ¨ve */
+    /* Sinon Ã§a bloque les remontÃ©es de niveau */ 
     IF SUBSTRING(src, LENGTH(src)) EQ '~\' THEN
         ASSIGN src = SUBSTRING(src, 1, LENGTH(src) - 1).
         
