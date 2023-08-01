@@ -12,9 +12,9 @@ pipeline {
       steps {
         checkout([$class: 'GitSCM', branches: scm.branches, extensions: scm.extensions + [[$class: 'CleanCheckout']], userRemoteConfigs: scm.userRemoteConfigs])
         script {
-          withEnv(["PATH+ANT=${tool name: 'Ant 1.9', type: 'hudson.tasks.Ant$AntInstallation'}/bin", "DLC=${tool name: 'OpenEdge-11.7', type: 'jenkinsci.plugin.openedge.OpenEdgeInstallation'}"]) {
+          withEnv(["PATH+ANT=${tool name: 'Ant 1.10', type: 'hudson.tasks.Ant$AntInstallation'}/bin", "DLC=${tool name: 'OpenEdge-12.2', type: 'jenkinsci.plugin.openedge.OpenEdgeInstallation'}"]) {
             bat "git rev-parse --short HEAD > src/git.txt"
-            bat "ant -DVERSION=11.7 -DDLC=%DLC% -lib C:\\Tools\\PCT\\PCT-Latest.jar build dist"
+            bat "ant -DVERSION=12.2 -DDLC=%DLC% -lib C:\\Tools\\PCT\\PCT-Latest.jar build dist"
           }
         }
         stash name: 'windows-build', includes: 'TestApp3.zip'
@@ -27,8 +27,8 @@ pipeline {
       steps {
         script {
           withEnv(["PATH+JDK=${tool name: 'JDK8', type: 'jdk'}/bin"]) {
-            bat "java -cp C:\\Tools\\pdo\\pdo-groovy.jar groovy.ui.GroovyMain version.groovy \"https://pdo.riverside-software.fr\" \"Riverside\" \"TestAppGroovy\" \"TestApp3.zip\" \"11.7\" \"C:\\FooBar\" || exit /b 1"
-            bat "java -cp C:\\Tools\\pdo\\pdo-groovy.jar groovy.ui.GroovyMain delete.groovy \"https://pdo.riverside-software.fr\" \"Riverside\" \"TestAppGroovy\" 5 || exit /b 1"
+            bat "java -cp C:\\Tools\\pdo\\pdo-groovy.jar groovy.ui.GroovyMain version.groovy \"https://pdo.riverside-software.fr\" \"Riverside\" \"TestAppGroovy12\" \"TestApp3.zip\" \"12.7\" \"C:\\FooBar\" || exit /b 1"
+            bat "java -cp C:\\Tools\\pdo\\pdo-groovy.jar groovy.ui.GroovyMain delete.groovy \"https://pdo.riverside-software.fr\" \"Riverside\" \"TestAppGroovy12\" 5 || exit /b 1"
             // bat "echo Disabled for now..."
             // rem Z:\Tools\signtool\signtool.exe sign /t http://timestamp.comodoca.com/authenticode /f Z:\Jenkins\comodo.p12 /p "%COMODO_PASSWORD%" /path/to/bundle.exe
           }
