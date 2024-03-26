@@ -1,2 +1,5 @@
 ﻿build/
 db/
+.builder/
+src/branch.txt
+src/sample.txt
