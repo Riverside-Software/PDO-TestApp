@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<references>
+<assembly name="Infragistics4.Documents.v23.1, Version=23.1.20231.6, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"/>
+<assembly name="Infragistics4.Excel.v23.1, Version=23.1.20231.6, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"/>
+<assembly name="Infragistics4.Shared.v23.1, Version=23.1.20231.6, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"/>
+<assembly name="Infragistics4.Win.Misc.v23.1, Version=23.1.20231.6, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"/>
+<assembly name="Infragistics4.Win.SupportDialogs.v23.1, Version=23.1.20231.6, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"/>
+<assembly name="Infragistics4.Win.UltraWinCalcManager.v23.1, Version=23.1.20231.6, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"/>
+<assembly name="Infragistics4.Win.UltraWinChart.v23.1, Version=23.1.20231.6, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"/>
+<assembly name="Infragistics4.Win.UltraWinDataSource.v23.1, Version=23.1.20231.6, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"/>
+<assembly name="Infragistics4.Win.UltraWinDock.v23.1, Version=23.1.20231.6, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"/>
+<assembly name="Infragistics4.Win.UltraWinEditors.v23.1, Version=23.1.20231.6, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"/>
+<assembly name="Infragistics4.Win.UltraWinExplorerBar.v23.1, Version=23.1.20231.6, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"/>
+<assembly name="Infragistics4.Win.UltraWinGrid.DocumentExport.v23.1, Version=23.1.20231.6, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"/>
+<assembly name="Infragistics4.Win.UltraWinGrid.ExcelExport.v23.1, Version=23.1.20231.6, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"/>
+<assembly name="Infragistics4.Win.UltraWinGrid.v23.1, Version=23.1.20231.6, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"/>
+<assembly name="Infragistics4.Win.UltraWinListBar.v23.1, Version=23.1.20231.6, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"/>
+<assembly name="Infragistics4.Win.UltraWinListView.v23.1, Version=23.1.20231.6, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"/>
+<assembly name="Infragistics4.Win.UltraWinMaskedEdit.v23.1, Version=23.1.20231.6, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"/>
+<assembly name="Infragistics4.Win.UltraWinPrintPreviewDialog.v23.1, Version=23.1.20231.6, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"/>
+<assembly name="Infragistics4.Win.UltraWinSchedule.v23.1, Version=23.1.20231.6, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"/>
+<assembly name="Infragistics4.Win.UltraWinSpellChecker.v23.1, Version=23.1.20231.6, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"/>
+<assembly name="Infragistics4.Win.UltraWinStatusBar.v23.1, Version=23.1.20231.6, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"/>
+<assembly name="Infragistics4.Win.UltraWinTabControl.v23.1, Version=23.1.20231.6, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"/>
+<assembly name="Infragistics4.Win.UltraWinToolbars.v23.1, Version=23.1.20231.6, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"/>
+<assembly name="Infragistics4.Win.UltraWinTree.v23.1, Version=23.1.20231.6, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"/>
+<assembly name="Infragistics4.Win.v23.1, Version=23.1.20231.6, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"/>
+<assembly name="Accessibility, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
+<assembly name="Microsoft.VisualBasic, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
+<assembly name="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+<assembly name="System.Configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
+<assembly name="System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+<assembly name="System.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
+<assembly name="System.Design, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
+<assembly name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
+<assembly name="System.Runtime.Serialization.Formatters.Soap, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
+<assembly name="System.Security, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
+<assembly name="System.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
+<assembly name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+<assembly name="System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</references>

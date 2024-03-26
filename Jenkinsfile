@@ -12,9 +12,9 @@ pipeline {
       steps {
         checkout([$class: 'GitSCM', branches: scm.branches, extensions: scm.extensions + [[$class: 'CleanCheckout']], userRemoteConfigs: scm.userRemoteConfigs])
         script {
-          withEnv(["PATH+ANT=${tool name: 'Ant 1.10', type: 'hudson.tasks.Ant$AntInstallation'}/bin", "DLC=${tool name: 'OpenEdge-12.7', type: 'jenkinsci.plugin.openedge.OpenEdgeInstallation'}"]) {
+          withEnv(["PATH+ANT=${tool name: 'Ant 1.10', type: 'hudson.tasks.Ant$AntInstallation'}/bin", "DLC=${tool name: 'OpenEdge-12.8', type: 'jenkinsci.plugin.openedge.OpenEdgeInstallation'}"]) {
             bat "git rev-parse --short HEAD > src/git.txt"
-            bat "ant -DVERSION=12.7 -DDLC=%DLC% -lib C:\\Tools\\PCT\\PCT-Latest.jar build dist"
+            bat "ant -DVERSION=12.8 -DDLC=%DLC% -lib C:\\Tools\\PCT\\PCT-Latest.jar build dist"
           }
         }
         stash name: 'windows-build', includes: 'TestApp3.zip'
