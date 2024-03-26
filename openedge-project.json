@@ -1,0 +1,34 @@
+{
+  "name": "PDO-TestApp",
+  "version": "1.0",
+  "charset": "iso8859-15",
+  "oeversion": "12.2",
+  "graphicalMode": true,
+  "extraParameters": "",
+  "buildPath": [
+    { "type": "source", "path": "src" }
+  ],
+  "buildDirectory": "build",
+  "numThreads": 1,
+  "dbConnections": [
+    
+  ],
+  "profiles": [
+    { 
+      "name": "GUI-Mode",
+      "inherits": "default",
+      "value": {
+        "graphicalMode": true
+      }
+    },
+    {
+      "name": "DevContainer",
+      "inherits": "default",
+      "value": {
+        "dbConnections": [
+          { "name": "sp2k", "connect": "-db db/sp2kcont -ld sp2k -RO", "dumpFile": "dump/sp2k.df", "aliases": [ "foo", "bar"] }
+        ]
+      }
+    }
+  ]
+}
