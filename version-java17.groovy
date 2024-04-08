@@ -70,7 +70,9 @@ println "Tagging OCX files..."
 srv.getDirectory(v.id).files.each { element -> if (element.fileName == 'Flash32_11_9_900_117.ocx') srv.updateMsiAction(element.id, 1); }
 // config/client.ini tagged as INI file
 println "Tagging INI files"
-srv.getDirectory(v.id).children.each { element -> if (element.name == 'config') { element.files.each { element2 -> if (element2.fileName == 'client.ini') srv.updateMsiAction(element2.id, 3); }}}
+srv.getDirectory(v.id).children.each { element -> if (element.name == 'config') { element.files.each { element2 -> if (element2.fileName == 'client.ini') srv.updateMsiAction(element2.id, 3 /* INI */); }}}
+// If file is in root directory:
+// srv.getDirectory(v.id).files.each { element2 -> if (element2.fileName == 'client.ini') { srv.updateMsiAction(element2.id, 3); }}
 
 // Delete every StartupMode, in order to recreate them
 println "Deleting existing startup modes..." 
