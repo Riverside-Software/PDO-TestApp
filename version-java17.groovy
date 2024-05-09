@@ -17,6 +17,26 @@ import org.apache.cxf.transport.http.HTTPConduit;
 import org.apache.cxf.frontend.ClientProxy;
 import org.apache.cxf.transports.http.configuration.HTTPClientPolicy;
 
+def setAction(PdoAPI srv, eu.rssw.pdo.ws.Directory dir, String fileName, int action) {
+  def idx = fileName.indexOf('/')
+  if (idx == -1) { // Current directory 
+    def xx = dir.files.findAll { fileName.equals(it.fileName) }
+    if (xx.size() == 1) {
+      srv.updateMsiAction(xx.get(0).id, action)
+    } else {
+      println "File not found: ${fileName}"
+    }
+  } else {
+    def dirName = fileName.substring(0, idx)
+    def xx = dir.children.findAll { dirName.equals(it.name) }
+    if (xx.size() == 1) {
+      setAction(srv, xx.get(0), fileName.substring(idx + 1), action)
+    } else {
+      println "Directory not found: ${dirName}"
+    }
+  }
+}
+
 // In order to use Ant tasks
 // def ant = new AntBuilder()
 // ant.get src: "http://jenkins.rssw.eu/job/Dev1-PDO-TestApp/lastSuccessfulBuild/artifact/TestApp3.zip", dest: "TestApp3.zip"
@@ -66,13 +86,9 @@ srv.uploadFiles(param);
 
 // OCX files as SelfReg
 println "Tagging OCX files..."
-// srv.getDirectory(v.id).files.each { element -> if (element.fileName == 'pstimer.ocx') srv.updateMsiAction(element.id, 1); }
-srv.getDirectory(v.id).files.each { element -> if (element.fileName == 'Flash32_11_9_900_117.ocx') srv.updateMsiAction(element.id, 1); }
-// config/client.ini tagged as INI file
+setAction(srv, srv.getDirectory(v.id), "Flash32_11_9_900_117.ocx", 1 /* SelfRef */ )
 println "Tagging INI files"
-srv.getDirectory(v.id).children.each { element -> if (element.name == 'config') { element.files.each { element2 -> if (element2.fileName == 'client.ini') srv.updateMsiAction(element2.id, 3 /* INI */); }}}
-// If file is in root directory:
-// srv.getDirectory(v.id).files.each { element2 -> if (element2.fileName == 'client.ini') { srv.updateMsiAction(element2.id, 3); }}
+setAction(srv, srv.getDirectory(v.id), "config/client.ini", 3 /* INI */ )
 
 // Delete every StartupMode, in order to recreate them
 println "Deleting existing startup modes..." 

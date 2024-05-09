@@ -50,13 +50,13 @@
       <fileset dir="ocx" includes="*.ocx" />
     </zip>
     <zip destfile="TestApp3.zip">
-      <fileset dir="." includes="*.bat" />
+      <fileset dir="." includes="*.bat,config/*.ini" />
       <fileset dir="${DLC}/bin/infragistics/winforms" />
       <fileset dir="assemblies-${VERSION}" />
       <fileset dir="ocx" />
       <fileset dir="build" />
       <fileset dir="src">
-      <include name="*.ini" />
+        <include name="*.ini" />
         <include name="**/*.txt" />
         <include name="**/*.wrx" />
         <include name="**/*.resx" />
