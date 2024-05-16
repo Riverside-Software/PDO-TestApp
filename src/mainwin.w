@@ -405,47 +405,45 @@ END.
 ON CHOOSE OF BUTTON-4 IN FRAME DEFAULT-FRAME /* Go! */
 DO:
   DEF VAR aaa AS CHAR NO-UNDO.
-  INPUT FROM "git.txt".
-  IMPORT UNFORMATTED aaa.
-  INPUT CLOSE.
-  assign fill-in-10:screen-value = aaa.
+  // INPUT FROM "git.txt".
+  // IMPORT UNFORMATTED aaa.
+  // INPUT CLOSE.
+  // assign fill-in-10:screen-value = aaa.
 
 &IF INTEGER(SUBSTRING(PROVERSION, 1, INDEX(PROVERSION, '.'))) GE 11 &THEN
-  DEF VAR xx AS CHAR NO-UNDO.
-  INPUT FROM "branch.txt".
-  IMPORT UNFORMATTED xx.
-  INPUT CLOSE.
-  
-  /* DEF VAR hApsv AS HANDLE NO-UNDO.
-  DEF VAR zz AS CHAR NO-UNDO.
-  CREATE SERVER hApsv.
-  hApsv:CONNECT(SUBSTITUTE('-AppService Demo-&1 -H 10.0.0.81 -S 5162', xx)).
-  RUN getcust.p ON hApsv  (INPUT 10, OUTPUT zz).
-  hApsv:DISCONNECT().
-  DELETE OBJECT hApsv. */
-  
-  /* message "Connexion " + SUBSTITUTE('-AppService Demo-&1 -H 10.0.0.81 -S 5162', xx) view-as alert-box. */
   
     DEF VAR http AS System.Net.HttpWebRequest no-undo.
     def var response as System.Net.HttpWebResponse no-undo.
     def var reader as System.IO.StreamReader no-undo.
-    def var json as char no-undo.
+    def var json as LONGCHAR no-undo.
     def var jsonobj as Progress.Json.ObjectModel.JsonObject no-undo.
     def var jsonobj2 as Progress.Json.ObjectModel.JsonObject no-undo.
     def var myParser AS Progress.Json.ObjectModel.ObjectModelParser no-undo.
     
-    MESSAGE "Connecting to : " + fill-in-9:screen-value + "api/rest/prowcapp/" + fill-in-5:screen-value.
+    DEF VAR prwcUri AS CHAR.
+    ASSIGN prwcUri = fill-in-9:SCREEN-VALUE + replace(fill-in-5:screen-value, '/', '.') + ".prowcapp".
+    MESSAGE "Connecting to: " + prwcUri.
     
-    http = cast(System.Net.HttpWebRequest:Create(fill-in-9:screen-value + "api/rest/prowcapp/" + fill-in-5:screen-value), "System.Net.HttpWebRequest").
+    http = cast(System.Net.HttpWebRequest:Create(prwcUri), "System.Net.HttpWebRequest").
     response = cast(http:GetResponse(), System.Net.HttpWebResponse).
     reader = new System.IO.StreamReader(response:GetResponseStream()).
     json = reader:readToEnd().
 
-    message "JSON payload : " json view-as alert-box.    
-    myParser = NEW Progress.Json.ObjectModel.ObjectModelParser().
-    jsonobj = cast(myParser:Parse(json), Progress.Json.ObjectModel.JsonObject).
-    jsonobj2 = jsonobj:getJsonObject("WebclientApplication").
-    assign fill-in-10:screen-value = STRING(jsonobj2:GetInteger("version")).
+    COPY-LOB FROM json TO FILE SESSION:TEMP-DIR + "~\tmp.txt".
+    DEF VAR zz AS CHAR.
+    INPUT FROM value(SESSION:TEMP-DIR + "~\tmp.txt").
+    REPEAT:
+      IMPORT UNFORMATTED zz.
+      IF zz BEGINS "AppInstallVersion" THEN DO:
+        assign fill-in-10:SCREEN-VALUE = SUBSTRING(zz, INDEX(zz, '=') + 1).
+      END.
+    END.
+    INPUT CLOSE.
+    // message "JSON payload : " json view-as alert-box.    
+    // myParser = NEW Progress.Json.ObjectModel.ObjectModelParser().
+    // jsonobj = cast(myParser:Parse(json), Progress.Json.ObjectModel.JsonObject).
+    // jsonobj2 = jsonobj:getJsonObject("WebclientApplication").
+    // assign fill-in-10:screen-value = STRING(jsonobj2:GetInteger("version")).
 &ELSE
     MESSAGE "Only in OE 11 !" VIEW-AS ALERT-BOX.
 &ENDIF
