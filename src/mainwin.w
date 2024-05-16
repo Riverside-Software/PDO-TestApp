@@ -615,7 +615,9 @@ DO ON ERROR   UNDO MAIN-BLOCK, LEAVE MAIN-BLOCK
   app = bottomDir(FILE-INFO:FULL-PATHNAME).
   vendor = bottomDir(parentDir(FILE-INFO:FULL-PATHNAME)).
   assign fill-in-5:screen-value = vendor + "/" + app.
-  
+
+  assign propath = os-getenv("TEMP") + "~\WebclientApps~\" + vendor + "~\" + app + "," + propath.
+
   DEFINE VARIABLE cVal AS CHARACTER   NO-UNDO.
   load "Software\" + vendor + "\" + app base-key "HKEY_CURRENT_USER" no-error.
   USE "Software\" + vendor  + "\" + app NO-ERROR.
