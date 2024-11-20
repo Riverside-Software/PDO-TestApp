@@ -27,8 +27,11 @@ pipeline {
       steps {
         script {
           withEnv(["PATH+JDK=${tool name: 'JDK17', type: 'jdk'}/bin"]) {
-            bat "java -jar C:\\Tools\\pdo\\groovy-pdo-2.8.jar version-java17.groovy \"https://pdo.riverside-software.fr\" \"Riverside\" \"TestAppGroovy128\" \"TestApp3.zip\" \"12.8\" \"C:\\FooBar\" || exit /b 1"
-            bat "java -jar C:\\Tools\\pdo\\groovy-pdo-2.8.jar delete-java17.groovy \"https://pdo.riverside-software.fr\" \"Riverside\" \"TestAppGroovy128\" 5 || exit /b 1"
+            bat "java -jar C:\\Tools\\pdo\\groovy-pdo-2.8.1.jar version-java17.groovy \"https://pdo.riverside-software.fr\" \"Riverside\" \"TestAppGroovy12864\" \"TestApp3.zip\" \"12.8\" \"C:\\FooBar\" \"1\" || exit /b 1"
+            bat "java -jar C:\\Tools\\pdo\\groovy-pdo-2.8.1.jar delete-java17.groovy \"https://pdo.riverside-software.fr\" \"Riverside\" \"TestAppGroovy12864\" 5 || exit /b 1"
+
+            bat "java -jar C:\\Tools\\pdo\\groovy-pdo-2.8.1.jar version-java17.groovy \"https://pdo.riverside-software.fr\" \"Riverside\" \"TestAppGroovy128\" \"TestApp3.zip\" \"12.8\" \"C:\\FooBar\" \"0\" || exit /b 1"
+            bat "java -jar C:\\Tools\\pdo\\groovy-pdo-2.8.1.jar delete-java17.groovy \"https://pdo.riverside-software.fr\" \"Riverside\" \"TestAppGroovy128\" 5 || exit /b 1"
             // bat "echo Disabled for now..."
             // rem Z:\Tools\signtool\signtool.exe sign /t http://timestamp.comodoca.com/authenticode /f Z:\Jenkins\comodo.p12 /p "%COMODO_PASSWORD%" /path/to/bundle.exe
           }

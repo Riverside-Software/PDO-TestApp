@@ -61,7 +61,7 @@ try {
   p = srv.getProduct(args[1], args[2])
 } catch (eu.rssw.pdo.ws.RecordNotFoundException_Exception caught) {
   println "Not found. Creating new product..."
-  p = srv.createProduct(new Product(vendorName: args[1], productName: args[2], patches: false), false /* Create initial version */)
+  p = srv.createProduct(new Product(vendorName: args[1], productName: args[2], patches: false, sixtyFourBit: "1".equals(args[6])), false /* Create initial version */)
 }
 
 println "Looking for version..."
@@ -85,8 +85,10 @@ println "Uploading file..."
 srv.uploadFiles(param);
 
 // OCX files as SelfReg
-println "Tagging OCX files..."
-setAction(srv, srv.getDirectory(v.id), "Flash32_11_9_900_117.ocx", 1 /* SelfRef */ )
+if (!"1".equals(args[6])) {
+  println "Tagging OCX files..."
+  setAction(srv, srv.getDirectory(v.id), "Flash32_11_9_900_117.ocx", 1 /* SelfRef */ )
+}
 println "Tagging INI files"
 setAction(srv, srv.getDirectory(v.id), "config/client.ini", 3 /* INI */ )
 
