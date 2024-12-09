@@ -14,7 +14,7 @@ pipeline {
         script {
           withEnv(["PATH+ANT=${tool name: 'Ant 1.10', type: 'hudson.tasks.Ant$AntInstallation'}/bin", "DLC=${tool name: 'OpenEdge-12.8', type: 'jenkinsci.plugin.openedge.OpenEdgeInstallation'}"]) {
             bat "git rev-parse --short HEAD > src/git.txt"
-            bat "ant -DVERSION=12.8 -DDLC=%DLC% -lib C:\\Tools\\PCT\\PCT-Latest.jar build dist"
+            bat "ant -DVERSION=12.8 -DDLC=%DLC% -lib C:\\Tools\\PCT\\PCT-Latest.jar dist"
           }
         }
         stash name: 'windows-build', includes: 'TestApp3.zip'
