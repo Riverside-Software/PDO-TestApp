@@ -14,7 +14,7 @@
     <sports2000 destDir="db" dbName="sp2k" />
     <echo file="src/sample.txt">Jenkins build ${env.BUILD_TAG} - ${env.BRANCH_NAME}</echo>
     <echo file="src/branch.txt">${env.BRANCH_NAME}</echo>
-    <pct:compile destDir="build" graphicalMode="true" minSize="true" assemblies="assemblies-${VERSION}">
+    <pct:compile destDir="build" graphicalMode="true" minSize="true" assemblies="assemblies-${VERSION}" relativePaths="true">
       <fileset dir="src" includes="**/*.w,**/*.cls,**/*.p" />
       <DBConnection dbName="sp2k" dbDir="db" singleUser="true" />
       <propath>
