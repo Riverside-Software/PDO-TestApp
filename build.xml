@@ -5,6 +5,7 @@
 
   <property environment="env" />
   <property name="DLC" value="${env.DLC}" />
+  <property name="VERSION" value="12.8" />
   <DlcHome value="${DLC}" />
 
   <target name="build">
