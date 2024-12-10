@@ -364,7 +364,7 @@ END.
 &ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL BUTTON-10 C-Win
 ON CHOOSE OF BUTTON-10 IN FRAME DEFAULT-FRAME /* User Full D/L */
 DO:
-&IF INTEGER(SUBSTRING(PROVERSION, 1, INDEX(PROVERSION, '.'))) GE 11 &THEN
+
     DEFINE VARIABLE p AS System.Net.WebClient NO-UNDO.
 
     MESSAGE "Download from: " + FILL-IN-9:SCREEN-VALUE + replace(fill-in-5:screen-value, '/', '.') + ".userinstaller" VIEW-AS ALERT-BOX INFORMATION BUTTONS OK.
@@ -379,9 +379,6 @@ DO:
     tmr:START().
 
     /* Doesn't work -- p:DownloadFileCompleted:Subscribe("downloadOK").*/
-&ELSE
-    MESSAGE "Only in OE 11 !" VIEW-AS ALERT-BOX.
-&ENDIF
     
 END.
 
@@ -410,8 +407,6 @@ DO:
   // INPUT CLOSE.
   // assign fill-in-10:screen-value = aaa.
 
-&IF INTEGER(SUBSTRING(PROVERSION, 1, INDEX(PROVERSION, '.'))) GE 11 &THEN
-  
     DEF VAR http AS System.Net.HttpWebRequest no-undo.
     def var response as System.Net.HttpWebResponse no-undo.
     def var reader as System.IO.StreamReader no-undo.
@@ -444,9 +439,6 @@ DO:
     // jsonobj = cast(myParser:Parse(json), Progress.Json.ObjectModel.JsonObject).
     // jsonobj2 = jsonobj:getJsonObject("WebclientApplication").
     // assign fill-in-10:screen-value = STRING(jsonobj2:GetInteger("version")).
-&ELSE
-    MESSAGE "Only in OE 11 !" VIEW-AS ALERT-BOX.
-&ENDIF
     
 END.
 
@@ -612,8 +604,13 @@ DO ON ERROR   UNDO MAIN-BLOCK, LEAVE MAIN-BLOCK
 
   DEFINE VARIABLE vendor AS CHARACTER   NO-UNDO.
   DEFINE VARIABLE app  AS CHARACTER   NO-UNDO.
-  app = bottomDir(FILE-INFO:FULL-PATHNAME).
-  vendor = bottomDir(parentDir(FILE-INFO:FULL-PATHNAME)).
+  DEFINE VARIABLE tmp AS CHARACTER NO-UNDO.
+  tmp = FILE-INFO:FULL-PATHNAME.
+  IF SUBSTRING(tmp, LENGTH(tmp)) EQ '~\' THEN
+    ASSIGN tmp = SUBSTRING(tmp, 1, LENGTH(tmp) - 1).
+  app = SUBSTRING(tmp, R-INDEX(tmp, '~\') + 1).
+  tmp = SUBSTRING(tmp, 1, R-INDEX(tmp, '~\') - 1).
+  vendor = SUBSTRING(tmp, R-INDEX(tmp, '~\') + 1).
   assign fill-in-5:screen-value = vendor + "/" + app.
   
   DEFINE VARIABLE cVal AS CHARACTER   NO-UNDO.
