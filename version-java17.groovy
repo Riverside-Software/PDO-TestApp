@@ -5,13 +5,11 @@ import eu.rssw.pdo.ws.Version
 import eu.rssw.pdo.ws.StartupMode
 import eu.rssw.pdo.ws.FileUploadParameter;
 import eu.rssw.pdo.ws.MsiInstallerProperty;
-import eu.rssw.pdo.ws.MsiInstallerPropertyArray;
 
 import jakarta.activation.DataHandler;
 import jakarta.xml.ws.Binding;
 import jakarta.xml.ws.BindingProvider;
 import jakarta.xml.ws.soap.SOAPBinding;
-import java.net.URL;
 
 import org.apache.cxf.transport.http.HTTPConduit;
 import org.apache.cxf.frontend.ClientProxy;
@@ -36,10 +34,6 @@ def setAction(PdoAPI srv, eu.rssw.pdo.ws.Directory dir, String fileName, int act
     }
   }
 }
-
-// In order to use Ant tasks
-// def ant = new AntBuilder()
-// ant.get src: "http://jenkins.rssw.eu/job/Dev1-PDO-TestApp/lastSuccessfulBuild/artifact/TestApp3.zip", dest: "TestApp3.zip"
 
 Pdo padeo = new Pdo(new URL(args[0] + '/ws/padeo?wsdl'))
 PdoAPI srv = padeo.getPdoPort()
@@ -121,22 +115,25 @@ if (retVal != 0) {
 }
 
 println "Generating install bundle..."
-MsiInstallerPropertyArray lst = new MsiInstallerPropertyArray()
-lst.item = new java.util.ArrayList<MsiInstallerProperty>()
-/* if (args.length >= 6) {
+def lst = new java.util.ArrayList<MsiInstallerProperty>()
+if (args.length >= 6) {
   println "Using TARGETDIR=" + args[5]
   MsiInstallerProperty targetDirProp = new MsiInstallerProperty()
   targetDirProp.setName("TARGETDIR")
   targetDirProp.setValue(args[5])
-  lst.item.add(targetDirProp)
+  lst.add(targetDirProp)
   MsiInstallerProperty features = new MsiInstallerProperty()
   features.setName("ADDLOCAL")
   features.setValue("DefaultInstall,WritableDir")
-  lst.item.add(features)
-} */
+  lst.add(features)
+}
 report = srv.generateBundleProps(v.id, args[4], false, true, true, lst)
 if (!report.packagePresent) {
-  println "Bundle not generated : ";
+  println "** Bundle not generated **";
+  println "CANDLE REPORT"
+  for (i in report.candleReport) { println "** " + i }
+  println "LIGHT REPORT"
+  for (i in report.lightReport) { println "** " + i }
   return 1;
 }
 
