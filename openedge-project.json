@@ -4,7 +4,7 @@
   "charset": "iso8859-15",
   "oeversion": "12.8",
   "graphicalMode": true,
-  "extraParameters": "",
+  "extraParameters": "-assemblies assemblies-12.8",
   "buildPath": [
     { "type": "source", "path": "src" }
   ],
