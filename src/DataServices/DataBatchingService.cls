@@ -60,9 +60,11 @@ class DataServices.DataBatchingService inherits DataService implements IDataBatc
 	/* see comment in notes about use of by-reference  */
     method public void FetchData(input numRecords as int, whereClause as char):
         define variable dao as IDataAccess no-undo.
+        define variable hdl as handle no-undo.
         EmptyDataset().
         dao = createDataAccessObject(). 
-        dao:fetchBatch(whereClause, numRecords, input-output dataset-handle DatasetHandle, input-output fContext).
+        hdl = DatasetHandle.
+        dao:fetchBatch(whereClause, numRecords, input-output dataset-handle hdl, input-output fContext).
     end method. 
     
     method public integer FetchNextBatch():      
@@ -72,11 +74,13 @@ class DataServices.DataBatchingService inherits DataService implements IDataBatc
    	/* see comment in notes about use of by-reference  */
     method public integer FetchNextBatch(numRecords as int):
         define variable queryHandle as handle no-undo.
-		define variable dao as IDataAccess no-undo.
+     		define variable dao as IDataAccess no-undo.
         define variable OldNum as integer  no-undo.
+        define variable hdl as handle no-undo.
         dao = createDataAccessObject(). 
         queryHandle = this-object:DatasetHandle:top-nav-query(1).
-		dao:fetchBatch(fQueryContext,numRecords,input-output dataset-handle DatasetHandle, input-output fContext).
+        hdl = DatasetHandle.
+		dao:fetchBatch(fQueryContext,numRecords,input-output dataset-handle hdl, input-output fContext).
         
         /* we got all records and not likely an exact batch, so we need to count*/
         if fContext > "" then         
