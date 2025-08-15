@@ -5,7 +5,6 @@ import eu.rssw.pdo.ws.Version
 import eu.rssw.pdo.ws.StartupMode
 import eu.rssw.pdo.ws.FileUploadParameter;
 import eu.rssw.pdo.ws.MsiInstallerProperty;
-import eu.rssw.pdo.ws.MsiInstallerPropertyArray;
 
 import jakarta.activation.DataHandler;
 import jakarta.xml.ws.Binding;
